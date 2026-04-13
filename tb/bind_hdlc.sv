@@ -12,6 +12,7 @@ module bind_hdlc ();
     .Rst              (uin_hdlc.Rst),
     .Tx               (uin_hdlc.Tx),
     .TxD              (uin_hdlc.TxD),
+    .Tx_AbortFrame    (uin_hdlc.Tx_AbortFrame),
     .Tx_ValidFrame    (uin_hdlc.Tx_ValidFrame),
     .Tx_AbortedTrans  (uin_hdlc.Tx_AbortedTrans),
     .Rx               (uin_hdlc.Rx),

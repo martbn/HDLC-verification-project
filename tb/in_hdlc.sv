@@ -24,6 +24,7 @@ interface in_hdlc ();
   logic TxD;
   logic TxEN;
   logic Tx_Done;
+  logic Tx_AbortFrame;
   logic Tx_ValidFrame;
   logic Tx_AbortedTrans;
 

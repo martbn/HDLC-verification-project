@@ -195,8 +195,106 @@ endtask
 
 // 3 Correct bits set in RX status/control register after receiving frame. Remember to check all bits.
 //I.e. after an abort the Rx Overflow bit should be 0, unless an overflow also occurred.
+task VerifyRxStatusControl(int Abort, int FCSerr, int NonByteAligned, int Overflow, int Drop);
+  logic [7:0] ReadDataRXSC;
+  logic exp_ready, exp_drop, exp_frameerr, exp_abort, exp_overflow, exp_fcsen;
+
+  exp_abort    = Abort;
+  exp_overflow = Overflow;
+  exp_frameerr = (FCSerr || NonByteAligned);
+  exp_ready    = !(Abort || FCSerr || NonByteAligned || Drop);
+  exp_drop     = 1'b0;
+  exp_fcsen    = (!Overflow && !NonByteAligned);
+
+  ReadAddress(RXSC, ReadDataRXSC);
+
+  assert (ReadDataRXSC[0] == exp_ready) else begin
+    $error("RXSC[0] mismatch. Exp=%0b Got=%0b RXSC=0x%0h", exp_ready, ReadDataRXSC[0], ReadDataRXSC);
+    TbErrorCnt++;
+  end
+  assert (ReadDataRXSC[1] == exp_drop) else begin
+    $error("RXSC[1] mismatch. Exp=%0b Got=%0b RXSC=0x%0h", exp_drop, ReadDataRXSC[1], ReadDataRXSC);
+    TbErrorCnt++;
+  end
+  assert (ReadDataRXSC[2] == exp_frameerr) else begin
+    $error("RXSC[2] mismatch. Exp=%0b Got=%0b RXSC=0x%0h", exp_frameerr, ReadDataRXSC[2], ReadDataRXSC);
+    TbErrorCnt++;
+  end
+  assert (ReadDataRXSC[3] == exp_abort) else begin
+    $error("RXSC[3] mismatch. Exp=%0b Got=%0b RXSC=0x%0h", exp_abort, ReadDataRXSC[3], ReadDataRXSC);
+    TbErrorCnt++;
+  end
+  assert (ReadDataRXSC[4] == exp_overflow) else begin
+    $error("RXSC[4] mismatch. Exp=%0b Got=%0b RXSC=0x%0h", exp_overflow, ReadDataRXSC[4], ReadDataRXSC);
+    TbErrorCnt++;
+  end
+  assert (ReadDataRXSC[5] == exp_fcsen) else begin
+    $error("RXSC[5] mismatch. Exp=%0b Got=%0b RXSC=0x%0h", exp_fcsen, ReadDataRXSC[5], ReadDataRXSC);
+    TbErrorCnt++;
+  end
+  assert (ReadDataRXSC[7:6] == 2'b00) else begin
+    $error("RXSC[7:6] mismatch. Exp=00 Got=%0b RXSC=0x%0h", ReadDataRXSC[7:6], ReadDataRXSC);
+    TbErrorCnt++;
+  end
+endtask
 
 //4. Correct TX output according to written TX buffer.
+task WaitForTxStartFlag();
+  logic [7:0] ShiftReg;
+
+  ShiftReg = '0;
+
+  // Synchronize to start flag on TX line: 01111110 (LSB first).
+  while (ShiftReg != 8'b0111_1110) begin
+    @(posedge uin_hdlc.Clk);
+    ShiftReg = {uin_hdlc.Tx, ShiftReg[7:1]};
+  end
+
+endtask
+
+task ReadNextDestuffedTxByte(output logic [7:0] TxByte, inout int OnesCnt);
+  int BitIdx;
+
+  TxByte = '0;
+  BitIdx = 0;
+
+  while (BitIdx < 8) begin
+    @(posedge uin_hdlc.Clk);
+
+    // Remove stuffed 0 inserted after five consecutive 1s.
+    if ((OnesCnt == 5) && (uin_hdlc.Tx == 1'b0)) begin
+      OnesCnt = 0;
+      continue;
+    end
+
+    TxByte[BitIdx] = uin_hdlc.Tx;
+
+    if (uin_hdlc.Tx)
+      OnesCnt++;
+    else
+      OnesCnt = 0;
+
+    BitIdx++;
+  end
+endtask
+
+task VerifyTxOutput(logic [127:0][7:0] data, int Size);
+  logic [7:0] TxByte;
+  int ByteIdx;
+  int OnesCnt;
+
+  OnesCnt = 0;
+  WaitForTxStartFlag();
+
+  for (ByteIdx = 0; ByteIdx < Size; ByteIdx++) begin
+    ReadNextDestuffedTxByte(TxByte, OnesCnt);
+
+    assert (TxByte == data[ByteIdx]) else begin
+      $error("TX OUTPUT: Data mismatch at byte %0d. Expected 0x%0h, got 0x%0h", ByteIdx, data[ByteIdx], TxByte);
+      TbErrorCnt++;
+    end
+  end
+endtask
 
 //5. Start and end of frame pattern generation (Start and end flag: 0111 1110).
 //Implemented as concurrent assertions in assertions_hdlc.sv.
@@ -205,6 +303,7 @@ endtask
 //Implemented as concurrent assertions in assertions_hdlc.sv.
 
 //7. Idle pattern generation and checking (1111 1111 when not operating).
+//Implemented as concurrent assertions in assertions_hdlc.sv.
 
 //8. Abort pattern generation and checking (1111 1110). Remember that the 0 must be sent first.
 
@@ -249,6 +348,8 @@ endtask
     //Transmit: Size, Abort, Transparent
     Transmit(16, 0, 0); //Normal
     Transmit(16, 0, 1); //Transparent
+    Transmit(40, 1, 0); //Abort (Task8 stimulus)
+    Transmit(48, 1, 0); //Abort (Task9 stimulus)
 
     //Receive: Size, Abort, FCSerr, NonByteAligned, Overflow, Drop, SkipRead, Transparent
     Receive( 24, 0, 0, 0, 0, 0, 0, 1); //Transparent
@@ -324,6 +425,8 @@ endtask
 
   task Transmit(int Size, int Abort, int Transparent);
     logic [127:0][7:0] TransmitData;
+    logic abortReqSeen;
+    logic abortedSeen;
     string msg;
     if(Abort)
       msg = "- Abort";
@@ -346,11 +449,48 @@ endtask
     MakeTxStimulus(TransmitData, Size);
     WriteAddress(TXSC, 8'h02);
 
+    // Added for task 4
+    if(!Abort)
+      VerifyTxOutput(TransmitData, Size);
+
+
     if(Abort) begin
-      // Trigger abort while transmission is active.
+      // Trigger abort only after TX frame is active.
+      wait(uin_hdlc.Tx_ValidFrame);
       repeat(8)
         @(posedge uin_hdlc.Clk);
-      WriteAddress(TXSC, 8'h04);
+
+      abortReqSeen = 1'b0;
+      fork
+        begin
+          repeat(4) begin
+            @(posedge uin_hdlc.Clk);
+            if(uin_hdlc.Tx_AbortFrame)
+              abortReqSeen = 1'b1;
+          end
+        end
+        begin
+          WriteAddress(TXSC, 8'h04);
+        end
+      join
+
+      assert (abortReqSeen) else begin
+        $error("ABORT STIM: Tx_AbortFrame pulse was not observed.");
+        TbErrorCnt++;
+      end
+
+      abortedSeen = 1'b0;
+      for(int i = 0; i < 40; i++) begin
+        @(posedge uin_hdlc.Clk);
+        if(uin_hdlc.Tx_AbortedTrans) begin
+          abortedSeen = 1'b1;
+          break;
+        end
+      end
+      assert (abortedSeen) else begin
+        $error("ABORT STIM: Tx_AbortedTrans did not assert after abort request.");
+        TbErrorCnt++;
+      end
     end
 
     wait(uin_hdlc.Tx_Done);
@@ -479,6 +619,8 @@ endtask
       wait(uin_hdlc.Rx_Ready);
       WriteAddress(RXSC, 8'h22);
     end
+
+    VerifyRxStatusControl(Abort, FCSerr, NonByteAligned, Overflow, Drop);
 
     if(Abort) begin
       VerifyAbortReceive(ReceiveData, Size);
