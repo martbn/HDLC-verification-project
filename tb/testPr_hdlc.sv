@@ -413,6 +413,8 @@ endtask
 
   task Transmit(int Size, int Abort, int Transparent);
     logic [127:0][7:0] TransmitData;
+    logic abortReqSeen;
+    logic abortedSeen;
     string msg;
     if(Abort)
       msg = "- Abort";
@@ -441,10 +443,42 @@ endtask
 
 
     if(Abort) begin
-      // Trigger abort while transmission is active.
+      // Trigger abort only after TX frame is active.
+      wait(uin_hdlc.Tx_ValidFrame);
       repeat(8)
         @(posedge uin_hdlc.Clk);
-      WriteAddress(TXSC, 8'h04);
+
+      abortReqSeen = 1'b0;
+      fork
+        begin
+          repeat(4) begin
+            @(posedge uin_hdlc.Clk);
+            if(uin_hdlc.Tx_AbortFrame)
+              abortReqSeen = 1'b1;
+          end
+        end
+        begin
+          WriteAddress(TXSC, 8'h04);
+        end
+      join
+
+      assert (abortReqSeen) else begin
+        $error("ABORT STIM: Tx_AbortFrame pulse was not observed.");
+        TbErrorCnt++;
+      end
+
+      abortedSeen = 1'b0;
+      for(int i = 0; i < 40; i++) begin
+        @(posedge uin_hdlc.Clk);
+        if(uin_hdlc.Tx_AbortedTrans) begin
+          abortedSeen = 1'b1;
+          break;
+        end
+      end
+      assert (abortedSeen) else begin
+        $error("ABORT STIM: Tx_AbortedTrans did not assert after abort request.");
+        TbErrorCnt++;
+      end
     end
 
     wait(uin_hdlc.Tx_Done);
