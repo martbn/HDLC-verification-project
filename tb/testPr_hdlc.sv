@@ -244,7 +244,9 @@ endtask
     $display("*************************************************************");
 
     Init();
-    SendTxFrame(16, "- TX Flag Check");
+
+    //Transmit: Size, Abort
+    Transmit(16, 0); //Normal
 
     //Receive: Size, Abort, FCSerr, NonByteAligned, Overflow, Drop, SkipRead
     Receive( 10, 0, 0, 0, 0, 0, 0); //Normal
@@ -311,21 +313,42 @@ endtask
     uin_hdlc.ReadEnable = 1'b0;
   endtask
 
-  task SendTxFrame(int Size, string msg);
-    logic [7:0] TxByte;
+  task MakeTxStimulus(logic [127:0][7:0] Data, int Size);
+    for (int i = 0; i < Size; i++) begin
+      WriteAddress(TXBUFF, Data[i]);
+    end
+  endtask
+
+  task Transmit(int Size, int Abort);
+    logic [127:0][7:0] TransmitData;
+    string msg;
+    if(Abort)
+      msg = "- Abort";
+    else
+      msg = "- Normal";
+
     $display("*************************************************************");
-    $display("%t - Starting task SendTxFrame %s", $time, msg);
+    $display("%t - Starting task Transmit %s", $time, msg);
     $display("*************************************************************");
 
     for (int i = 0; i < Size; i++) begin
-      TxByte = $urandom;
-      WriteAddress(TXBUFF, TxByte);
+      TransmitData[i] = $urandom;
     end
+
+    MakeTxStimulus(TransmitData, Size);
     WriteAddress(TXSC, 8'h02);
+
+    if(Abort) begin
+      // Trigger abort while transmission is active.
+      repeat(8)
+        @(posedge uin_hdlc.Clk);
+      WriteAddress(TXSC, 8'h04);
+    end
+
     wait(uin_hdlc.Tx_Done);
 
     $display("*************************************************************");
-    $display("%t - Finishing task SendTxFrame %s", $time, msg);
+    $display("%t - Finishing task Transmit %s", $time, msg);
     $display("*************************************************************");
   endtask
 
