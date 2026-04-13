@@ -21,6 +21,7 @@ interface in_hdlc ();
 
   // TX
   logic Tx;
+  logic TxD;
   logic TxEN;
   logic Tx_Done;
   logic Tx_ValidFrame;

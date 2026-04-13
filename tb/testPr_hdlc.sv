@@ -202,6 +202,7 @@ endtask
 //Implemented as concurrent assertions in assertions_hdlc.sv.
 
 //6. Zero insertion and removal for transparent transmission.
+//Implemented as concurrent assertions in assertions_hdlc.sv.
 
 //7. Idle pattern generation and checking (1111 1111 when not operating).
 
@@ -245,21 +246,23 @@ endtask
 
     Init();
 
-    //Transmit: Size, Abort
-    Transmit(16, 0); //Normal
+    //Transmit: Size, Abort, Transparent
+    Transmit(16, 0, 0); //Normal
+    Transmit(16, 0, 1); //Transparent
 
-    //Receive: Size, Abort, FCSerr, NonByteAligned, Overflow, Drop, SkipRead
-    Receive( 10, 0, 0, 0, 0, 0, 0); //Normal
-    Receive( 40, 1, 0, 0, 0, 0, 0); //Abort
-    Receive( 40, 0, 1, 0, 0, 0, 0); //FCS error
-    Receive( 40, 0, 0, 0, 0, 1, 0); //Drop
-    Receive(126, 0, 0, 0, 1, 0, 0); //Overflow
-    Receive( 45, 0, 0, 0, 0, 0, 0); //Normal
-    Receive(126, 0, 0, 0, 0, 0, 0); //Normal
-    Receive(122, 1, 0, 0, 0, 0, 0); //Abort
-    Receive(126, 0, 0, 0, 1, 0, 0); //Overflow
-    Receive( 25, 0, 0, 0, 0, 0, 0); //Normal
-    Receive( 47, 0, 0, 0, 0, 0, 0); //Normal
+    //Receive: Size, Abort, FCSerr, NonByteAligned, Overflow, Drop, SkipRead, Transparent
+    Receive( 24, 0, 0, 0, 0, 0, 0, 1); //Transparent
+    Receive( 10, 0, 0, 0, 0, 0, 0, 0); //Normal
+    Receive( 40, 1, 0, 0, 0, 0, 0, 0); //Abort
+    Receive( 40, 0, 1, 0, 0, 0, 0, 0); //FCS error
+    Receive( 40, 0, 0, 0, 0, 1, 0, 0); //Drop
+    Receive(126, 0, 0, 0, 1, 0, 0, 0); //Overflow
+    Receive( 45, 0, 0, 0, 0, 0, 0, 0); //Normal
+    Receive(126, 0, 0, 0, 0, 0, 0, 0); //Normal
+    Receive(122, 1, 0, 0, 0, 0, 0, 0); //Abort
+    Receive(126, 0, 0, 0, 1, 0, 0, 0); //Overflow
+    Receive( 25, 0, 0, 0, 0, 0, 0, 0); //Normal
+    Receive( 47, 0, 0, 0, 0, 0, 0, 0); //Normal
 
     $display("*************************************************************");
     $display("%t - Finishing Test Program", $time);
@@ -319,11 +322,13 @@ endtask
     end
   endtask
 
-  task Transmit(int Size, int Abort);
+  task Transmit(int Size, int Abort, int Transparent);
     logic [127:0][7:0] TransmitData;
     string msg;
     if(Abort)
       msg = "- Abort";
+    else if(Transparent)
+      msg = "- Transparent";
     else
       msg = "- Normal";
 
@@ -332,7 +337,10 @@ endtask
     $display("*************************************************************");
 
     for (int i = 0; i < Size; i++) begin
-      TransmitData[i] = $urandom;
+      if(Transparent)
+        TransmitData[i] = 8'hFF;
+      else
+        TransmitData[i] = $urandom;
     end
 
     MakeTxStimulus(TransmitData, Size);
@@ -395,7 +403,7 @@ endtask
     end
   endtask
 
-  task Receive(int Size, int Abort, int FCSerr, int NonByteAligned, int Overflow, int Drop, int SkipRead);
+  task Receive(int Size, int Abort, int FCSerr, int NonByteAligned, int Overflow, int Drop, int SkipRead, int Transparent);
     logic [127:0][7:0] ReceiveData;
     logic       [15:0] FCSBytes;
     logic   [2:0][7:0] OverflowData;
@@ -412,6 +420,8 @@ endtask
       msg = "- Drop";
     else if(SkipRead)
       msg = "- Skip read";
+    else if(Transparent)
+      msg = "- Transparent";
     else
       msg = "- Normal";
     $display("*************************************************************");
@@ -419,7 +429,10 @@ endtask
     $display("*************************************************************");
 
     for (int i = 0; i < Size; i++) begin
-      ReceiveData[i] = $urandom;
+      if(Transparent)
+        ReceiveData[i] = 8'hFF;
+      else
+        ReceiveData[i] = $urandom;
     end
     ReceiveData[Size]   = '0;
     ReceiveData[Size+1] = '0;

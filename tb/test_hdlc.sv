@@ -37,6 +37,7 @@ module test_hdlc ();
   assign uin_hdlc.Rx_StopFCS         = u_dut.Rx_StopFCS;
   assign uin_hdlc.RxD                = u_dut.RxD;
   assign uin_hdlc.ZeroDetect         = u_dut.u_RxChannel.ZeroDetect;
+  assign uin_hdlc.TxD                = u_dut.u_TxChannel.TxD;
   assign uin_hdlc.Tx_ValidFrame      = u_dut.Tx_ValidFrame;
   assign uin_hdlc.Tx_AbortedTrans    = u_dut.Tx_AbortedTrans;
 
