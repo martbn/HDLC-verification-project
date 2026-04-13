@@ -180,6 +180,14 @@ endtask
   // 2 Attempting to read RX buffer after aborted frame, frame error or dropped frame should result
   //in zeros.
   task VerifyReadAfterError();
+    logic [7:0] ReadDataBUFF;
+    wait(uin_hdlc.Rx_Ready == 1'b0);
+
+    ReadAddress(RXBUFF, ReadDataBUFF);
+    assert (ReadDataBUFF == 8'h00) else begin
+      $error("READ AFTER ERROR: RX data buffer not zero after error. Expected 0x00, got 0x%0h", ReadDataBUFF);
+      TbErrorCnt++;
+    end
     
   endtask
 
@@ -237,6 +245,8 @@ endtask
     //Receive: Size, Abort, FCSerr, NonByteAligned, Overflow, Drop, SkipRead
     Receive( 10, 0, 0, 0, 0, 0, 0); //Normal
     Receive( 40, 1, 0, 0, 0, 0, 0); //Abort
+    Receive( 40, 0, 1, 0, 0, 0, 0); //FCS error   added for task 2, part b
+    Receive( 40, 0, 0, 0, 0, 1, 0); //Drop        added for task 2, part b
     Receive(126, 0, 0, 0, 1, 0, 0); //Overflow
     Receive( 45, 0, 0, 0, 0, 0, 0); //Normal
     Receive(126, 0, 0, 0, 0, 0, 0); //Normal
