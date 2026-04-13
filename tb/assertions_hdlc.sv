@@ -86,7 +86,9 @@ module assertions_hdlc (
       $rose(Tx_ValidFrame) |-> ##[0:3] Tx_flag;
   endproperty
 
-  TX_StartFlag_Assert : assert property (TX_StartFlag) else begin
+  TX_StartFlag_Assert : assert property (TX_StartFlag) begin
+    $display("PASS: TX start flag");
+  end else begin
     $error("TX start flag (01111110) was not generated.");
     ErrCntAssertions++;
   end
@@ -97,7 +99,9 @@ module assertions_hdlc (
       ($fell(Tx_ValidFrame) && !Tx_AbortedTrans) |-> ##[0:2] Tx_flag;
   endproperty
 
-  TX_EndFlag_Assert : assert property (TX_EndFlag) else begin
+  TX_EndFlag_Assert : assert property (TX_EndFlag) begin
+    $display("PASS: TX end flag");
+  end else begin
     $error("TX end flag (01111110) was not generated.");
     ErrCntAssertions++;
   end

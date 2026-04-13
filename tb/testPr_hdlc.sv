@@ -236,7 +236,7 @@ endtask
     $display("*************************************************************");
 
     Init();
-    SendTxFrame(16);
+    SendTxFrame(16, "- TX Flag Check");
 
     //Receive: Size, Abort, FCSerr, NonByteAligned, Overflow, Drop, SkipRead
     Receive( 10, 0, 0, 0, 0, 0, 0); //Normal
@@ -301,14 +301,22 @@ endtask
     uin_hdlc.ReadEnable = 1'b0;
   endtask
 
-  task SendTxFrame(int Size);
+  task SendTxFrame(int Size, string msg);
     logic [7:0] TxByte;
+    $display("*************************************************************");
+    $display("%t - Starting task SendTxFrame %s", $time, msg);
+    $display("*************************************************************");
+
     for (int i = 0; i < Size; i++) begin
       TxByte = $urandom;
       WriteAddress(TXBUFF, TxByte);
     end
     WriteAddress(TXSC, 8'h02);
     wait(uin_hdlc.Tx_Done);
+
+    $display("*************************************************************");
+    $display("%t - Finishing task SendTxFrame %s", $time, msg);
+    $display("*************************************************************");
   endtask
 
   task InsertFlagOrAbort(int flag);
