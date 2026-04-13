@@ -245,8 +245,8 @@ endtask
     //Receive: Size, Abort, FCSerr, NonByteAligned, Overflow, Drop, SkipRead
     Receive( 10, 0, 0, 0, 0, 0, 0); //Normal
     Receive( 40, 1, 0, 0, 0, 0, 0); //Abort
-    //Receive( 40, 0, 1, 0, 0, 0, 0); //FCS error   added for task 2, part b
-    //Receive( 40, 0, 0, 0, 0, 1, 0); //Drop        added for task 2, part b
+    Receive( 40, 0, 1, 0, 0, 0, 0); //FCS error
+    Receive( 40, 0, 0, 0, 0, 1, 0); //Drop
     Receive(126, 0, 0, 0, 1, 0, 0); //Overflow
     Receive( 45, 0, 0, 0, 0, 0, 0); //Normal
     Receive(126, 0, 0, 0, 0, 0, 0); //Normal
@@ -384,6 +384,9 @@ endtask
     ReceiveData[Size]   = FCSBytes[7:0];
     ReceiveData[Size+1] = FCSBytes[15:8];
 
+    if(FCSerr)
+      ReceiveData[Size][0] = ~ReceiveData[Size][0];
+
     //Enable FCS
     if(!Overflow && !NonByteAligned)
       WriteAddress(RXSC, 8'h20);
@@ -414,8 +417,17 @@ endtask
     repeat(8)
       @(posedge uin_hdlc.Clk);
 
-    if(Abort)
+    if(Drop) begin
+      wait(uin_hdlc.Rx_Ready);
+      WriteAddress(RXSC, 8'h22);
+    end
+
+    if(Abort) begin
       VerifyAbortReceive(ReceiveData, Size);
+      VerifyReadAfterError();
+    end
+    else if(FCSerr || Drop || NonByteAligned)
+      VerifyReadAfterError();
     else if(Overflow)
       VerifyOverflowReceive(ReceiveData, Size);
     else if(!SkipRead) begin
