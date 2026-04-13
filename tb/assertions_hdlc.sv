@@ -18,6 +18,9 @@ module assertions_hdlc (
   output int   ErrCntAssertions,
   input  logic Clk,
   input  logic Rst,
+  input  logic Tx,
+  input  logic Tx_ValidFrame,
+  input  logic Tx_AbortedTrans,
   input  logic Rx,
   input  logic Rx_FlagDetect,
   input  logic Rx_ValidFrame,
@@ -66,6 +69,37 @@ module assertions_hdlc (
   end else begin 
     $error("AbortSignal did not go high after AbortDetect during validframe"); 
     ErrCntAssertions++; 
+  end
+
+  /***********************************************
+   *  Verify Tx start/end flag generation (Task5)*
+   ***********************************************/
+
+  sequence Tx_flag;
+    // HDLC flag pattern: 01111110
+    !Tx ##1 Tx [*6] ##1 !Tx;
+  endsequence
+
+  // Start flag must appear when TX valid frame starts.
+  property TX_StartFlag;
+    @(posedge Clk) disable iff (!Rst)
+      $rose(Tx_ValidFrame) |-> ##[0:3] Tx_flag;
+  endproperty
+
+  TX_StartFlag_Assert : assert property (TX_StartFlag) else begin
+    $error("TX start flag (01111110) was not generated.");
+    ErrCntAssertions++;
+  end
+
+  // End flag must appear when TX valid frame finishes (non-abort case).
+  property TX_EndFlag;
+    @(posedge Clk) disable iff (!Rst)
+      ($fell(Tx_ValidFrame) && !Tx_AbortedTrans) |-> ##[0:2] Tx_flag;
+  endproperty
+
+  TX_EndFlag_Assert : assert property (TX_EndFlag) else begin
+    $error("TX end flag (01111110) was not generated.");
+    ErrCntAssertions++;
   end
 
 endmodule

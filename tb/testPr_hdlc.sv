@@ -32,7 +32,9 @@ program testPr_hdlc(
    *                                                                          *
    ****************************************************************************/
 
-  // Register address definitions (Fixes the simulation error)
+  // Register address definitions
+  localparam logic [2:0] TXSC   = 3'b000;  // TX Status/Control
+  localparam logic [2:0] TXBUFF = 3'b001;  // TX Data Buffer
   localparam logic [2:0] RXSC   = 3'b010;  // RX Status/Control
   localparam logic [2:0] RXBUFF = 3'b011;  // RX Data Buffer
 
@@ -189,6 +191,7 @@ endtask
 //4. Correct TX output according to written TX buffer.
 
 //5. Start and end of frame pattern generation (Start and end flag: 0111 1110).
+//Implemented as concurrent assertions in assertions_hdlc.sv.
 
 //6. Zero insertion and removal for transparent transmission.
 
@@ -233,6 +236,7 @@ endtask
     $display("*************************************************************");
 
     Init();
+    SendTxFrame(16);
 
     //Receive: Size, Abort, FCSerr, NonByteAligned, Overflow, Drop, SkipRead
     Receive( 10, 0, 0, 0, 0, 0, 0); //Normal
@@ -295,6 +299,16 @@ endtask
     Data                = uin_hdlc.DataOut;
     @(posedge uin_hdlc.Clk);
     uin_hdlc.ReadEnable = 1'b0;
+  endtask
+
+  task SendTxFrame(int Size);
+    logic [7:0] TxByte;
+    for (int i = 0; i < Size; i++) begin
+      TxByte = $urandom;
+      WriteAddress(TXBUFF, TxByte);
+    end
+    WriteAddress(TXSC, 8'h02);
+    wait(uin_hdlc.Tx_Done);
   endtask
 
   task InsertFlagOrAbort(int flag);
