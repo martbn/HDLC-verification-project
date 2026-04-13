@@ -1,0 +1,114 @@
+# ** Note: (vsim-220) '/eda/tools/siemens/questasim.2025.2/linux/../modelsim.ini' is used as the ini file.
+# vsim -assertdebug -c -voptargs="+acc" test_hdlc bind_hdlc -do "log -r *; run -all; exit" 
+# Start time: 19:07:46 on Apr 12,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility. The +acc switch would be deprecated in a future release.
+# ** Note: (vopt-220) '/eda/tools/siemens/questasim.2025.2/linux/../modelsim.ini' is used as the ini file.
+# ** Warning: ../rtl/TxFCS.sv(13): (vopt-13314) Defaulting port 'DataBuff' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# ** Note: (vopt-143) Recognized 1 FSM in module "TxFCS(fast)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "RxBuff(fast)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "TxController(fast)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "RxController(fast)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "TxBuff(fast)".
+# ** Warning: ./test_hdlc.sv(45): (vopt-2685) [TFMPC] - Too few port connections for 'u_dut'.  Expected 13, found 10.
+# ** Warning: ./test_hdlc.sv(45): (vopt-2718) [TFMPC] - Missing connection for port 'Tx_Done'.
+# ** Warning: ./test_hdlc.sv(45): (vopt-2718) [TFMPC] - Missing connection for port 'TxEN'.
+# ** Warning: ./test_hdlc.sv(45): (vopt-2718) [TFMPC] - Missing connection for port 'Tx'.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=6.
+# //  Questa Sim
+# //  Version 2025.2 linux May 31 2025
+# //
+# // Unpublished work. Copyright 2025 Siemens
+# //
+# // This material contains trade secrets or otherwise confidential information
+# // owned by Siemens Industry Software Inc. or its affiliates (collectively,
+# // "SISW"), or its licensors. Access to and use of this information is strictly
+# // limited as set forth in the Customer's applicable agreements with SISW.
+# //
+# // This material may not be copied, distributed, or otherwise disclosed outside
+# // of the Customer's facilities without the express written permission of SISW,
+# // and may not be used in any way not expressly authorized by SISW.
+# //
+# Loading sv_std.std
+# Loading work.test_hdlc(fast)
+# Loading work.in_hdlc(fast__1)
+# Loading work.Hdlc(fast)
+# Loading work.AddressIF(fast)
+# Loading work.TxController(fast)
+# Loading work.TxBuff(fast)
+# Loading work.TxFCS(fast)
+# Loading work.TxChannel(fast)
+# Loading work.RxController(fast)
+# Loading work.RxBuff(fast)
+# Loading work.RxFCS(fast)
+# Loading work.RxChannel(fast)
+# Loading work.testPr_hdlc(fast)
+# Loading work.assertions_hdlc(fast)
+# Loading work.bind_hdlc(fast)
+# log -r *
+#  run -all
+# *************************************************************
+#                    0 - Starting Test Program
+# *************************************************************
+# *************************************************************
+#                 1000 - Starting task Receive - Normal
+# *************************************************************
+# PASS: Flag detect
+# PASS: Flag detect
+# *************************************************************
+#                78250 - Starting task Receive - Abort
+# *************************************************************
+# PASS: Flag detect
+# PASS: Abort signal
+# PASS: Rx_AbortedFrame bit = 1
+# *************************************************************
+#               272250 - Starting task Receive - Overflow
+# *************************************************************
+# PASS: Flag detect
+# PASS: Flag detect
+# *************************************************************
+#               949250 - Starting task Receive - Normal
+# *************************************************************
+# PASS: Flag detect
+# PASS: Flag detect
+# *************************************************************
+#              1204750 - Starting task Receive - Normal
+# *************************************************************
+# PASS: Flag detect
+# PASS: Flag detect
+# *************************************************************
+#              1868250 - Starting task Receive - Abort
+# *************************************************************
+# PASS: Flag detect
+# PASS: Abort signal
+# PASS: Rx_AbortedFrame bit = 1
+# *************************************************************
+#              2390250 - Starting task Receive - Overflow
+# *************************************************************
+# PASS: Flag detect
+# PASS: Flag detect
+# *************************************************************
+#              3067250 - Starting task Receive - Normal
+# *************************************************************
+# PASS: Flag detect
+# PASS: Flag detect
+# *************************************************************
+#              3221750 - Starting task Receive - Normal
+# *************************************************************
+# PASS: Flag detect
+# PASS: Flag detect
+# *************************************************************
+#              3485250 - Finishing Test Program
+# *************************************************************
+# ** Note: $stop    : ./testPr_hdlc.sv(251)
+#    Time: 3485250 ns  Iteration: 1  Instance: /test_hdlc/u_testPr
+# Break in Module testPr_hdlc at ./testPr_hdlc.sv line 251
+# Stopped at ./testPr_hdlc.sv line 251
+#  exit
+# *********************************
+# *                               *
+# * 	Assertion Errors: 0	  *
+# *                               *
+# *********************************
+# End time: 19:07:53 on Apr 12,2026, Elapsed time: 0:00:07
+# Errors: 0, Warnings: 6

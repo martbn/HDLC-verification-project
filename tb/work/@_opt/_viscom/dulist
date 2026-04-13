@@ -1,0 +1,16 @@
+1 7 in_hdlc 5 synth 53 /home/courses/desdigsys2/2026s/dds226s17/hdlc/tb/work 0 0 0 0 0 0
+1 9 bind_hdlc 4 fast 53 /home/courses/desdigsys2/2026s/dds226s17/hdlc/tb/work 0 0 0 0 2 0
+1 7 in_hdlc 7 fast__1 53 /home/courses/desdigsys2/2026s/dds226s17/hdlc/tb/work 0 0 0 0 35 0
+1 9 AddressIF 4 fast 53 /home/courses/desdigsys2/2026s/dds226s17/hdlc/tb/work 0 0 0 0 216 0
+1 12 TxController 4 fast 53 /home/courses/desdigsys2/2026s/dds226s17/hdlc/tb/work 0 0 0 0 258 0
+1 6 TxBuff 4 fast 53 /home/courses/desdigsys2/2026s/dds226s17/hdlc/tb/work 0 0 0 0 232 0
+1 5 TxFCS 4 fast 53 /home/courses/desdigsys2/2026s/dds226s17/hdlc/tb/work 0 0 131072 0 318 0
+1 9 TxChannel 4 fast 53 /home/courses/desdigsys2/2026s/dds226s17/hdlc/tb/work 0 0 0 0 199 0
+1 12 RxController 4 fast 53 /home/courses/desdigsys2/2026s/dds226s17/hdlc/tb/work 0 0 0 0 255 0
+1 6 RxBuff 4 fast 53 /home/courses/desdigsys2/2026s/dds226s17/hdlc/tb/work 0 0 0 0 271 0
+1 5 RxFCS 4 fast 53 /home/courses/desdigsys2/2026s/dds226s17/hdlc/tb/work 0 0 0 0 143 0
+1 9 RxChannel 4 fast 53 /home/courses/desdigsys2/2026s/dds226s17/hdlc/tb/work 0 0 0 0 169 0
+1 4 Hdlc 4 fast 53 /home/courses/desdigsys2/2026s/dds226s17/hdlc/tb/work 0 0 0 0 189 0
+1 11 testPr_hdlc 4 fast 53 /home/courses/desdigsys2/2026s/dds226s17/hdlc/tb/work 0 0 131072 0 1001 0
+1 15 assertions_hdlc 4 fast 53 /home/courses/desdigsys2/2026s/dds226s17/hdlc/tb/work 0 0 0 0 152 0
+1 9 test_hdlc 4 fast 53 /home/courses/desdigsys2/2026s/dds226s17/hdlc/tb/work 0 0 0 0 137 0
