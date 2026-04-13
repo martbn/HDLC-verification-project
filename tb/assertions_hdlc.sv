@@ -114,7 +114,7 @@ module assertions_hdlc (
   /********************************************
    *  Verify zero insertion/removal (Task6)   *
    ********************************************/
-
+//t
   // TX transparent transmission: no 6 consecutive ones in data stream.
   // TxD is observed before flag insertion, so it represents payload/FCS data path.
   property TX_ZeroInsertion;
