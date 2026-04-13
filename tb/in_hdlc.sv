@@ -22,6 +22,9 @@ interface in_hdlc ();
   // TX
   logic Tx;
   logic TxEN;
+  logic Tx_Done;
+  logic Tx_ValidFrame;
+  logic Tx_AbortedTrans;
 
   // RX
   logic Rx;
