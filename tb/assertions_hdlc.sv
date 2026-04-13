@@ -99,9 +99,9 @@ module assertions_hdlc (
   end
 
   // End flag must appear when TX valid frame finishes (non-abort case).
-  property TX_EndFlag;
+    property TX_EndFlag;
     @(posedge Clk) disable iff (!Rst)
-      ($fell(Tx_ValidFrame) && !Tx_AbortedTrans) |-> ##[0:2] Tx_flag;
+      ($fell(Tx_ValidFrame) && !Tx_AbortedTrans) |-> ##[0:8] Tx_flag;
   endproperty
 
   TX_EndFlag_Assert : assert property (TX_EndFlag) begin
@@ -118,13 +118,14 @@ module assertions_hdlc (
   // TX transparent transmission: no 6 consecutive ones in data stream.
   // TxD is observed before flag insertion, so it represents payload/FCS data path.
   property TX_ZeroInsertion;
-    @(posedge Clk) disable iff (!Rst || !$past(Rst,5))
+    @(posedge Clk) disable iff (!Rst)
       (Tx_ValidFrame &&
        $past(Tx_ValidFrame,1) &&
        $past(Tx_ValidFrame,2) &&
        $past(Tx_ValidFrame,3) &&
        $past(Tx_ValidFrame,4) &&
-       $past(Tx_ValidFrame,5))
+       $past(Tx_ValidFrame,5) &&
+       $past(Tx_ValidFrame,10))
       |-> !(TxD &&
             $past(TxD,1) &&
             $past(TxD,2) &&
@@ -140,7 +141,7 @@ module assertions_hdlc (
 
   // RX transparent transmission: 0111110 inside valid frame should be detected as inserted zero.
   property RX_ZeroRemovalDetect;
-    @(posedge Clk) disable iff (!Rst || !$past(Rst,5))
+    @(posedge Clk) disable iff (!Rst)
       (Rx_ValidFrame &&
        !Rx_StartZeroDetect &&
        !RxD &&

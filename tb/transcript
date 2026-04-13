@@ -1,6 +1,6 @@
 # ** Note: (vsim-220) '/eda/tools/siemens/questasim.2025.2/linux/../modelsim.ini' is used as the ini file.
 # vsim -assertdebug -c -voptargs="+acc" test_hdlc bind_hdlc -do "log -r *; run -all; exit" 
-# Start time: 10:44:02 on Apr 13,2026
+# Start time: 11:20:37 on Apr 13,2026
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility. The +acc switch would be deprecated in a future release.
 # ** Note: (vopt-220) '/eda/tools/siemens/questasim.2025.2/linux/../modelsim.ini' is used as the ini file.
@@ -47,82 +47,95 @@
 #                    0 - Starting Test Program
 # *************************************************************
 # *************************************************************
-#                 1000 - Starting task SendTxFrame - TX Flag Check
+#                 1000 - Starting task Transmit - Normal
 # *************************************************************
 # PASS: TX start flag
 # *************************************************************
-#               147750 - Finishing task SendTxFrame - TX Flag Check
+#               147750 - Finishing task Transmit - Normal
 # *************************************************************
 # *************************************************************
-#               147750 - Starting task Receive - Normal
+#               147750 - Starting task Transmit - Transparent
+# *************************************************************
+# PASS: TX start flag
+# PASS: TX end flag
+# *************************************************************
+#               237750 - Finishing task Transmit - Transparent
+# *************************************************************
+# *************************************************************
+#               237750 - Starting task Receive - Transparent
 # *************************************************************
 # PASS: Flag detect
 # PASS: TX end flag
 # PASS: Flag detect
 # *************************************************************
-#               225750 - Starting task Receive - Abort
+#               404250 - Starting task Receive - Normal
+# *************************************************************
+# PASS: Flag detect
+# PASS: Flag detect
+# *************************************************************
+#               482250 - Starting task Receive - Abort
 # *************************************************************
 # PASS: Flag detect
 # PASS: Abort signal
 # PASS: Rx_AbortedFrame bit = 1
 # *************************************************************
-#               419750 - Starting task Receive - FCS error
+#               676250 - Starting task Receive - FCS error
 # *************************************************************
 # PASS: Flag detect
 # PASS: Flag detect
 # *************************************************************
-#               610750 - Starting task Receive - Drop
+#               867250 - Starting task Receive - Drop
 # *************************************************************
 # PASS: Flag detect
 # PASS: Flag detect
 # *************************************************************
-#               801250 - Starting task Receive - Overflow
+#              1057750 - Starting task Receive - Overflow
 # *************************************************************
 # PASS: Flag detect
 # PASS: Flag detect
 # *************************************************************
-#              1477250 - Starting task Receive - Normal
+#              1733750 - Starting task Receive - Normal
 # *************************************************************
 # PASS: Flag detect
 # PASS: Flag detect
 # *************************************************************
-#              1730750 - Starting task Receive - Normal
+#              1987250 - Starting task Receive - Normal
 # *************************************************************
 # PASS: Flag detect
 # PASS: Flag detect
 # *************************************************************
-#              2395250 - Starting task Receive - Abort
+#              2651750 - Starting task Receive - Abort
 # *************************************************************
 # PASS: Flag detect
 # PASS: Abort signal
 # PASS: Rx_AbortedFrame bit = 1
 # *************************************************************
-#              2918250 - Starting task Receive - Overflow
+#              3174750 - Starting task Receive - Overflow
 # *************************************************************
 # PASS: Flag detect
 # PASS: Flag detect
 # *************************************************************
-#              3596250 - Starting task Receive - Normal
+#              3852750 - Starting task Receive - Normal
 # *************************************************************
 # PASS: Flag detect
 # PASS: Flag detect
 # *************************************************************
-#              3751750 - Starting task Receive - Normal
+#              4008250 - Starting task Receive - Normal
 # *************************************************************
 # PASS: Flag detect
 # PASS: Flag detect
 # *************************************************************
-#              4016250 - Finishing Test Program
+#              4272750 - Finishing Test Program
 # *************************************************************
-# ** Note: $stop    : ./testPr_hdlc.sv(265)
-#    Time: 4016250 ns  Iteration: 1  Instance: /test_hdlc/u_testPr
-# Break in Module testPr_hdlc at ./testPr_hdlc.sv line 265
-# Stopped at ./testPr_hdlc.sv line 265
+# ** Note: $stop    : ./testPr_hdlc.sv(270)
+#    Time: 4272750 ns  Iteration: 1  Instance: /test_hdlc/u_testPr
+# Break in Module testPr_hdlc at ./testPr_hdlc.sv line 270
+# Stopped at ./testPr_hdlc.sv line 270
 #  exit
 # *********************************
 # *                               *
 # * 	Assertion Errors: 0	  *
 # *                               *
 # *********************************
-# End time: 10:44:09 on Apr 13,2026, Elapsed time: 0:00:07
+# End time: 11:20:43 on Apr 13,2026, Elapsed time: 0:00:06
 # Errors: 0, Warnings: 2
