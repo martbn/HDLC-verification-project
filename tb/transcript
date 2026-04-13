@@ -1,6 +1,6 @@
 # ** Note: (vsim-220) '/eda/tools/siemens/questasim.2025.2/linux/../modelsim.ini' is used as the ini file.
 # vsim -assertdebug -c -voptargs="+acc" test_hdlc bind_hdlc -do "log -r *; run -all; exit" 
-# Start time: 10:37:20 on Apr 13,2026
+# Start time: 10:44:02 on Apr 13,2026
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility. The +acc switch would be deprecated in a future release.
 # ** Note: (vopt-220) '/eda/tools/siemens/questasim.2025.2/linux/../modelsim.ini' is used as the ini file.
@@ -10,11 +10,7 @@
 # ** Note: (vopt-143) Recognized 1 FSM in module "TxController(fast)".
 # ** Note: (vopt-143) Recognized 1 FSM in module "RxController(fast)".
 # ** Note: (vopt-143) Recognized 1 FSM in module "TxBuff(fast)".
-# ** Warning: ./test_hdlc.sv(45): (vopt-2685) [TFMPC] - Too few port connections for 'u_dut'.  Expected 13, found 10.
-# ** Warning: ./test_hdlc.sv(45): (vopt-2718) [TFMPC] - Missing connection for port 'Tx_Done'.
-# ** Warning: ./test_hdlc.sv(45): (vopt-2718) [TFMPC] - Missing connection for port 'TxEN'.
-# ** Warning: ./test_hdlc.sv(45): (vopt-2718) [TFMPC] - Missing connection for port 'Tx'.
-# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=6.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=2.
 # //  Questa Sim
 # //  Version 2025.2 linux May 31 2025
 # //
@@ -51,64 +47,82 @@
 #                    0 - Starting Test Program
 # *************************************************************
 # *************************************************************
-#                 1000 - Starting task Receive - Normal
+#                 1000 - Starting task SendTxFrame - TX Flag Check
+# *************************************************************
+# PASS: TX start flag
+# *************************************************************
+#               147750 - Finishing task SendTxFrame - TX Flag Check
+# *************************************************************
+# *************************************************************
+#               147750 - Starting task Receive - Normal
 # *************************************************************
 # PASS: Flag detect
+# PASS: TX end flag
 # PASS: Flag detect
 # *************************************************************
-#                78250 - Starting task Receive - Abort
-# *************************************************************
-# PASS: Flag detect
-# PASS: Abort signal
-# PASS: Rx_AbortedFrame bit = 1
-# *************************************************************
-#               272250 - Starting task Receive - Overflow
-# *************************************************************
-# PASS: Flag detect
-# PASS: Flag detect
-# *************************************************************
-#               949250 - Starting task Receive - Normal
-# *************************************************************
-# PASS: Flag detect
-# PASS: Flag detect
-# *************************************************************
-#              1204750 - Starting task Receive - Normal
-# *************************************************************
-# PASS: Flag detect
-# PASS: Flag detect
-# *************************************************************
-#              1868250 - Starting task Receive - Abort
+#               225750 - Starting task Receive - Abort
 # *************************************************************
 # PASS: Flag detect
 # PASS: Abort signal
 # PASS: Rx_AbortedFrame bit = 1
 # *************************************************************
-#              2390250 - Starting task Receive - Overflow
+#               419750 - Starting task Receive - FCS error
 # *************************************************************
 # PASS: Flag detect
 # PASS: Flag detect
 # *************************************************************
-#              3067250 - Starting task Receive - Normal
+#               610750 - Starting task Receive - Drop
 # *************************************************************
 # PASS: Flag detect
 # PASS: Flag detect
 # *************************************************************
-#              3221750 - Starting task Receive - Normal
+#               801250 - Starting task Receive - Overflow
 # *************************************************************
 # PASS: Flag detect
 # PASS: Flag detect
 # *************************************************************
-#              3485250 - Finishing Test Program
+#              1477250 - Starting task Receive - Normal
 # *************************************************************
-# ** Note: $stop    : ./testPr_hdlc.sv(261)
-#    Time: 3485250 ns  Iteration: 1  Instance: /test_hdlc/u_testPr
-# Break in Module testPr_hdlc at ./testPr_hdlc.sv line 261
-# Stopped at ./testPr_hdlc.sv line 261
+# PASS: Flag detect
+# PASS: Flag detect
+# *************************************************************
+#              1730750 - Starting task Receive - Normal
+# *************************************************************
+# PASS: Flag detect
+# PASS: Flag detect
+# *************************************************************
+#              2395250 - Starting task Receive - Abort
+# *************************************************************
+# PASS: Flag detect
+# PASS: Abort signal
+# PASS: Rx_AbortedFrame bit = 1
+# *************************************************************
+#              2918250 - Starting task Receive - Overflow
+# *************************************************************
+# PASS: Flag detect
+# PASS: Flag detect
+# *************************************************************
+#              3596250 - Starting task Receive - Normal
+# *************************************************************
+# PASS: Flag detect
+# PASS: Flag detect
+# *************************************************************
+#              3751750 - Starting task Receive - Normal
+# *************************************************************
+# PASS: Flag detect
+# PASS: Flag detect
+# *************************************************************
+#              4016250 - Finishing Test Program
+# *************************************************************
+# ** Note: $stop    : ./testPr_hdlc.sv(265)
+#    Time: 4016250 ns  Iteration: 1  Instance: /test_hdlc/u_testPr
+# Break in Module testPr_hdlc at ./testPr_hdlc.sv line 265
+# Stopped at ./testPr_hdlc.sv line 265
 #  exit
 # *********************************
 # *                               *
 # * 	Assertion Errors: 0	  *
 # *                               *
 # *********************************
-# End time: 10:37:25 on Apr 13,2026, Elapsed time: 0:00:05
-# Errors: 0, Warnings: 6
+# End time: 10:44:09 on Apr 13,2026, Elapsed time: 0:00:07
+# Errors: 0, Warnings: 2
