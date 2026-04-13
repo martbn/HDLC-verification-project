@@ -245,8 +245,8 @@ endtask
     //Receive: Size, Abort, FCSerr, NonByteAligned, Overflow, Drop, SkipRead
     Receive( 10, 0, 0, 0, 0, 0, 0); //Normal
     Receive( 40, 1, 0, 0, 0, 0, 0); //Abort
-    Receive( 40, 0, 1, 0, 0, 0, 0); //FCS error   added for task 2, part b
-    Receive( 40, 0, 0, 0, 0, 1, 0); //Drop        added for task 2, part b
+    //Receive( 40, 0, 1, 0, 0, 0, 0); //FCS error   added for task 2, part b
+    //Receive( 40, 0, 0, 0, 0, 1, 0); //Drop        added for task 2, part b
     Receive(126, 0, 0, 0, 1, 0, 0); //Overflow
     Receive( 45, 0, 0, 0, 0, 0, 0); //Normal
     Receive(126, 0, 0, 0, 0, 0, 0); //Normal

@@ -1,6 +1,6 @@
 # ** Note: (vsim-220) '/eda/tools/siemens/questasim.2025.2/linux/../modelsim.ini' is used as the ini file.
 # vsim -assertdebug -c -voptargs="+acc" test_hdlc bind_hdlc -do "log -r *; run -all; exit" 
-# Start time: 19:07:46 on Apr 12,2026
+# Start time: 10:37:20 on Apr 13,2026
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility. The +acc switch would be deprecated in a future release.
 # ** Note: (vopt-220) '/eda/tools/siemens/questasim.2025.2/linux/../modelsim.ini' is used as the ini file.
@@ -100,15 +100,15 @@
 # *************************************************************
 #              3485250 - Finishing Test Program
 # *************************************************************
-# ** Note: $stop    : ./testPr_hdlc.sv(251)
+# ** Note: $stop    : ./testPr_hdlc.sv(261)
 #    Time: 3485250 ns  Iteration: 1  Instance: /test_hdlc/u_testPr
-# Break in Module testPr_hdlc at ./testPr_hdlc.sv line 251
-# Stopped at ./testPr_hdlc.sv line 251
+# Break in Module testPr_hdlc at ./testPr_hdlc.sv line 261
+# Stopped at ./testPr_hdlc.sv line 261
 #  exit
 # *********************************
 # *                               *
 # * 	Assertion Errors: 0	  *
 # *                               *
 # *********************************
-# End time: 19:07:53 on Apr 12,2026, Elapsed time: 0:00:07
+# End time: 10:37:25 on Apr 13,2026, Elapsed time: 0:00:05
 # Errors: 0, Warnings: 6

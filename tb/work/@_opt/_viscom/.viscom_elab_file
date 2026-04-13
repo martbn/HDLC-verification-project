@@ -1,1 +1,0 @@
-/eda/tools/siemens/questasim.2025.2/linux/VisualizerRls/bin/viscom -nolock -quiet -jmem_size 393216 work.test_hdlc work.bind_hdlc -quiet -auto_acc_if_foreign -work work +acc -allow_unnamed -o _opt -id 1-90b11c1d54d8-69dbd162-e68ed-18ae08 +__betafsm
