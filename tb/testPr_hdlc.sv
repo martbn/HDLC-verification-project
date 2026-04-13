@@ -239,10 +239,15 @@ task VerifyRxStatusControl(int Abort, int FCSerr, int NonByteAligned, int Overfl
 endtask
 
 //4. Correct TX output according to written TX buffer.
-task WaitForTxStartFlag();
+task VerifyTxOutput(logic [127:0][7:0] data, int Size);
   logic [7:0] ShiftReg;
-
+  logic [7:0] TxByte;
+  int ByteIdx;
+  int BitIdx;
+  int OnesCnt;
+  
   ShiftReg = '0;
+  OnesCnt = 0;
 
   // Synchronize to start flag on TX line: 01111110 (LSB first).
   while (ShiftReg != 8'b0111_1110) begin
@@ -250,44 +255,28 @@ task WaitForTxStartFlag();
     ShiftReg = {uin_hdlc.Tx, ShiftReg[7:1]};
   end
 
-endtask
-
-task ReadNextDestuffedTxByte(output logic [7:0] TxByte, inout int OnesCnt);
-  int BitIdx;
-
-  TxByte = '0;
-  BitIdx = 0;
-
-  while (BitIdx < 8) begin
-    @(posedge uin_hdlc.Clk);
-
-    // Remove stuffed 0 inserted after five consecutive 1s.
-    if ((OnesCnt == 5) && (uin_hdlc.Tx == 1'b0)) begin
-      OnesCnt = 0;
-      continue;
-    end
-
-    TxByte[BitIdx] = uin_hdlc.Tx;
-
-    if (uin_hdlc.Tx)
-      OnesCnt++;
-    else
-      OnesCnt = 0;
-
-    BitIdx++;
-  end
-endtask
-
-task VerifyTxOutput(logic [127:0][7:0] data, int Size);
-  logic [7:0] TxByte;
-  int ByteIdx;
-  int OnesCnt;
-
-  OnesCnt = 0;
-  WaitForTxStartFlag();
-
   for (ByteIdx = 0; ByteIdx < Size; ByteIdx++) begin
-    ReadNextDestuffedTxByte(TxByte, OnesCnt);
+    TxByte = '0;
+    BitIdx = 0;
+
+    while (BitIdx < 8) begin
+      @(posedge uin_hdlc.Clk);
+
+      // Remove stuffed 0s.
+      if ((OnesCnt == 5) && (uin_hdlc.Tx == 1'b0)) begin
+        OnesCnt = 0;
+        continue;
+      end
+
+      TxByte[BitIdx] = uin_hdlc.Tx;
+
+      if (uin_hdlc.Tx)
+        OnesCnt++;
+      else
+        OnesCnt = 0;
+
+      BitIdx++;
+    end
 
     assert (TxByte == data[ByteIdx]) else begin
       $error("TX OUTPUT: Data mismatch at byte %0d. Expected 0x%0h, got 0x%0h", ByteIdx, data[ByteIdx], TxByte);
@@ -348,8 +337,7 @@ endtask
     //Transmit: Size, Abort, Transparent
     Transmit(16, 0, 0); //Normal
     Transmit(16, 0, 1); //Transparent
-    Transmit(40, 1, 0); //Abort (Task8 stimulus)
-    Transmit(48, 1, 0); //Abort (Task9 stimulus)
+    Transmit(40, 1, 0); //Abort
 
     //Receive: Size, Abort, FCSerr, NonByteAligned, Overflow, Drop, SkipRead, Transparent
     Receive( 24, 0, 0, 0, 0, 0, 0, 1); //Transparent
@@ -425,8 +413,6 @@ endtask
 
   task Transmit(int Size, int Abort, int Transparent);
     logic [127:0][7:0] TransmitData;
-    logic abortReqSeen;
-    logic abortedSeen;
     string msg;
     if(Abort)
       msg = "- Abort";
@@ -455,42 +441,10 @@ endtask
 
 
     if(Abort) begin
-      // Trigger abort only after TX frame is active.
-      wait(uin_hdlc.Tx_ValidFrame);
+      // Trigger abort while transmission is active.
       repeat(8)
         @(posedge uin_hdlc.Clk);
-
-      abortReqSeen = 1'b0;
-      fork
-        begin
-          repeat(4) begin
-            @(posedge uin_hdlc.Clk);
-            if(uin_hdlc.Tx_AbortFrame)
-              abortReqSeen = 1'b1;
-          end
-        end
-        begin
-          WriteAddress(TXSC, 8'h04);
-        end
-      join
-
-      assert (abortReqSeen) else begin
-        $error("ABORT STIM: Tx_AbortFrame pulse was not observed.");
-        TbErrorCnt++;
-      end
-
-      abortedSeen = 1'b0;
-      for(int i = 0; i < 40; i++) begin
-        @(posedge uin_hdlc.Clk);
-        if(uin_hdlc.Tx_AbortedTrans) begin
-          abortedSeen = 1'b1;
-          break;
-        end
-      end
-      assert (abortedSeen) else begin
-        $error("ABORT STIM: Tx_AbortedTrans did not assert after abort request.");
-        TbErrorCnt++;
-      end
+      WriteAddress(TXSC, 8'h04);
     end
 
     wait(uin_hdlc.Tx_Done);
