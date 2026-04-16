@@ -1,0 +1,164 @@
+QuestaSim vcover 2025.2 Coverage Utility 2025.05 May 31 2025
+Start time: 15:42:33 on Apr 16,2026
+vcover report -details -assert coverage.ucdb 
+Coverage Report by instance with details
+
+=================================================================================
+=== Instance: /test_hdlc/u_testPr
+=== Design Unit: work.testPr_hdlc
+=================================================================================
+
+Assertion Coverage:
+    Assertions                      14        13         1    92.85%
+--------------------------------------------------------------------------------------------------------------------------------
+Name                 File(Line)                   Failure      Pass     Vacuous    Disable    Attempt     Active Peak Active ATV
+                                                  Count        Count    Count      Count      Count       Count  Count          
+--------------------------------------------------------------------------------------------------------------------------------
+/test_hdlc/u_testPr/CheckBitEq/immed__48
+                     ./testPr_hdlc.sv(48)               1        121          0          0        122          0           0 off
+/test_hdlc/u_testPr/CheckByteEq/immed__55
+                     ./testPr_hdlc.sv(55)               0         16          0          0         16          0           0 off
+/test_hdlc/u_testPr/CheckIntLe/immed__62
+                     ./testPr_hdlc.sv(62)               0          8          0          0          8          0           0 off
+/test_hdlc/u_testPr/VerifyNormalReceive/#anonblk#119480755#108#4#/#ublk#119480755#108/immed__110
+                     ./testPr_hdlc.sv(110)              0        206          0          0        206          0           0 off
+/test_hdlc/u_testPr/VerifyOverflowReceive/#anonblk#119480755#136#4#/#ublk#119480755#136/immed__138
+                     ./testPr_hdlc.sv(138)              0        126          0          0        126          0           0 off
+/test_hdlc/u_testPr/VerifyRxStatusControl/immed__179
+                     ./testPr_hdlc.sv(179)              0         15          0          0         15          0           0 off
+/test_hdlc/u_testPr/VerifyTxOutput/immed__267
+                     ./testPr_hdlc.sv(267)              0          7          0          0          7          0           0 off
+/test_hdlc/u_testPr/VerifyTxOutput/immed__260
+                     ./testPr_hdlc.sv(260)              0          7          0          0          7          0           0 off
+/test_hdlc/u_testPr/VerifyTxOutput/#ublk#119480755#244/immed__248
+                     ./testPr_hdlc.sv(248)              0        319          0          0        319          0           0 off
+/test_hdlc/u_testPr/Transmit/#ublk#119480755#493/immed__528
+                     ./testPr_hdlc.sv(528)              0          3          0          0          3          0           0 off
+/test_hdlc/u_testPr/Transmit/#ublk#119480755#493/immed__514
+                     ./testPr_hdlc.sv(514)              0          3          0          0          3          0           0 off
+/test_hdlc/u_testPr/VerifyRxCRCAtStopFCS/immed__604
+                     ./testPr_hdlc.sv(604)              0         14          0          0         14          0           0 off
+/test_hdlc/u_testPr/VerifyRxCRCAtStopFCS/#ublk#119480755#609/immed__611
+                     ./testPr_hdlc.sv(611)              0         14          0          0         14          0           0 off
+/test_hdlc/u_testPr/VerifyRxEoFGenerated/immed__630
+                     ./testPr_hdlc.sv(630)              0         14          0          0         14          0           0 off
+
+=================================================================================
+=== Instance: /test_hdlc/u_assertion_bind
+=== Design Unit: work.assertions_hdlc
+=================================================================================
+
+Assertion Coverage:
+    Assertions                      17        17         0   100.00%
+--------------------------------------------------------------------------------------------------------------------------------
+Name                 File(Line)                   Failure      Pass     Vacuous    Disable    Attempt     Active Peak Active ATV
+                                                  Count        Count    Count      Count      Count       Count  Count          
+--------------------------------------------------------------------------------------------------------------------------------
+/test_hdlc/u_assertion_bind/ASSERT_RX_FLAG_DETECT
+                     ./assertions_hdlc.sv(309)          0         29      18146          0      18175          0           3 off
+/test_hdlc/u_assertion_bind/ASSERT_TX_START_FLAG
+                     ./assertions_hdlc.sv(315)          0         13      18160          2      18175          0           1 off
+/test_hdlc/u_assertion_bind/ASSERT_TX_END_FLAG
+                     ./assertions_hdlc.sv(321)          0          7      18166          2      18175          0           1 off
+/test_hdlc/u_assertion_bind/ASSERT_TX_ZERO_INSERTION
+                     ./assertions_hdlc.sv(327)          0       2959      15214          2      18175          0           1 off
+/test_hdlc/u_assertion_bind/ASSERT_RX_ZERO_REMOVAL_DETECT
+                     ./assertions_hdlc.sv(333)          0        148      18025          2      18175          0           1 off
+/test_hdlc/u_assertion_bind/ASSERT_RX_ZERO_REMOVAL_NO_NEW_BYTE
+                     ./assertions_hdlc.sv(339)          0        148      18025          2      18175          0           1 off
+/test_hdlc/u_assertion_bind/ASSERT_TX_IDLE_PATTERN
+                     ./assertions_hdlc.sv(345)          0       5748      12425          2      18175          0           1 off
+/test_hdlc/u_assertion_bind/ASSERT_RX_IDLE_PATTERN
+                     ./assertions_hdlc.sv(351)          0      10900       7273          2      18175          0           1 off
+/test_hdlc/u_assertion_bind/ASSERT_TX_ABORT_PATTERN
+                     ./assertions_hdlc.sv(357)          0          6      18167          2      18175          0           1 off
+/test_hdlc/u_assertion_bind/ASSERT_TX_ABORTED_TRANS
+                     ./assertions_hdlc.sv(363)          0          6      18167          2      18175          0           1 off
+/test_hdlc/u_assertion_bind/ASSERT_RX_ABORT_SIGNAL
+                     ./assertions_hdlc.sv(369)          0          1      18172          2      18175          0           1 off
+/test_hdlc/u_assertion_bind/ASSERT_RX_EOF_GENERATED
+                     ./assertions_hdlc.sv(375)          0         14      18159          2      18175          0           1 off
+/test_hdlc/u_assertion_bind/ASSERT_RX_OVERFLOW
+                     ./assertions_hdlc.sv(381)          0          2      18171          2      18175          0           1 off
+/test_hdlc/u_assertion_bind/ASSERT_RX_READY_LIFECYCLE
+                     ./assertions_hdlc.sv(387)          0        332      17841          2      18175          0         126 off
+/test_hdlc/u_assertion_bind/ASSERT_RX_FRAME_ERROR
+                     ./assertions_hdlc.sv(393)          0          4      18169          2      18175          0           1 off
+/test_hdlc/u_assertion_bind/ASSERT_TX_DONE
+                     ./assertions_hdlc.sv(399)          0          7      18166          2      18175          0           1 off
+/test_hdlc/u_assertion_bind/ASSERT_TX_FULL
+                     ./assertions_hdlc.sv(405)          0          1      18172          2      18175          0           1 off
+
+
+ASSERTION RESULTS:
+--------------------------------------------------------------------------------------------------------------------------------
+Name                 File(Line)                   Failure      Pass     Vacuous    Disable    Attempt     Active Peak Active ATV
+                                                  Count        Count    Count      Count      Count       Count  Count          
+--------------------------------------------------------------------------------------------------------------------------------
+/test_hdlc/u_testPr/CheckBitEq/immed__48
+                     ./testPr_hdlc.sv(48)               1        121          0          0        122          0           0 off
+/test_hdlc/u_testPr/CheckByteEq/immed__55
+                     ./testPr_hdlc.sv(55)               0         16          0          0         16          0           0 off
+/test_hdlc/u_testPr/CheckIntLe/immed__62
+                     ./testPr_hdlc.sv(62)               0          8          0          0          8          0           0 off
+/test_hdlc/u_testPr/VerifyNormalReceive/#anonblk#119480755#108#4#/#ublk#119480755#108/immed__110
+                     ./testPr_hdlc.sv(110)              0        206          0          0        206          0           0 off
+/test_hdlc/u_testPr/VerifyOverflowReceive/#anonblk#119480755#136#4#/#ublk#119480755#136/immed__138
+                     ./testPr_hdlc.sv(138)              0        126          0          0        126          0           0 off
+/test_hdlc/u_testPr/VerifyRxStatusControl/immed__179
+                     ./testPr_hdlc.sv(179)              0         15          0          0         15          0           0 off
+/test_hdlc/u_testPr/VerifyTxOutput/immed__267
+                     ./testPr_hdlc.sv(267)              0          7          0          0          7          0           0 off
+/test_hdlc/u_testPr/VerifyTxOutput/immed__260
+                     ./testPr_hdlc.sv(260)              0          7          0          0          7          0           0 off
+/test_hdlc/u_testPr/VerifyTxOutput/#ublk#119480755#244/immed__248
+                     ./testPr_hdlc.sv(248)              0        319          0          0        319          0           0 off
+/test_hdlc/u_testPr/Transmit/#ublk#119480755#493/immed__528
+                     ./testPr_hdlc.sv(528)              0          3          0          0          3          0           0 off
+/test_hdlc/u_testPr/Transmit/#ublk#119480755#493/immed__514
+                     ./testPr_hdlc.sv(514)              0          3          0          0          3          0           0 off
+/test_hdlc/u_testPr/VerifyRxCRCAtStopFCS/immed__604
+                     ./testPr_hdlc.sv(604)              0         14          0          0         14          0           0 off
+/test_hdlc/u_testPr/VerifyRxCRCAtStopFCS/#ublk#119480755#609/immed__611
+                     ./testPr_hdlc.sv(611)              0         14          0          0         14          0           0 off
+/test_hdlc/u_testPr/VerifyRxEoFGenerated/immed__630
+                     ./testPr_hdlc.sv(630)              0         14          0          0         14          0           0 off
+/test_hdlc/u_assertion_bind/ASSERT_RX_FLAG_DETECT
+                     ./assertions_hdlc.sv(309)          0         29      18146          0      18175          0           3 off
+/test_hdlc/u_assertion_bind/ASSERT_TX_START_FLAG
+                     ./assertions_hdlc.sv(315)          0         13      18160          2      18175          0           1 off
+/test_hdlc/u_assertion_bind/ASSERT_TX_END_FLAG
+                     ./assertions_hdlc.sv(321)          0          7      18166          2      18175          0           1 off
+/test_hdlc/u_assertion_bind/ASSERT_TX_ZERO_INSERTION
+                     ./assertions_hdlc.sv(327)          0       2959      15214          2      18175          0           1 off
+/test_hdlc/u_assertion_bind/ASSERT_RX_ZERO_REMOVAL_DETECT
+                     ./assertions_hdlc.sv(333)          0        148      18025          2      18175          0           1 off
+/test_hdlc/u_assertion_bind/ASSERT_RX_ZERO_REMOVAL_NO_NEW_BYTE
+                     ./assertions_hdlc.sv(339)          0        148      18025          2      18175          0           1 off
+/test_hdlc/u_assertion_bind/ASSERT_TX_IDLE_PATTERN
+                     ./assertions_hdlc.sv(345)          0       5748      12425          2      18175          0           1 off
+/test_hdlc/u_assertion_bind/ASSERT_RX_IDLE_PATTERN
+                     ./assertions_hdlc.sv(351)          0      10900       7273          2      18175          0           1 off
+/test_hdlc/u_assertion_bind/ASSERT_TX_ABORT_PATTERN
+                     ./assertions_hdlc.sv(357)          0          6      18167          2      18175          0           1 off
+/test_hdlc/u_assertion_bind/ASSERT_TX_ABORTED_TRANS
+                     ./assertions_hdlc.sv(363)          0          6      18167          2      18175          0           1 off
+/test_hdlc/u_assertion_bind/ASSERT_RX_ABORT_SIGNAL
+                     ./assertions_hdlc.sv(369)          0          1      18172          2      18175          0           1 off
+/test_hdlc/u_assertion_bind/ASSERT_RX_EOF_GENERATED
+                     ./assertions_hdlc.sv(375)          0         14      18159          2      18175          0           1 off
+/test_hdlc/u_assertion_bind/ASSERT_RX_OVERFLOW
+                     ./assertions_hdlc.sv(381)          0          2      18171          2      18175          0           1 off
+/test_hdlc/u_assertion_bind/ASSERT_RX_READY_LIFECYCLE
+                     ./assertions_hdlc.sv(387)          0        332      17841          2      18175          0         126 off
+/test_hdlc/u_assertion_bind/ASSERT_RX_FRAME_ERROR
+                     ./assertions_hdlc.sv(393)          0          4      18169          2      18175          0           1 off
+/test_hdlc/u_assertion_bind/ASSERT_TX_DONE
+                     ./assertions_hdlc.sv(399)          0          7      18166          2      18175          0           1 off
+/test_hdlc/u_assertion_bind/ASSERT_TX_FULL
+                     ./assertions_hdlc.sv(405)          0          1      18172          2      18175          0           1 off
+
+Total Coverage By Instance (filtered view): 96.77%
+
+End time: 15:42:33 on Apr 16,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0

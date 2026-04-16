@@ -23,6 +23,8 @@ program testPr_hdlc(
 );
   
   int TbErrorCnt;
+  bit framesize_checked_normal_seen;
+  bit framesize_checked_overflow_seen;
 
   
 
@@ -37,217 +39,201 @@ program testPr_hdlc(
   localparam logic [2:0] TXBUFF = 3'b001;  // TX Data Buffer
   localparam logic [2:0] RXSC   = 3'b010;  // RX Status/Control
   localparam logic [2:0] RXBUFF = 3'b011;  // RX Data Buffer
+  localparam logic [2:0] RXLEN  = 3'b100;  // RX Frame Length
+
+  // Immediate checks in this file cover specs: 1, 2, 3, 4, 11 and 14.
+  // Spec 12 also has an immediate sanity check here (concurrent check is in assertions_hdlc.sv).
+
+  task automatic CheckBitEq(string msg, logic got, logic exp, logic [7:0] ctx);
+    assert (got === exp) else begin
+      $error("%s Exp=%0b Got=%0b Ctx=0x%0h", msg, exp, got, ctx);
+      TbErrorCnt++;
+    end
+  endtask
+
+  task automatic CheckByteEq(string msg, logic [7:0] got, logic [7:0] exp);
+    assert (got == exp) else begin
+      $error("%s Exp=0x%0h Got=0x%0h", msg, exp, got);
+      TbErrorCnt++;
+    end
+  endtask
+
+  task automatic CheckIntLe(string msg, int got, int lim);
+    assert (got <= lim) else begin
+      $error("%s Limit=%0d Got=%0d", msg, lim, got);
+      TbErrorCnt++;
+    end
+  endtask
 
   // VerifyAbortReceive should verify correct value in the Rx status/control
   // register, and that the Rx data buffer is zero after abort.
-  task VerifyAbortReceive(logic [127:0][7:0] data, int Size);
-    logic [7:0] ReadDataRXSC;
-    logic [7:0] ReadDataBUFF;
+  task VerifyAbortReceive();
+    logic [7:0] rxsc;
+    logic [7:0] rxbuff;
 
-    ReadAddress(RXSC, ReadDataRXSC);
-    ReadAddress(RXBUFF, ReadDataBUFF);
+    ReadAddress(RXSC, rxsc);
+    ReadAddress(RXBUFF, rxbuff);
 
-    // Verify that Rx_AbortedFrame bit = 1 and RxReady = 0
-    assert (ReadDataRXSC[3] == 1'b1)begin
-      $display("PASS: Rx_AbortedFrame bit = 1");
-    end else begin
-      $error("ABORT: Rx_AbortedFrame bit not set. Expected ReadData[3]=1, got ReadData=0x%0h", ReadDataRXSC);
-      TbErrorCnt++;
-    end
-    assert (ReadDataRXSC[0] == 1'b0) else begin
-      $error("ABORT: RxReady bit should not be set after abort. Expected ReadData[0]=0, got ReadData=0x%0h", ReadDataRXSC);
-      TbErrorCnt++;
-    end
-    
-    // Verify that the RX data = 0x00
-    assert (ReadDataBUFF == 8'h00) else begin
-      $error("ABORT: RX data buffer not cleared. Expected 0x00, got 0x%0h", ReadDataBUFF);
-      TbErrorCnt++;
-    end
-
+    // Spec 3: Rx_AbortedFrame bit must be set after abort.
+    CheckBitEq("ABORT RXSC[3] mismatch.", rxsc[3], 1'b1, rxsc);
+    // Spec 3: RxReady must be low after abort.
+    CheckBitEq("ABORT RXSC[0] mismatch.", rxsc[0], 1'b0, rxsc);
+    // Spec 2: Reading RX buffer after abort should return zero.
+    CheckByteEq("ABORT RXBUFF mismatch.", rxbuff, 8'h00);
   endtask
 
   // VerifyNormalReceive should verify correct value in the Rx status/control
   // register, and that the Rx data buffer contains correct data.
   task VerifyNormalReceive(logic [127:0][7:0] data, int Size);
-    logic [7:0] ReadDataRXSC;
-    logic [7:0] ReadDataRXBUFF;
+    logic [7:0] rxsc;
+    logic [7:0] rxbuff;
+
     wait(uin_hdlc.Rx_Ready);
-    ReadAddress(RXSC, ReadDataRXSC);
-    
-    // Verify that RxReady =1
-    assert (ReadDataRXSC[0] == 1'b1) else begin
-      $error("NORMAL: RxReady bit not set. Expected ReadData[0]=1, got ReadData=0x%0h", ReadDataRXSC);
-      TbErrorCnt++;
-    end
-    
-    // Verify that Rx_FrameError = Rx_AbortSignal = Rx_Overflow = 0
-    assert (ReadDataRXSC[2] == 1'b0) else begin
-      $error("NORMAL: Rx_FrameError bit set. Expected ReadData[2]=0, got ReadData=0x%0h", ReadDataRXSC);
-      TbErrorCnt++;
-    end
-    assert (ReadDataRXSC[3] == 1'b0) else begin
-      $error("NORMAL: Rx_AbortedFrame bit set. Expected ReadData[3]=0, got ReadData=0x%0h", ReadDataRXSC);
-      TbErrorCnt++;
-    end
-    assert (ReadDataRXSC[4] == 1'b0) else begin
-      $error("NORMAL: Rx_Overflow bit set. Expected ReadData[4]=0, got ReadData=0x%0h", ReadDataRXSC);
-      TbErrorCnt++;
-    end
-    
-    // Verify the received data matches expected data
+    ReadAddress(RXSC, rxsc);
+
+    // Spec 3: RxReady must be high for a normal frame.
+    CheckBitEq("NORMAL RXSC[0] mismatch.", rxsc[0], 1'b1, rxsc);
+    // Spec 3: FrameError must be low for a normal frame.
+    CheckBitEq("NORMAL RXSC[2] mismatch.", rxsc[2], 1'b0, rxsc);
+    // Spec 3: AbortedFrame must be low for a normal frame.
+    CheckBitEq("NORMAL RXSC[3] mismatch.", rxsc[3], 1'b0, rxsc);
+    // Spec 3: Overflow must be low for a normal frame.
+    CheckBitEq("NORMAL RXSC[4] mismatch.", rxsc[4], 1'b0, rxsc);
+
+    // Spec 1: Payload in these checks is limited to 126 bytes (128 incl. FCS).
+    CheckIntLe("NORMAL payload size exceeds 126 bytes.", Size, 126);
+
+    // Spec 1: RX buffer payload must match received payload bytes.
     // ReadAddress(RXBUFF, ...) auto-increments the internal buffer pointer
     for (int i = 0; i < Size; i++) begin
-      ReadAddress(RXBUFF, ReadDataRXBUFF);
-      assert (ReadDataRXBUFF == data[i]) else begin
-        $error("NORMAL: Data mismatch at byte %0d. Expected 0x%0h, got 0x%0h", i, data[i], ReadDataRXBUFF);
+      ReadAddress(RXBUFF, rxbuff);
+      assert (rxbuff == data[i]) else begin
+        $error("NORMAL data mismatch at byte %0d. Exp=0x%0h Got=0x%0h", i, data[i], rxbuff);
         TbErrorCnt++;
       end
     end
-  
   endtask
 
   // VerifyOverflowReceive should verify correct value in the Rx status/control
   // register, and that the Rx data buffer contains correct data.
   task VerifyOverflowReceive(logic [127:0][7:0] data, int Size);
-    
-    logic [7:0] ReadDataRXSC;
-    logic [7:0] ReadDataRXBUFF;
+    logic [7:0] rxsc;
+    logic [7:0] rxbuff;
+
     wait(uin_hdlc.Rx_Ready);
+    ReadAddress(RXSC, rxsc);
 
-    // Read RX Status/Control register
-    ReadAddress(RXSC, ReadDataRXSC);
+    // Spec 3: RxReady must be high when overflowed frame is available.
+    CheckBitEq("OVERFLOW RXSC[0] mismatch.", rxsc[0], 1'b1, rxsc);
+    // Spec 13: Overflow bit must be set after >128 RX bytes.
+    CheckBitEq("OVERFLOW RXSC[4] mismatch.", rxsc[4], 1'b1, rxsc);
 
-    // Verify that RxReady bit = 1 and Rx_overflow = 1
-    assert (ReadDataRXSC[0] == 1'b1) else begin
-      $error("OVERFLOW: RxReady bit not set. Expected ReadData[0]=1, got ReadData=0x%0h", ReadDataRXSC);
-      TbErrorCnt++;
-    end
-    assert (ReadDataRXSC[4] == 1'b1) else begin
-      $error("OVERFLOW: Rx_Overflow bit not set. Expected ReadData[4]=1, got ReadData=0x%0h", ReadDataRXSC);
-      TbErrorCnt++;
-    end
-    
-    /*
-    // Verify that the RX data buffer contains valid data (not all zeros)
-    assert (ReadDataRXBUFF != 8'h00) else begin
-      $error("OVERFLOW: RX data buffer is zero. Expected valid data, got 0x%0h", ReadDataRXBUFF);
-      TbErrorCnt++;
-    end
-    */
-    
-    // Verify the received data matches expected data
+    // Spec 1: Payload bytes read from RX buffer are bounded by 126 bytes.
+    CheckIntLe("OVERFLOW payload size exceeds 126 bytes.", Size, 126);
+
+    // Spec 1: RX buffer payload bytes remain readable (up to buffer limit).
     // ReadAddress(RXBUFF, ...) auto-increments the internal buffer pointer
     for (int i = 0; i < Size; i++) begin
-      ReadAddress(RXBUFF, ReadDataRXBUFF);
-      assert (ReadDataRXBUFF == data[i]) else begin
-        $error("OVERFLOW: Data mismatch at byte %0d. Expected 0x%0h, got 0x%0h", i, data[i], ReadDataRXBUFF);
+      ReadAddress(RXBUFF, rxbuff);
+      assert (rxbuff == data[i]) else begin
+        $error("OVERFLOW data mismatch at byte %0d. Exp=0x%0h Got=0x%0h", i, data[i], rxbuff);
         TbErrorCnt++;
       end
     end
-endtask
-
-//Part B
-//1 Correct data in RX buffer according to RX input. The buffer should contain up to 128 bytes
-//(this includes the 2 FCS bytes, but not the flags).
-
-task VerifyBufferData(logic [127:0][7:0] data, int Size);
-  logic [7:0] ReadDataRXSC;
-  logic [7:0] ReadDataBUFF;
-  wait(uin_hdlc.Rx_Ready);
-
-
-  ReadAddress(RXSC, ReadDataRXSC);
-
-  assert (ReadDataRXSC[0] == 1'b1) else begin
-    $error("BUFFER: RxReady bit not set. Expected ReadData[0]=1, got ReadData=0x%0h", ReadDataRXSC);
-    TbErrorCnt++;
-  end
-  assert (Size <= 126) else begin
-    $error("BUFFER: Payload size is more than 126 bytes (128 including FCS). Got %0d", Size);
-    TbErrorCnt++;
-  end
-
-  for (int i = 0; i < Size; i++) begin
-    ReadAddress(RXBUFF, ReadDataBUFF);
-    assert (ReadDataBUFF == data[i]) else begin
-      $error("BUFFER: Data mismatch at byte %0d. Expected 0x%0h, got 0x%0h", 
-             i, data[i], ReadDataBUFF);
-      TbErrorCnt++;
-    end
-  end
-
-endtask
-
-  // 2 Attempting to read RX buffer after aborted frame, frame error or dropped frame should result
-  //in zeros.
-  task VerifyReadAfterError();
-    logic [7:0] ReadDataBUFF;
-    wait(uin_hdlc.Rx_Ready == 1'b0);
-
-    ReadAddress(RXBUFF, ReadDataBUFF);
-    assert (ReadDataBUFF == 8'h00) else begin
-      $error("READ AFTER ERROR: RX data buffer not zero after error. Expected 0x00, got 0x%0h", ReadDataBUFF);
-      TbErrorCnt++;
-    end
-    
   endtask
 
-// 3 Correct bits set in RX status/control register after receiving frame. Remember to check all bits.
-//I.e. after an abort the Rx Overflow bit should be 0, unless an overflow also occurred.
-task VerifyRxStatusControl(int Abort, int FCSerr, int NonByteAligned, int Overflow, int Drop);
-  logic [7:0] ReadDataRXSC;
-  logic exp_ready, exp_drop, exp_frameerr, exp_abort, exp_overflow, exp_fcsen;
+  // 2 Attempting to read RX buffer after aborted frame, frame error or dropped frame should result
+  // in zeros.
+  task VerifyReadAfterError();
+    logic [7:0] rxbuff;
 
-  exp_abort    = Abort;
-  exp_overflow = Overflow;
-  exp_frameerr = (FCSerr || NonByteAligned);
-  exp_ready    = !(Abort || FCSerr || NonByteAligned || Drop);
-  exp_drop     = 1'b0;
-  exp_fcsen    = (!Overflow && !NonByteAligned);
+    wait(uin_hdlc.Rx_Ready == 1'b0);
+    ReadAddress(RXBUFF, rxbuff);
 
-  ReadAddress(RXSC, ReadDataRXSC);
+    // Spec 2: Reads after abort/frame error/drop should return zero.
+    CheckByteEq("READ AFTER ERROR RXBUFF mismatch.", rxbuff, 8'h00);
+  endtask
 
-  assert (ReadDataRXSC[0] == exp_ready) else begin
-    $error("RXSC[0] mismatch. Exp=%0b Got=%0b RXSC=0x%0h", exp_ready, ReadDataRXSC[0], ReadDataRXSC);
-    TbErrorCnt++;
-  end
-  assert (ReadDataRXSC[1] == exp_drop) else begin
-    $error("RXSC[1] mismatch. Exp=%0b Got=%0b RXSC=0x%0h", exp_drop, ReadDataRXSC[1], ReadDataRXSC);
-    TbErrorCnt++;
-  end
-  assert (ReadDataRXSC[2] == exp_frameerr) else begin
-    $error("RXSC[2] mismatch. Exp=%0b Got=%0b RXSC=0x%0h", exp_frameerr, ReadDataRXSC[2], ReadDataRXSC);
-    TbErrorCnt++;
-  end
-  assert (ReadDataRXSC[3] == exp_abort) else begin
-    $error("RXSC[3] mismatch. Exp=%0b Got=%0b RXSC=0x%0h", exp_abort, ReadDataRXSC[3], ReadDataRXSC);
-    TbErrorCnt++;
-  end
-  assert (ReadDataRXSC[4] == exp_overflow) else begin
-    $error("RXSC[4] mismatch. Exp=%0b Got=%0b RXSC=0x%0h", exp_overflow, ReadDataRXSC[4], ReadDataRXSC);
-    TbErrorCnt++;
-  end
-  assert (ReadDataRXSC[5] == exp_fcsen) else begin
-    $error("RXSC[5] mismatch. Exp=%0b Got=%0b RXSC=0x%0h", exp_fcsen, ReadDataRXSC[5], ReadDataRXSC);
-    TbErrorCnt++;
-  end
-  assert (ReadDataRXSC[7:6] == 2'b00) else begin
-    $error("RXSC[7:6] mismatch. Exp=00 Got=%0b RXSC=0x%0h", ReadDataRXSC[7:6], ReadDataRXSC);
-    TbErrorCnt++;
+  // Spec 3: Correct bits set in RX status/control register after frame handling.
+  task VerifyRxStatusControl(int Abort, int FCSerr, int NonByteAligned, int Overflow, int Drop);
+    logic [7:0] rxsc;
+    logic [7:0] exp;
+
+    exp[0] = !(Abort || FCSerr || NonByteAligned || Drop); // ready
+    exp[1] = 1'b0;                                          // drop
+    exp[2] = (FCSerr || NonByteAligned);                    // frame error
+    exp[3] = Abort;                                         // aborted frame
+    exp[4] = Overflow;                                      // overflow
+    exp[5] = (!Overflow && !NonByteAligned);                // fcs enable
+    exp[7:6] = 2'b00;
+
+    ReadAddress(RXSC, rxsc);
+
+    CheckBitEq("RXSC[0] mismatch.", rxsc[0], exp[0], rxsc);
+    CheckBitEq("RXSC[1] mismatch.", rxsc[1], exp[1], rxsc);
+    CheckBitEq("RXSC[2] mismatch.", rxsc[2], exp[2], rxsc);
+    CheckBitEq("RXSC[3] mismatch.", rxsc[3], exp[3], rxsc);
+    CheckBitEq("RXSC[4] mismatch.", rxsc[4], exp[4], rxsc);
+    CheckBitEq("RXSC[5] mismatch.", rxsc[5], exp[5], rxsc);
+    // Spec 3: Reserved bits must be zero.
+    assert (rxsc[7:6] == 2'b00) else begin
+      $error("RXSC[7:6] mismatch. Exp=00 Got=%0b RXSC=0x%0h", rxsc[7:6], rxsc);
+      TbErrorCnt++;
+    end
+  endtask
+
+  // Spec 14: Rx FrameSize should equal number of received payload bytes (max 126).
+  task VerifyRxFrameSize(int exp_size, bit is_overflow_case);
+    logic [7:0] rxlen;
+    if (is_overflow_case)
+      framesize_checked_overflow_seen = 1'b1;
+    else
+      framesize_checked_normal_seen = 1'b1;
+
+    ReadAddress(RXLEN, rxlen);
+    CheckByteEq("RXLEN mismatch.", rxlen, exp_size[7:0]);
+  endtask
+
+//4. Correct TX output according to written TX buffer.
+task ReadTxByteNoStuff(output logic [7:0] TxByte, inout int OnesCnt);
+  int BitIdx;
+  TxByte = '0;
+  BitIdx = 0;
+  while (BitIdx < 8) begin
+    @(posedge uin_hdlc.Clk);
+
+    // Remove stuffed 0s from transparent transmission.
+    if ((OnesCnt == 5) && (uin_hdlc.Tx == 1'b0)) begin
+      OnesCnt = 0;
+      continue;
+    end
+
+    TxByte[BitIdx] = uin_hdlc.Tx;
+    if (uin_hdlc.Tx)
+      OnesCnt++;
+    else
+      OnesCnt = 0;
+    BitIdx++;
   end
 endtask
 
-//4. Correct TX output according to written TX buffer.
-task VerifyTxOutput(logic [127:0][7:0] data, int Size);
+  task VerifyTxOutput(logic [127:0][7:0] data, int Size);
+  logic [127:0][7:0] CRCInputData;
   logic [7:0] ShiftReg;
   logic [7:0] TxByte;
+  logic [7:0] TxFCSByte0;
+  logic [7:0] TxFCSByte1;
+  logic [15:0] ExpFCSBytes;
   int ByteIdx;
-  int BitIdx;
   int OnesCnt;
   
   ShiftReg = '0;
   OnesCnt = 0;
+  CRCInputData = '0;
+  for (int i = 0; i < Size; i++)
+    CRCInputData[i] = data[i];
+  CRCInputData[Size]   = 8'h00;
+  CRCInputData[Size+1] = 8'h00;
 
   // Synchronize to start flag on TX line: 01111110 (LSB first).
   while (ShiftReg != 8'b0111_1110) begin
@@ -256,66 +242,33 @@ task VerifyTxOutput(logic [127:0][7:0] data, int Size);
   end
 
   for (ByteIdx = 0; ByteIdx < Size; ByteIdx++) begin
-    TxByte = '0;
-    BitIdx = 0;
+    ReadTxByteNoStuff(TxByte, OnesCnt);
 
-    while (BitIdx < 8) begin
-      @(posedge uin_hdlc.Clk);
-
-      // Remove stuffed 0s.
-      if ((OnesCnt == 5) && (uin_hdlc.Tx == 1'b0)) begin
-        OnesCnt = 0;
-        continue;
-      end
-
-      TxByte[BitIdx] = uin_hdlc.Tx;
-
-      if (uin_hdlc.Tx)
-        OnesCnt++;
-      else
-        OnesCnt = 0;
-
-      BitIdx++;
-    end
-
+    // Spec 4: TX output bytes must match bytes written to TX buffer.
     assert (TxByte == data[ByteIdx]) else begin
-      $error("TX OUTPUT: Data mismatch at byte %0d. Expected 0x%0h, got 0x%0h", ByteIdx, data[ByteIdx], TxByte);
+      $error("TX OUTPUT mismatch at byte %0d. Exp=0x%0h Got=0x%0h", ByteIdx, data[ByteIdx], TxByte);
       TbErrorCnt++;
     end
   end
-endtask
 
-//5. Start and end of frame pattern generation (Start and end flag: 0111 1110).
-//Implemented as concurrent assertions in assertions_hdlc.sv.
+  // Spec 11: CRC generation and checking (TX side generation):
+  // reuse the same CRC model already used by RX stimulus generation.
+  GenerateFCSBytes(CRCInputData, Size, ExpFCSBytes);
 
-//6. Zero insertion and removal for transparent transmission.
-//Implemented as concurrent assertions in assertions_hdlc.sv.
+  ReadTxByteNoStuff(TxFCSByte0, OnesCnt);
+  // Spec 11: First transmitted FCS byte must match model.
+  assert (TxFCSByte0 == ExpFCSBytes[7:0]) else begin
+    $error("CRC TX byte0 mismatch. Expected 0x%0h, got 0x%0h", ExpFCSBytes[7:0], TxFCSByte0);
+    TbErrorCnt++;
+  end
 
-//7. Idle pattern generation and checking (1111 1111 when not operating).
-//Implemented as concurrent assertions in assertions_hdlc.sv.
-
-//8. Abort pattern generation and checking (1111 1110). Remember that the 0 must be sent first.
-
-//9. When aborting frame during transmission, Tx AbortedTrans should be asserted.
-
-//10. Abort pattern detected during valid frame should generate Rx AbortSignal.
-
-//11. CRC generation and Checking.
-
-//12. When a whole RX frame has been received, check if end of frame is generated.
-
-//13. When receiving more than 128 bytes, Rx Overflow should be asserted.
-
-//14. Rx FrameSize should equal the number of bytes received in a frame (max. 126 bytes =128 bytes
-//in buffer – 2 FCS bytes).
-
-//15. Rx Ready should indicate byte(s) in RX buffer is ready to be read.
-
-//16. Non-byte aligned data or error in FCS checking should result in frame error.
-
-//17. Tx Done should be asserted when the entire TX buffer has been read for transmission.
-
-//18. Tx Full should be asserted after writing 126 or more bytes to the TX buffer (overflow)
+  ReadTxByteNoStuff(TxFCSByte1, OnesCnt);
+  // Spec 11: Second transmitted FCS byte must match model.
+  assert (TxFCSByte1 == ExpFCSBytes[15:8]) else begin
+    $error("CRC TX byte1 mismatch. Expected 0x%0h, got 0x%0h", ExpFCSBytes[15:8], TxFCSByte1);
+    TbErrorCnt++;
+  end
+  endtask
   
   
 
@@ -327,6 +280,93 @@ endtask
    *                                                                          *
    ****************************************************************************/
 
+  localparam bit RUN_EXTENDED_STIMULUS = 1'b0;
+  localparam bit RUN_COVERAGE_EDGE_STIMULUS = 1'b1;
+
+  // Directed stimulus plan to exercise concurrent-assertion antecedents.
+  task RunDirectedConcurrentStimulus();
+    // TX side (Tasks 5, 6, 7, 8, 9, 17, 18)
+    Transmit(16, 0, 0); // Task5 + Task7 (normal TX frame with start/end flags)
+    Transmit(16, 0, 1); // Task6 TX (transparent payload with heavy zero insertion)
+    Transmit(20, 0, 0); // Task17 (normal completion path for Tx_Done)
+    Transmit(126, 0, 0); // Task18 (TX full threshold reached at 126 writes)
+    Transmit(40, 1, 0); // Task8 + Task9 (abort request, abort pattern, AbortedTrans)
+
+    // RX side (Tasks 6, 10, 12, 13, 14, 15, 16)
+    Receive( 24, 0, 0, 0, 0, 0, 0, 1); // Task6 RX + Task12 (transparent non-abort frame)
+    Receive( 10, 0, 0, 0, 0, 0, 0, 0); // Task12 + Task15 (baseline frame, RxReady + readout)
+    Receive( 18, 0, 0, 0, 0, 0, 0, 0); // Task15 dedicated (explicit ready lifecycle exercise)
+    Receive( 20, 0, 1, 0, 0, 0, 0, 0); // Task16 (FCS error -> Rx_FrameError)
+    Receive( 20, 0, 0, 1, 0, 0, 0, 0); // Task16 (non-byte-aligned -> Rx_FrameError)
+    Receive(126, 0, 0, 0, 0, 0, 0, 0); // Task14 (max-size normal frame: expect RxLen=126)
+    Receive( 40, 1, 0, 0, 0, 0, 0, 0); // Task10 (abort during valid RX frame)
+    Receive(126, 0, 0, 0, 1, 0, 0, 0); // Task13 (overflow path: >128 bytes total)
+  endtask
+
+  // Optional extra scenarios for broader regression.
+  task RunExtendedStimulus();
+    Receive(40, 0, 1, 0, 0, 0, 0, 0); // FCS error
+    Receive(40, 0, 0, 0, 0, 1, 0, 0); // Drop
+    Receive(45, 0, 0, 0, 0, 0, 0, 0); // Normal
+    Receive(126, 0, 0, 0, 0, 0, 0, 0); // Max-size non-overflow normal
+    Receive(122, 1, 0, 0, 0, 0, 0, 0); // Abort near max size
+    Receive(25, 0, 0, 0, 0, 0, 0, 0); // Normal
+    Receive(47, 0, 0, 0, 0, 0, 0, 0); // Normal
+  endtask
+
+  task PulseTxDisableDuringIdle();
+    wait(!uin_hdlc.Tx_ValidFrame);
+    uin_hdlc.TxEN = 1'b0;
+    repeat(8)
+      @(posedge uin_hdlc.Clk);
+    uin_hdlc.TxEN = 1'b1;
+  endtask
+
+  task RunCoverageEdgeStimulus();
+    // TX edge and corner cases.
+    PulseTxDisableDuringIdle();
+    Transmit(8,   0, 0); // Short normal frame.
+    Transmit(8,   0, 1); // Short transparent frame.
+    Transmit(125, 0, 0); // Near max frame.
+    Transmit(60,  1, 0); // Abort with medium frame.
+    Transmit(100, 1, 0); // Abort with longer frame.
+
+    // RX edge and corner cases.
+    Receive(8,   0, 0, 0, 0, 0, 0, 0); // Short normal frame.
+    Receive(8,   0, 0, 0, 0, 0, 0, 1); // Short transparent frame.
+    Receive(20,  0, 0, 0, 0, 1, 0, 0); // Drop path.
+    Receive(126, 0, 0, 0, 0, 0, 1, 0); // Skip read at max size (leave unread bytes).
+    Receive(12,  0, 0, 0, 0, 0, 0, 0); // New frame while previous could be unread.
+    Receive(126, 0, 0, 1, 0, 0, 0, 0); // Non-byte-aligned at max size.
+
+    // Compact TX abort timing sweep for controller coverage.
+    for (int d = 0; d <= 6; d += 2) begin
+      logic [127:0][7:0] tx_data;
+      for (int i = 0; i < 12; i++)
+        tx_data[i] = $urandom;
+      MakeTxStimulus(tx_data, 12);
+      repeat(d)
+        @(posedge uin_hdlc.Clk);
+      WriteAddress(TXSC, 8'h06); // Enable + abort near frame start.
+      repeat(200)
+        @(posedge uin_hdlc.Clk);
+    end
+
+    begin
+      logic [127:0][7:0] tx_data;
+      for (int i = 0; i < 12; i++)
+        tx_data[i] = $urandom;
+      MakeTxStimulus(tx_data, 12);
+      WriteAddress(TXSC, 8'h02);
+      wait(uin_hdlc.Tx_ValidFrame);
+      repeat(16)
+        @(posedge uin_hdlc.Clk);
+      WriteAddress(TXSC, 8'h04); // Abort later during active TX.
+      repeat(200)
+        @(posedge uin_hdlc.Clk);
+    end
+  endtask
+
   initial begin
     $display("*************************************************************");
     $display("%t - Starting Test Program", $time);
@@ -334,24 +374,12 @@ endtask
 
     Init();
 
-    //Transmit: Size, Abort, Transparent
-    Transmit(16, 0, 0); //Normal
-    Transmit(16, 0, 1); //Transparent
-    Transmit(40, 1, 0); //Abort
+    RunDirectedConcurrentStimulus();
 
-    //Receive: Size, Abort, FCSerr, NonByteAligned, Overflow, Drop, SkipRead, Transparent
-    Receive( 24, 0, 0, 0, 0, 0, 0, 1); //Transparent
-    Receive( 10, 0, 0, 0, 0, 0, 0, 0); //Normal
-    Receive( 40, 1, 0, 0, 0, 0, 0, 0); //Abort
-    Receive( 40, 0, 1, 0, 0, 0, 0, 0); //FCS error
-    Receive( 40, 0, 0, 0, 0, 1, 0, 0); //Drop
-    Receive(126, 0, 0, 0, 1, 0, 0, 0); //Overflow
-    Receive( 45, 0, 0, 0, 0, 0, 0, 0); //Normal
-    Receive(126, 0, 0, 0, 0, 0, 0, 0); //Normal
-    Receive(122, 1, 0, 0, 0, 0, 0, 0); //Abort
-    Receive(126, 0, 0, 0, 1, 0, 0, 0); //Overflow
-    Receive( 25, 0, 0, 0, 0, 0, 0, 0); //Normal
-    Receive( 47, 0, 0, 0, 0, 0, 0, 0); //Normal
+    if (RUN_EXTENDED_STIMULUS)
+      RunExtendedStimulus();
+    if (RUN_COVERAGE_EDGE_STIMULUS)
+      RunCoverageEdgeStimulus();
 
     $display("*************************************************************");
     $display("%t - Finishing Test Program", $time);
@@ -359,9 +387,17 @@ endtask
     $stop;
   end
 
-  final begin
+		  final begin
+    if (!framesize_checked_normal_seen) begin
+      $error("Spec 14 stimulus missing: normal RxLen check was never exercised.");
+      TbErrorCnt++;
+    end
+    if (!framesize_checked_overflow_seen) begin
+      $error("Spec 14 stimulus missing: overflow RxLen check (expect 126) was never exercised.");
+      TbErrorCnt++;
+    end
 
-    $display("*********************************");
+	    $display("*********************************");
     $display("*                               *");
     $display("* \tAssertion Errors: %0d\t  *", TbErrorCnt + uin_hdlc.ErrCntAssertions);
     $display("*                               *");
@@ -380,7 +416,9 @@ endtask
     uin_hdlc.Rx          =   1'b1;
     uin_hdlc.RxEN        =   1'b1;
 
-    TbErrorCnt = 0;
+		    TbErrorCnt = 0;
+    framesize_checked_normal_seen = 1'b0;
+    framesize_checked_overflow_seen = 1'b0;
 
     #1000ns;
     uin_hdlc.Rst         =   1'b1;
@@ -415,6 +453,7 @@ endtask
     logic [127:0][7:0] TransmitData;
     logic abortReqSeen;
     logic abortedSeen;
+    logic [7:0] txsc_after;
     string msg;
     if(Abort)
       msg = "- Abort";
@@ -462,6 +501,7 @@ endtask
         end
       join
 
+      // Spec 9 stimulus guard: ensure abort request actually reached DUT.
       assert (abortReqSeen) else begin
         $error("ABORT STIM: Tx_AbortFrame pulse was not observed.");
         TbErrorCnt++;
@@ -475,6 +515,7 @@ endtask
           break;
         end
       end
+      // Spec 9 stimulus guard: ensure abort transition is exercised.
       assert (abortedSeen) else begin
         $error("ABORT STIM: Tx_AbortedTrans did not assert after abort request.");
         TbErrorCnt++;
@@ -482,6 +523,7 @@ endtask
     end
 
     wait(uin_hdlc.Tx_Done);
+    ReadAddress(TXSC, txsc_after);
 
     $display("*************************************************************");
     $display("%t - Finishing task Transmit %s", $time, msg);
@@ -528,6 +570,57 @@ endtask
         PrevData = PrevData >> 1;
         PrevData[4] = Data[i][j];
       end
+    end
+  endtask
+
+  task VerifyRxCRCAtStopFCS(int ExpectFCSerr);
+    logic StopFCSSeen;
+    logic FCSerrAtStopFCS;
+
+    StopFCSSeen = 1'b0;
+    FCSerrAtStopFCS = 1'b0;
+
+    repeat(24) begin
+      @(posedge uin_hdlc.Clk);
+      if (uin_hdlc.Rx_StopFCS && !StopFCSSeen) begin
+        StopFCSSeen = 1'b1;
+        // RxFCS updates FCSerr in the StopFCS clocked block.
+        // Sample one clock later to read the updated value deterministically.
+        @(posedge uin_hdlc.Clk);
+        FCSerrAtStopFCS = uin_hdlc.Rx_FCSerr;
+      end
+    end
+
+    // Spec 11: RX must produce StopFCS for completed non-abort frame.
+    assert (StopFCSSeen) else begin
+      $error("CRC RX check failed: Rx_StopFCS was not observed.");
+      TbErrorCnt++;
+    end
+
+    if (StopFCSSeen) begin
+      // Spec 11: RX FCS error flag must match expected CRC outcome.
+      assert (FCSerrAtStopFCS == ExpectFCSerr) else begin
+        $error("CRC RX check failed: expected Rx_FCSerr=%0b at StopFCS, got %0b",
+               ExpectFCSerr, FCSerrAtStopFCS);
+        TbErrorCnt++;
+      end
+    end
+  endtask
+
+  task VerifyRxEoFGenerated();
+    logic EoFSeen;
+
+    EoFSeen = uin_hdlc.Rx_EoF;
+    repeat(24) begin
+      @(posedge uin_hdlc.Clk);
+      if (uin_hdlc.Rx_EoF)
+        EoFSeen = 1'b1;
+    end
+
+    // Spec 12: End-of-frame pulse must be observed for completed RX frame.
+    assert (EoFSeen) else begin
+      $error("RX EoF check failed: Rx_EoF was not observed after completed frame.");
+      TbErrorCnt++;
     end
   endtask
 
@@ -591,6 +684,14 @@ endtask
       MakeRxStimulus(OverflowData, 3);
     end
 
+    if (NonByteAligned) begin
+      // Inject a few extra bits before end-flag to force non-byte-aligned end.
+      repeat (3) begin
+        @(posedge uin_hdlc.Clk);
+        uin_hdlc.Rx = $urandom_range(0, 1);
+      end
+    end
+
     if(Abort) begin
       InsertFlagOrAbort(0);
     end else begin
@@ -600,6 +701,16 @@ endtask
     @(posedge uin_hdlc.Clk);
     uin_hdlc.Rx = 1'b1;
 
+    // 11 and 12: monitor CRC result and EoF generation in parallel.
+    // Skip abort case since this is not a completed frame.
+    if (!Abort) begin
+      fork
+        VerifyRxCRCAtStopFCS(!Overflow && !NonByteAligned && FCSerr);
+        VerifyRxEoFGenerated();
+      join
+    end
+
+    // Allow status/control bits to settle before register reads.
     repeat(8)
       @(posedge uin_hdlc.Clk);
 
@@ -609,19 +720,23 @@ endtask
     end
 
     VerifyRxStatusControl(Abort, FCSerr, NonByteAligned, Overflow, Drop);
+    if (!(Abort || FCSerr || NonByteAligned || Drop)) begin
+      if (Overflow)
+        VerifyRxFrameSize(126, 1'b1);
+      else
+        VerifyRxFrameSize(Size, 1'b0);
+    end
 
     if(Abort) begin
-      VerifyAbortReceive(ReceiveData, Size);
+      VerifyAbortReceive();
       VerifyReadAfterError();
     end
     else if(FCSerr || Drop || NonByteAligned)
       VerifyReadAfterError();
     else if(Overflow)
       VerifyOverflowReceive(ReceiveData, Size);
-    else if(!SkipRead) begin
+    else if(!SkipRead)
       VerifyNormalReceive(ReceiveData, Size);
-     // VerifyBufferData(ReceiveData, Size);
-    end
     #5000ns;
   endtask
 

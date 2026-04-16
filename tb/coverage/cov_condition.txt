@@ -1,0 +1,331 @@
+QuestaSim vcover 2025.2 Coverage Utility 2025.05 May 31 2025
+Start time: 15:42:35 on Apr 16,2026
+vcover report -details -code c coverage.ucdb 
+Coverage Report by instance with details
+
+=================================================================================
+=== Instance: /test_hdlc/u_dut/u_TxController
+=== Design Unit: work.TxController
+=================================================================================
+Condition Coverage:
+    Enabled Coverage              Bins   Covered    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Conditions                       4         3         1    75.00%
+
+================================Condition Details================================
+
+Condition Coverage for instance /test_hdlc/u_dut/u_TxController --
+
+  File ../rtl/TxController.sv
+----------------Focused Condition View-------------------
+Line       54 Item    1  (DataAvail && ~AbortFrame)
+Condition totals: 1 of 2 input terms covered = 50.00%
+
+  Input Term   Covered  Reason for no coverage   Hint
+ -----------  --------  -----------------------  --------------
+   DataAvail         Y
+  AbortFrame         N  '_1' not hit             Hit '_1'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:          1  DataAvail_0           -                             
+  Row   2:          1  DataAvail_1           ~AbortFrame                   
+  Row   3:          1  AbortFrame_0          DataAvail                     
+  Row   4:    ***0***  AbortFrame_1          DataAvail                     
+
+----------------Focused Condition View-------------------
+Line       131 Item    1  ((NewByteCounter == 4) && NewByte)
+Condition totals: 2 of 2 input terms covered = 100.00%
+
+
+
+=================================================================================
+=== Instance: /test_hdlc/u_dut/u_TxBuff
+=== Design Unit: work.TxBuff
+=================================================================================
+Condition Coverage:
+    Enabled Coverage              Bins   Covered    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Conditions                       7         5         2    71.42%
+
+================================Condition Details================================
+
+Condition Coverage for instance /test_hdlc/u_dut/u_TxBuff --
+
+  File ../rtl/TxBuff.sv
+----------------Focused Condition View-------------------
+Line       45 Item    1  ((WrBuff && ~Full) && ~DataAvail)
+Condition totals: 1 of 3 input terms covered = 33.33%
+
+  Input Term   Covered  Reason for no coverage   Hint
+ -----------  --------  -----------------------  --------------
+      WrBuff         Y
+        Full         N  '_1' not hit             Hit '_1'
+   DataAvail         N  '_1' not hit             Hit '_1'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:          1  WrBuff_0              -                             
+  Row   2:          1  WrBuff_1              (~DataAvail && ~Full)         
+  Row   3:          1  Full_0                (~DataAvail && WrBuff)        
+  Row   4:    ***0***  Full_1                WrBuff                        
+  Row   5:          1  DataAvail_0           (WrBuff && ~Full)             
+  Row   6:    ***0***  DataAvail_1           (WrBuff && ~Full)             
+
+----------------Focused Condition View-------------------
+Line       47 Item    1  (CurrentState == IDLE)
+Condition totals: 1 of 1 input term covered = 100.00%
+
+----------------Focused Condition View-------------------
+Line       100 Item    1  (Count == 126)
+Condition totals: 1 of 1 input term covered = 100.00%
+
+----------------Focused Condition View-------------------
+Line       124 Item    1  ((Count == (FrameSize - 1)) || AbortedTrans)
+Condition totals: 2 of 2 input terms covered = 100.00%
+
+
+
+=================================================================================
+=== Instance: /test_hdlc/u_dut/u_TxFCS
+=== Design Unit: work.TxFCS
+=================================================================================
+Condition Coverage:
+    Enabled Coverage              Bins   Covered    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Conditions                       4         4         0   100.00%
+
+================================Condition Details================================
+
+Condition Coverage for instance /test_hdlc/u_dut/u_TxFCS --
+
+  File ../rtl/TxFCS.sv
+----------------Focused Condition View-------------------
+Line       65 Item    1  (BitCounter == 7)
+Condition totals: 1 of 1 input term covered = 100.00%
+
+----------------Focused Condition View-------------------
+Line       68 Item    1  (FCSFrameCounter != (FrameSize + 1))
+Condition totals: 1 of 1 input term covered = 100.00%
+
+----------------Focused Condition View-------------------
+Line       91 Item    1  (ValidFrame ~| DataAvail)
+Condition totals: 2 of 2 input terms covered = 100.00%
+
+
+
+=================================================================================
+=== Instance: /test_hdlc/u_dut/u_TxChannel
+=== Design Unit: work.TxChannel
+=================================================================================
+Condition Coverage:
+    Enabled Coverage              Bins   Covered    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Conditions                       3         2         1    66.66%
+
+================================Condition Details================================
+
+Condition Coverage for instance /test_hdlc/u_dut/u_TxChannel --
+
+  File ../rtl/TxChannel.sv
+----------------Focused Condition View-------------------
+Line       47 Item    1  (ZeroCounter == 7)
+Condition totals: 1 of 1 input term covered = 100.00%
+
+----------------Focused Condition View-------------------
+Line       86 Item    1  (ValidFrame && ~AbortedTrans)
+Condition totals: 1 of 2 input terms covered = 50.00%
+
+    Input Term   Covered  Reason for no coverage   Hint
+   -----------  --------  -----------------------  --------------
+    ValidFrame         Y
+  AbortedTrans         N  '_1' not hit             Hit '_1'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:          1  ValidFrame_0          -                             
+  Row   2:          1  ValidFrame_1          ~AbortedTrans                 
+  Row   3:          1  AbortedTrans_0        ValidFrame                    
+  Row   4:    ***0***  AbortedTrans_1        ValidFrame                    
+
+
+
+=================================================================================
+=== Instance: /test_hdlc/u_dut/u_RxController
+=== Design Unit: work.RxController
+=================================================================================
+Condition Coverage:
+    Enabled Coverage              Bins   Covered    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Conditions                       8         7         1    87.50%
+
+================================Condition Details================================
+
+Condition Coverage for instance /test_hdlc/u_dut/u_RxController --
+
+  File ../rtl/RxController.sv
+----------------Focused Condition View-------------------
+Line       70 Item    1  (FlagCounter == 7)
+Condition totals: 1 of 1 input term covered = 100.00%
+
+----------------Focused Condition View-------------------
+Line       74 Item    1  (FlagCounter > 0)
+Condition totals: 1 of 1 input term covered = 100.00%
+
+----------------Focused Condition View-------------------
+Line       113 Item    1  (FlagDetect && ~NewByte)
+Condition totals: 1 of 2 input terms covered = 50.00%
+
+  Input Term   Covered  Reason for no coverage   Hint
+ -----------  --------  -----------------------  --------------
+  FlagDetect         Y
+     NewByte         N  '_1' not hit             Hit '_1'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:          1  FlagDetect_0          -                             
+  Row   2:          1  FlagDetect_1          ~NewByte                      
+  Row   3:          1  NewByte_0             FlagDetect                    
+  Row   4:    ***0***  NewByte_1             FlagDetect                    
+
+----------------Focused Condition View-------------------
+Line       129 Item    1  (FlagDetect && ~NewByte)
+Condition totals: 2 of 2 input terms covered = 100.00%
+
+----------------Focused Condition View-------------------
+Line       145 Item    1  (NonByteAlignedError || FCSerror)
+Condition totals: 2 of 2 input terms covered = 100.00%
+
+
+
+=================================================================================
+=== Instance: /test_hdlc/u_dut/u_RxBuff
+=== Design Unit: work.RxBuff
+=================================================================================
+Condition Coverage:
+    Enabled Coverage              Bins   Covered    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Conditions                       7         6         1    85.71%
+
+================================Condition Details================================
+
+Condition Coverage for instance /test_hdlc/u_dut/u_RxBuff --
+
+  File ../rtl/RxBuff.sv
+----------------Focused Condition View-------------------
+Line       44 Item    1  (WrBuff && ~Overflow)
+Condition totals: 2 of 2 input terms covered = 100.00%
+
+----------------Focused Condition View-------------------
+Line       103 Item    1  (Count == 128)
+Condition totals: 1 of 1 input term covered = 100.00%
+
+----------------Focused Condition View-------------------
+Line       136 Item    1  ((((Count == FrameSize) || Drop) || FrameError) || AbortedFrame)
+Condition totals: 3 of 4 input terms covered = 75.00%
+
+            Input Term   Covered  Reason for no coverage   Hint
+           -----------  --------  -----------------------  --------------
+  (Count == FrameSize)         Y
+                  Drop         Y
+            FrameError         N  '_1' not hit             Hit '_1'
+          AbortedFrame         Y
+
+     Rows:       Hits  FEC Target              Non-masking condition(s)      
+ ---------  ---------  --------------------    -------------------------     
+  Row   1:          1  (Count == FrameSize)_0  (~AbortedFrame && ~FrameError && ~Drop)
+  Row   2:          1  (Count == FrameSize)_1  -                             
+  Row   3:          1  Drop_0                  (~AbortedFrame && ~FrameError && ~(Count == FrameSize))
+  Row   4:          1  Drop_1                  ~(Count == FrameSize)         
+  Row   5:          1  FrameError_0            (~AbortedFrame && ~((Count == FrameSize) || Drop))
+  Row   6:    ***0***  FrameError_1            ~((Count == FrameSize) || Drop)
+  Row   7:          1  AbortedFrame_0          ~(((Count == FrameSize) || Drop) || FrameError)
+  Row   8:          1  AbortedFrame_1          ~(((Count == FrameSize) || Drop) || FrameError)
+
+
+
+=================================================================================
+=== Instance: /test_hdlc/u_dut/u_RxChannel
+=== Design Unit: work.RxChannel
+=================================================================================
+Condition Coverage:
+    Enabled Coverage              Bins   Covered    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Conditions                       1         1         0   100.00%
+
+================================Condition Details================================
+
+Condition Coverage for instance /test_hdlc/u_dut/u_RxChannel --
+
+  File ../rtl/RxChannel.sv
+----------------Focused Condition View-------------------
+Line       56 Item    1  (BitCounter == 7)
+Condition totals: 1 of 1 input term covered = 100.00%
+
+
+
+=================================================================================
+=== Instance: /test_hdlc/u_testPr
+=== Design Unit: work.testPr_hdlc
+=================================================================================
+Condition Coverage:
+    Enabled Coverage              Bins   Covered    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Conditions                       7         5         2    71.42%
+
+================================Condition Details================================
+
+Condition Coverage for instance /test_hdlc/u_testPr --
+
+  File ./testPr_hdlc.sv
+----------------Focused Condition View-------------------
+Line       202 Item    1  (BitIdx < 8)
+Condition totals: 1 of 1 input term covered = 100.00%
+
+----------------Focused Condition View-------------------
+Line       206 Item    1  ((OnesCnt == 5) && ~uin_hdlc.Tx)
+Condition totals: 1 of 2 input terms covered = 50.00%
+
+      Input Term   Covered  Reason for no coverage   Hint
+     -----------  --------  -----------------------  --------------
+  (OnesCnt == 5)         Y
+     uin_hdlc.Tx         N  '_1' not hit             Hit '_1'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:          1  (OnesCnt == 5)_0      -                             
+  Row   2:          1  (OnesCnt == 5)_1      ~uin_hdlc.Tx                  
+  Row   3:          1  uin_hdlc.Tx_0         (OnesCnt == 5)                
+  Row   4:    ***0***  uin_hdlc.Tx_1         (OnesCnt == 5)                
+
+----------------Focused Condition View-------------------
+Line       239 Item    1  (ShiftReg != 126)
+Condition totals: 1 of 1 input term covered = 100.00%
+
+----------------Focused Condition View-------------------
+Line       594 Item    1  (uin_hdlc.Rx_StopFCS && ~StopFCSSeen)
+Condition totals: 1 of 2 input terms covered = 50.00%
+
+           Input Term   Covered  Reason for no coverage   Hint
+          -----------  --------  -----------------------  --------------
+  uin_hdlc.Rx_StopFCS         Y
+          StopFCSSeen         N  '_1' not hit             Hit '_1'
+
+     Rows:       Hits  FEC Target             Non-masking condition(s)      
+ ---------  ---------  --------------------   -------------------------     
+  Row   1:          1  uin_hdlc.Rx_StopFCS_0  -                             
+  Row   2:          1  uin_hdlc.Rx_StopFCS_1  ~StopFCSSeen                  
+  Row   3:          1  StopFCSSeen_0          uin_hdlc.Rx_StopFCS           
+  Row   4:    ***0***  StopFCSSeen_1          uin_hdlc.Rx_StopFCS           
+
+----------------Focused Condition View-------------------
+Line       743 Item    1  (FCSerr || Drop || NonByteAligned)
+Condition totals: 1 of 1 input term covered = 100.00%
+
+
+
+
+Total Coverage By Instance (filtered view): 80.48%
+
+End time: 15:42:35 on Apr 16,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
