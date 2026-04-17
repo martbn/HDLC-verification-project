@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+SCRIPT_DIR="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
+cd "$SCRIPT_DIR"
+
 # Usage:
 #   ./generate_coverage_reports.sh [ucdb_file] [output_dir]
 #   ./generate_coverage_reports.sh --reports-only [ucdb_file] [output_dir]
@@ -35,7 +38,12 @@ if [[ "$REPORTS_ONLY" -eq 0 ]]; then
   rm -rf work transcript "$UCDB_FILE"
   vlib work
   vlog -sv +cover=bcesft ../rtl/*.sv
-  vlog -sv +cover=bcesft ./*.sv
+  vlog -sv +cover=bcesft +incdir+. \
+    ./in_hdlc.sv \
+    ./testPr_hdlc.sv \
+    ./test_hdlc.sv \
+    ./assertions_hdlc.sv \
+    ./bind_hdlc.sv
   vsim -coverage -c -assertdebug -voptargs="+acc" test_hdlc bind_hdlc \
     -do "run -all; coverage save -onexit $UCDB_FILE; quit -f"
 fi

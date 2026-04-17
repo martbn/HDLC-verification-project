@@ -1,6 +1,6 @@
 # ** Note: (vsim-220) '/eda/tools/siemens/questasim.2025.2/linux/../modelsim.ini' is used as the ini file.
 # vsim -coverage -c -assertdebug -voptargs="+acc" test_hdlc bind_hdlc -do "run -all; coverage save -onexit coverage.ucdb; quit -f" 
-# Start time: 15:42:24 on Apr 16,2026
+# Start time: 16:01:17 on Apr 17,2026
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility. The +acc switch would be deprecated in a future release.
 # ** Note: (vopt-220) '/eda/tools/siemens/questasim.2025.2/linux/../modelsim.ini' is used as the ini file.
@@ -49,123 +49,76 @@
 #                 1000 - Starting task Transmit - Normal
 # *************************************************************
 # *************************************************************
-#               172250 - Finishing task Transmit - Normal
+#               172750 - Finishing task Transmit - Normal
 # *************************************************************
 # *************************************************************
-#               172250 - Starting task Transmit - Transparent
+#               172750 - Starting task Transmit - Transparent
 # *************************************************************
 # *************************************************************
-#               354750 - Finishing task Transmit - Transparent
+#               355750 - Finishing task Transmit - Transparent
 # *************************************************************
 # *************************************************************
-#               354750 - Starting task Transmit - Normal
+#               355750 - Starting task Transmit - Normal
 # *************************************************************
 # *************************************************************
-#               563250 - Finishing task Transmit - Normal
+#               564750 - Finishing task Transmit - Normal
 # *************************************************************
 # *************************************************************
-#               563250 - Starting task Transmit - Normal
+#               564750 - Starting task Transmit - Normal
 # *************************************************************
 # *************************************************************
-#              1731750 - Finishing task Transmit - Normal
+#              1733750 - Finishing task Transmit - Normal
 # *************************************************************
 # *************************************************************
-#              1731750 - Starting task Transmit - Abort
+#              1733750 - Starting task Transmit - Abort
 # *************************************************************
 # *************************************************************
-#              1951750 - Finishing task Transmit - Abort
+#              1954250 - Finishing task Transmit - Abort
 # *************************************************************
 # *************************************************************
-#              1951750 - Starting task Receive - Transparent
+#              1954250 - Starting task Receive - Transparent
 # *************************************************************
 # *************************************************************
-#              2132750 - Starting task Receive - Normal
+#              2135750 - Starting task Receive - Normal
 # *************************************************************
 # *************************************************************
-#              2225250 - Starting task Receive - Normal
+#              2228750 - Starting task Receive - Normal
 # *************************************************************
 # *************************************************************
-#              2358250 - Starting task Receive - FCS error
+#              2362250 - Starting task Receive - FCS error
 # *************************************************************
 # *************************************************************
-#              2479750 - Starting task Receive - Non-byte aligned
+#              2484250 - Starting task Receive - Non-byte aligned
 # *************************************************************
 # *************************************************************
-#              2603250 - Starting task Receive - Normal
+#              2607750 - Starting task Receive - Drop
 # *************************************************************
 # *************************************************************
-#              3282250 - Starting task Receive - Abort
+#              2730750 - Starting task Receive - Normal
 # *************************************************************
 # *************************************************************
-#              3474250 - Starting task Receive - Overflow
+#              3410750 - Starting task Receive - Abort
 # *************************************************************
 # *************************************************************
-#              4168250 - Starting task Transmit - Normal
+#              3603750 - Starting task Receive - Overflow
 # *************************************************************
 # *************************************************************
-#              4266750 - Finishing task Transmit - Normal
+#              4294750 - Starting task Receive - Non-byte aligned
 # *************************************************************
 # *************************************************************
-#              4266750 - Starting task Transmit - Transparent
+#              5152750 - Finishing Test Program
 # *************************************************************
-# *************************************************************
-#              4371250 - Finishing task Transmit - Transparent
-# *************************************************************
-# *************************************************************
-#              4371250 - Starting task Transmit - Normal
-# *************************************************************
-# *************************************************************
-#              5530250 - Finishing task Transmit - Normal
-# *************************************************************
-# *************************************************************
-#              5530250 - Starting task Transmit - Abort
-# *************************************************************
-# *************************************************************
-#              5850250 - Finishing task Transmit - Abort
-# *************************************************************
-# *************************************************************
-#              5850250 - Starting task Transmit - Abort
-# *************************************************************
-# *************************************************************
-#              6370250 - Finishing task Transmit - Abort
-# *************************************************************
-# *************************************************************
-#              6370250 - Starting task Receive - Normal
-# *************************************************************
-# *************************************************************
-#              6452750 - Starting task Receive - Transparent
-# *************************************************************
-# *************************************************************
-#              6541250 - Starting task Receive - Drop
-# *************************************************************
-# *************************************************************
-#              6665750 - Starting task Receive - Skip read
-# *************************************************************
-# *************************************************************
-#              7219250 - Starting task Receive - Normal
-# *************************************************************
-# *************************************************************
-#              7321250 - Starting task Receive - Non-byte aligned
-# *************************************************************
-# *************************************************************
-#              8517250 - Starting task Receive - Non-byte aligned
-# *************************************************************
-# ** Error: RXSC[4] mismatch. Exp=1 Got=0 Ctx=0x4
-#    Time: 9081250 ns  Scope: test_hdlc.u_testPr.CheckBitEq File: ./testPr_hdlc.sv Line: 49
-# *************************************************************
-#              9087250 - Finishing Test Program
-# *************************************************************
-# ** Note: $stop    : ./testPr_hdlc.sv(396)
-#    Time: 9087250 ns  Iteration: 1  Instance: /test_hdlc/u_testPr
-# Break in Module testPr_hdlc at ./testPr_hdlc.sv line 396
-# Stopped at ./testPr_hdlc.sv line 396
+# ** Note: $stop    : ./testPr_hdlc.sv(56)
+#    Time: 5152750 ns  Iteration: 2  Instance: /test_hdlc/u_testPr
+# Break in Module testPr_hdlc at ./testPr_hdlc.sv line 56
+# Stopped at ./testPr_hdlc.sv line 56
 #  coverage save -onexit coverage.ucdb
 #  quit -f
 # *********************************
 # *                               *
-# * 	Assertion Errors: 1	  *
+# * 	Assertion Errors: 0	  *
 # *                               *
 # *********************************
 # Saving coverage database on exit...
-# End time: 15:42:32 on Apr 16,2026, Elapsed time: 0:00:08
-# Errors: 1, Warnings: 2
+# End time: 16:01:24 on Apr 17,2026, Elapsed time: 0:00:07
+# Errors: 0, Warnings: 2

@@ -1,5 +1,5 @@
 QuestaSim vcover 2025.2 Coverage Utility 2025.05 May 31 2025
-Start time: 15:42:35 on Apr 16,2026
+Start time: 16:01:26 on Apr 17,2026
 vcover report -details -code e coverage.ucdb 
 Coverage Report by instance with details
 
@@ -148,9 +148,9 @@ Expression Coverage:
 
 Expression Coverage for instance /test_hdlc/u_testPr --
 
-  File ./testPr_hdlc.sv
+  File testPr_immediate_checks.svh
 ----------------Focused Expression View-----------------
-Line       164 Item    1  (FCSerr || NonByteAligned)
+Line       147 Item    1  (FCSerr || NonByteAligned)
 Expression totals: 1 of 1 input term covered = 100.00%
 
 
@@ -158,5 +158,5 @@ Expression totals: 1 of 1 input term covered = 100.00%
 
 Total Coverage By Instance (filtered view): 100.00%
 
-End time: 15:42:35 on Apr 16,2026, Elapsed time: 0:00:00
+End time: 16:01:27 on Apr 17,2026, Elapsed time: 0:00:01
 Errors: 0, Warnings: 0

@@ -1,3 +1,8 @@
+#!/usr/bin/env bash
+
+SCRIPT_DIR="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
+cd "$SCRIPT_DIR"
+
 rm -rf work*
 
 RED='\033[0;31m'
@@ -15,7 +20,12 @@ else
 fi
 
 printf "${RED}\nCompiling test files${NC}\n"
-if vlog -sv ./*.sv 
+if vlog -sv +incdir+. \
+  ./in_hdlc.sv \
+  ./testPr_hdlc.sv \
+  ./test_hdlc.sv \
+  ./assertions_hdlc.sv \
+  ./bind_hdlc.sv
 then
 	echo "Success"
 else

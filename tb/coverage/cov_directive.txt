@@ -1,5 +1,5 @@
 QuestaSim vcover 2025.2 Coverage Utility 2025.05 May 31 2025
-Start time: 15:42:33 on Apr 16,2026
+Start time: 16:01:25 on Apr 17,2026
 vcover report -details -directive coverage.ucdb 
 Coverage Report by instance with details
 
@@ -17,52 +17,52 @@ Name                                     Design Design   Lang File(Line)      Hi
                                          Unit   UnitType                                     
 --------------------------------------------------------------------------------------------
 /test_hdlc/u_assertion_bind/COV_ANT_RX_FLAG 
-                                         assertions_hdlc Verilog  SVA  ./assertions_hdlc.sv(415)
-                                                                                29 Covered   
-/test_hdlc/u_assertion_bind/COV_ANT_TX_START_FLAG 
-                                         assertions_hdlc Verilog  SVA  ./assertions_hdlc.sv(417)
-                                                                                13 Covered   
-/test_hdlc/u_assertion_bind/COV_ANT_TX_END_FLAG 
-                                         assertions_hdlc Verilog  SVA  ./assertions_hdlc.sv(419)
-                                                                                 7 Covered   
-/test_hdlc/u_assertion_bind/COV_ANT_TX_ZERO_INSERTION 
-                                         assertions_hdlc Verilog  SVA  ./assertions_hdlc.sv(421)
-                                                                              2959 Covered   
-/test_hdlc/u_assertion_bind/COV_ANT_RX_ZERO_DETECT 
-                                         assertions_hdlc Verilog  SVA  ./assertions_hdlc.sv(423)
-                                                                               148 Covered   
-/test_hdlc/u_assertion_bind/COV_ANT_RX_ZERO_NO_NEWBYTE 
-                                         assertions_hdlc Verilog  SVA  ./assertions_hdlc.sv(425)
-                                                                               148 Covered   
-/test_hdlc/u_assertion_bind/COV_ANT_TX_IDLE 
-                                         assertions_hdlc Verilog  SVA  ./assertions_hdlc.sv(427)
-                                                                              5748 Covered   
-/test_hdlc/u_assertion_bind/COV_ANT_RX_IDLE 
                                          assertions_hdlc Verilog  SVA  ./assertions_hdlc.sv(429)
-                                                                              10900 Covered   
-/test_hdlc/u_assertion_bind/COV_ANT_TX_ABORT_REQ 
+                                                                                19 Covered   
+/test_hdlc/u_assertion_bind/COV_ANT_TX_START_FLAG 
                                          assertions_hdlc Verilog  SVA  ./assertions_hdlc.sv(431)
                                                                                  6 Covered   
-/test_hdlc/u_assertion_bind/COV_ANT_RX_ABORT 
+/test_hdlc/u_assertion_bind/COV_ANT_TX_END_FLAG 
                                          assertions_hdlc Verilog  SVA  ./assertions_hdlc.sv(433)
+                                                                                 4 Covered   
+/test_hdlc/u_assertion_bind/COV_ANT_TX_ZERO_INSERTION 
+                                         assertions_hdlc Verilog  SVA  ./assertions_hdlc.sv(435)
+                                                                              1734 Covered   
+/test_hdlc/u_assertion_bind/COV_ANT_RX_ZERO_DETECT 
+                                         assertions_hdlc Verilog  SVA  ./assertions_hdlc.sv(437)
+                                                                                93 Covered   
+/test_hdlc/u_assertion_bind/COV_ANT_RX_ZERO_NO_NEWBYTE 
+                                         assertions_hdlc Verilog  SVA  ./assertions_hdlc.sv(439)
+                                                                                93 Covered   
+/test_hdlc/u_assertion_bind/COV_ANT_TX_IDLE 
+                                         assertions_hdlc Verilog  SVA  ./assertions_hdlc.sv(441)
+                                                                              2614 Covered   
+/test_hdlc/u_assertion_bind/COV_ANT_RX_IDLE 
+                                         assertions_hdlc Verilog  SVA  ./assertions_hdlc.sv(443)
+                                                                              5524 Covered   
+/test_hdlc/u_assertion_bind/COV_ANT_TX_ABORT_REQ 
+                                         assertions_hdlc Verilog  SVA  ./assertions_hdlc.sv(445)
+                                                                                 1 Covered   
+/test_hdlc/u_assertion_bind/COV_ANT_RX_ABORT 
+                                         assertions_hdlc Verilog  SVA  ./assertions_hdlc.sv(447)
                                                                                  1 Covered   
 /test_hdlc/u_assertion_bind/COV_ANT_RX_EOF 
-                                         assertions_hdlc Verilog  SVA  ./assertions_hdlc.sv(435)
-                                                                                14 Covered   
+                                         assertions_hdlc Verilog  SVA  ./assertions_hdlc.sv(449)
+                                                                                 9 Covered   
 /test_hdlc/u_assertion_bind/COV_ANT_RX_OVERFLOW 
-                                         assertions_hdlc Verilog  SVA  ./assertions_hdlc.sv(437)
+                                         assertions_hdlc Verilog  SVA  ./assertions_hdlc.sv(451)
                                                                                  2 Covered   
 /test_hdlc/u_assertion_bind/COV_ANT_RX_READY_LIFECYCLE 
-                                         assertions_hdlc Verilog  SVA  ./assertions_hdlc.sv(442)
-                                                                               332 Covered   
+                                         assertions_hdlc Verilog  SVA  ./assertions_hdlc.sv(456)
+                                                                               304 Covered   
 /test_hdlc/u_assertion_bind/COV_ANT_RX_FRAME_ERROR 
-                                         assertions_hdlc Verilog  SVA  ./assertions_hdlc.sv(444)
-                                                                                 4 Covered   
+                                         assertions_hdlc Verilog  SVA  ./assertions_hdlc.sv(458)
+                                                                                 3 Covered   
 /test_hdlc/u_assertion_bind/COV_ANT_TX_DONE 
-                                         assertions_hdlc Verilog  SVA  ./assertions_hdlc.sv(446)
-                                                                                 7 Covered   
+                                         assertions_hdlc Verilog  SVA  ./assertions_hdlc.sv(460)
+                                                                                 4 Covered   
 /test_hdlc/u_assertion_bind/COV_ANT_TX_FULL 
-                                         assertions_hdlc Verilog  SVA  ./assertions_hdlc.sv(448)
+                                         assertions_hdlc Verilog  SVA  ./assertions_hdlc.sv(462)
                                                                                  1 Covered   
 
 
@@ -72,57 +72,57 @@ Name                                     Design Design   Lang File(Line)      Hi
                                          Unit   UnitType                                     
 --------------------------------------------------------------------------------------------
 /test_hdlc/u_assertion_bind/COV_ANT_RX_FLAG 
-                                         assertions_hdlc Verilog  SVA  ./assertions_hdlc.sv(415)
-                                                                                29 Covered   
-/test_hdlc/u_assertion_bind/COV_ANT_TX_START_FLAG 
-                                         assertions_hdlc Verilog  SVA  ./assertions_hdlc.sv(417)
-                                                                                13 Covered   
-/test_hdlc/u_assertion_bind/COV_ANT_TX_END_FLAG 
-                                         assertions_hdlc Verilog  SVA  ./assertions_hdlc.sv(419)
-                                                                                 7 Covered   
-/test_hdlc/u_assertion_bind/COV_ANT_TX_ZERO_INSERTION 
-                                         assertions_hdlc Verilog  SVA  ./assertions_hdlc.sv(421)
-                                                                              2959 Covered   
-/test_hdlc/u_assertion_bind/COV_ANT_RX_ZERO_DETECT 
-                                         assertions_hdlc Verilog  SVA  ./assertions_hdlc.sv(423)
-                                                                               148 Covered   
-/test_hdlc/u_assertion_bind/COV_ANT_RX_ZERO_NO_NEWBYTE 
-                                         assertions_hdlc Verilog  SVA  ./assertions_hdlc.sv(425)
-                                                                               148 Covered   
-/test_hdlc/u_assertion_bind/COV_ANT_TX_IDLE 
-                                         assertions_hdlc Verilog  SVA  ./assertions_hdlc.sv(427)
-                                                                              5748 Covered   
-/test_hdlc/u_assertion_bind/COV_ANT_RX_IDLE 
                                          assertions_hdlc Verilog  SVA  ./assertions_hdlc.sv(429)
-                                                                              10900 Covered   
-/test_hdlc/u_assertion_bind/COV_ANT_TX_ABORT_REQ 
+                                                                                19 Covered   
+/test_hdlc/u_assertion_bind/COV_ANT_TX_START_FLAG 
                                          assertions_hdlc Verilog  SVA  ./assertions_hdlc.sv(431)
                                                                                  6 Covered   
-/test_hdlc/u_assertion_bind/COV_ANT_RX_ABORT 
+/test_hdlc/u_assertion_bind/COV_ANT_TX_END_FLAG 
                                          assertions_hdlc Verilog  SVA  ./assertions_hdlc.sv(433)
+                                                                                 4 Covered   
+/test_hdlc/u_assertion_bind/COV_ANT_TX_ZERO_INSERTION 
+                                         assertions_hdlc Verilog  SVA  ./assertions_hdlc.sv(435)
+                                                                              1734 Covered   
+/test_hdlc/u_assertion_bind/COV_ANT_RX_ZERO_DETECT 
+                                         assertions_hdlc Verilog  SVA  ./assertions_hdlc.sv(437)
+                                                                                93 Covered   
+/test_hdlc/u_assertion_bind/COV_ANT_RX_ZERO_NO_NEWBYTE 
+                                         assertions_hdlc Verilog  SVA  ./assertions_hdlc.sv(439)
+                                                                                93 Covered   
+/test_hdlc/u_assertion_bind/COV_ANT_TX_IDLE 
+                                         assertions_hdlc Verilog  SVA  ./assertions_hdlc.sv(441)
+                                                                              2614 Covered   
+/test_hdlc/u_assertion_bind/COV_ANT_RX_IDLE 
+                                         assertions_hdlc Verilog  SVA  ./assertions_hdlc.sv(443)
+                                                                              5524 Covered   
+/test_hdlc/u_assertion_bind/COV_ANT_TX_ABORT_REQ 
+                                         assertions_hdlc Verilog  SVA  ./assertions_hdlc.sv(445)
+                                                                                 1 Covered   
+/test_hdlc/u_assertion_bind/COV_ANT_RX_ABORT 
+                                         assertions_hdlc Verilog  SVA  ./assertions_hdlc.sv(447)
                                                                                  1 Covered   
 /test_hdlc/u_assertion_bind/COV_ANT_RX_EOF 
-                                         assertions_hdlc Verilog  SVA  ./assertions_hdlc.sv(435)
-                                                                                14 Covered   
+                                         assertions_hdlc Verilog  SVA  ./assertions_hdlc.sv(449)
+                                                                                 9 Covered   
 /test_hdlc/u_assertion_bind/COV_ANT_RX_OVERFLOW 
-                                         assertions_hdlc Verilog  SVA  ./assertions_hdlc.sv(437)
+                                         assertions_hdlc Verilog  SVA  ./assertions_hdlc.sv(451)
                                                                                  2 Covered   
 /test_hdlc/u_assertion_bind/COV_ANT_RX_READY_LIFECYCLE 
-                                         assertions_hdlc Verilog  SVA  ./assertions_hdlc.sv(442)
-                                                                               332 Covered   
+                                         assertions_hdlc Verilog  SVA  ./assertions_hdlc.sv(456)
+                                                                               304 Covered   
 /test_hdlc/u_assertion_bind/COV_ANT_RX_FRAME_ERROR 
-                                         assertions_hdlc Verilog  SVA  ./assertions_hdlc.sv(444)
-                                                                                 4 Covered   
+                                         assertions_hdlc Verilog  SVA  ./assertions_hdlc.sv(458)
+                                                                                 3 Covered   
 /test_hdlc/u_assertion_bind/COV_ANT_TX_DONE 
-                                         assertions_hdlc Verilog  SVA  ./assertions_hdlc.sv(446)
-                                                                                 7 Covered   
+                                         assertions_hdlc Verilog  SVA  ./assertions_hdlc.sv(460)
+                                                                                 4 Covered   
 /test_hdlc/u_assertion_bind/COV_ANT_TX_FULL 
-                                         assertions_hdlc Verilog  SVA  ./assertions_hdlc.sv(448)
+                                         assertions_hdlc Verilog  SVA  ./assertions_hdlc.sv(462)
                                                                                  1 Covered   
 
 TOTAL DIRECTIVE COVERAGE: 100.00%  COVERS: 16
 
 Total Coverage By Instance (filtered view): 100.00%
 
-End time: 15:42:33 on Apr 16,2026, Elapsed time: 0:00:00
+End time: 16:01:25 on Apr 17,2026, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0

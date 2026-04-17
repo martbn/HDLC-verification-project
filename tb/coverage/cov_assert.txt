@@ -1,5 +1,5 @@
 QuestaSim vcover 2025.2 Coverage Utility 2025.05 May 31 2025
-Start time: 15:42:33 on Apr 16,2026
+Start time: 16:01:25 on Apr 17,2026
 vcover report -details -assert coverage.ucdb 
 Coverage Report by instance with details
 
@@ -9,39 +9,62 @@ Coverage Report by instance with details
 =================================================================================
 
 Assertion Coverage:
-    Assertions                      14        13         1    92.85%
+    Assertions                      17        17         0   100.00%
 --------------------------------------------------------------------------------------------------------------------------------
 Name                 File(Line)                   Failure      Pass     Vacuous    Disable    Attempt     Active Peak Active ATV
                                                   Count        Count    Count      Count      Count       Count  Count          
 --------------------------------------------------------------------------------------------------------------------------------
-/test_hdlc/u_testPr/CheckBitEq/immed__48
-                     ./testPr_hdlc.sv(48)               1        121          0          0        122          0           0 off
-/test_hdlc/u_testPr/CheckByteEq/immed__55
-                     ./testPr_hdlc.sv(55)               0         16          0          0         16          0           0 off
-/test_hdlc/u_testPr/CheckIntLe/immed__62
-                     ./testPr_hdlc.sv(62)               0          8          0          0          8          0           0 off
-/test_hdlc/u_testPr/VerifyNormalReceive/#anonblk#119480755#108#4#/#ublk#119480755#108/immed__110
-                     ./testPr_hdlc.sv(110)              0        206          0          0        206          0           0 off
-/test_hdlc/u_testPr/VerifyOverflowReceive/#anonblk#119480755#136#4#/#ublk#119480755#136/immed__138
-                     ./testPr_hdlc.sv(138)              0        126          0          0        126          0           0 off
-/test_hdlc/u_testPr/VerifyRxStatusControl/immed__179
-                     ./testPr_hdlc.sv(179)              0         15          0          0         15          0           0 off
-/test_hdlc/u_testPr/VerifyTxOutput/immed__267
-                     ./testPr_hdlc.sv(267)              0          7          0          0          7          0           0 off
-/test_hdlc/u_testPr/VerifyTxOutput/immed__260
-                     ./testPr_hdlc.sv(260)              0          7          0          0          7          0           0 off
-/test_hdlc/u_testPr/VerifyTxOutput/#ublk#119480755#244/immed__248
-                     ./testPr_hdlc.sv(248)              0        319          0          0        319          0           0 off
-/test_hdlc/u_testPr/Transmit/#ublk#119480755#493/immed__528
-                     ./testPr_hdlc.sv(528)              0          3          0          0          3          0           0 off
-/test_hdlc/u_testPr/Transmit/#ublk#119480755#493/immed__514
-                     ./testPr_hdlc.sv(514)              0          3          0          0          3          0           0 off
-/test_hdlc/u_testPr/VerifyRxCRCAtStopFCS/immed__604
-                     ./testPr_hdlc.sv(604)              0         14          0          0         14          0           0 off
-/test_hdlc/u_testPr/VerifyRxCRCAtStopFCS/#ublk#119480755#609/immed__611
-                     ./testPr_hdlc.sv(611)              0         14          0          0         14          0           0 off
-/test_hdlc/u_testPr/VerifyRxEoFGenerated/immed__630
-                     ./testPr_hdlc.sv(630)              0         14          0          0         14          0           0 off
+/test_hdlc/u_testPr/CheckBitEq/immed__8
+                     testPr_immediate_checks.svh(8)
+                                                        0         74          0          0         74          0           0 off
+/test_hdlc/u_testPr/CheckByteEq/immed__15
+                     testPr_immediate_checks.svh(15)
+                                                        0         11          0          0         11          0           0 off
+/test_hdlc/u_testPr/CheckIntLe/immed__22
+                     testPr_immediate_checks.svh(22)
+                                                        0          5          0          0          5          0           0 off
+/test_hdlc/u_testPr/VerifyNormalReceive/#anonblk#119480755#58#4#/#ublk#119480755#58/immed__60
+                     testPr_immediate_checks.svh(60)
+                                                        0        178          0          0        178          0           0 off
+/test_hdlc/u_testPr/VerifyOverflowReceive/#anonblk#119480755#94#4#/#ublk#119480755#94/immed__96
+                     testPr_immediate_checks.svh(96)
+                                                        0        126          0          0        126          0           0 off
+/test_hdlc/u_testPr/VerifyRxStatusControl/immed__162
+                     testPr_immediate_checks.svh(162)
+                                                        0          9          0          0          9          0           0 off
+/test_hdlc/u_testPr/VerifyTxOutput/immed__254
+                     testPr_immediate_checks.svh(254)
+                                                        0          4          0          0          4          0           0 off
+/test_hdlc/u_testPr/VerifyTxOutput/immed__248
+                     testPr_immediate_checks.svh(248)
+                                                        0          4          0          0          4          0           0 off
+/test_hdlc/u_testPr/VerifyTxOutput/immed__231
+                     testPr_immediate_checks.svh(231)
+                                                        0          4          0          0          4          0           0 off
+/test_hdlc/u_testPr/VerifyTxOutput/#ublk#119480755#237/immed__239
+                     testPr_immediate_checks.svh(239)
+                                                        0        178          0          0        178          0           0 off
+/test_hdlc/u_testPr/VerifyRxCRCAtStopFCS/immed__277
+                     testPr_immediate_checks.svh(277)
+                                                        0          6          0          0          6          0           0 off
+/test_hdlc/u_testPr/VerifyRxCRCAtStopFCS/#ublk#119480755#282/immed__283
+                     testPr_immediate_checks.svh(283)
+                                                        0          6          0          0          6          0           0 off
+/test_hdlc/u_testPr/VerifyRxEoFGenerated/immed__302
+                     testPr_immediate_checks.svh(302)
+                                                        0          9          0          0          9          0           0 off
+/test_hdlc/u_testPr/Transmit/immed__139
+                     testPr_stimulus_tasks.svh(139)
+                                                        0          5          0          0          5          0           0 off
+/test_hdlc/u_testPr/Transmit/#ublk#119480755#158/immed__204
+                     testPr_stimulus_tasks.svh(204)
+                                                        0          1          0          0          1          0           0 off
+/test_hdlc/u_testPr/Transmit/#ublk#119480755#158/immed__190
+                     testPr_stimulus_tasks.svh(190)
+                                                        0          1          0          0          1          0           0 off
+/test_hdlc/u_testPr/Receive/immed__271
+                     testPr_stimulus_tasks.svh(271)
+                                                        0         10          0          0         10          0           0 off
 
 =================================================================================
 === Instance: /test_hdlc/u_assertion_bind
@@ -55,39 +78,39 @@ Name                 File(Line)                   Failure      Pass     Vacuous 
                                                   Count        Count    Count      Count      Count       Count  Count          
 --------------------------------------------------------------------------------------------------------------------------------
 /test_hdlc/u_assertion_bind/ASSERT_RX_FLAG_DETECT
-                     ./assertions_hdlc.sv(309)          0         29      18146          0      18175          0           3 off
+                     ./assertions_hdlc.sv(323)          0         19      10287          0      10306          0           3 off
 /test_hdlc/u_assertion_bind/ASSERT_TX_START_FLAG
-                     ./assertions_hdlc.sv(315)          0         13      18160          2      18175          0           1 off
+                     ./assertions_hdlc.sv(329)          0          6      10298          2      10306          0           1 off
 /test_hdlc/u_assertion_bind/ASSERT_TX_END_FLAG
-                     ./assertions_hdlc.sv(321)          0          7      18166          2      18175          0           1 off
+                     ./assertions_hdlc.sv(335)          0          4      10300          2      10306          0           1 off
 /test_hdlc/u_assertion_bind/ASSERT_TX_ZERO_INSERTION
-                     ./assertions_hdlc.sv(327)          0       2959      15214          2      18175          0           1 off
+                     ./assertions_hdlc.sv(341)          0       1734       8570          2      10306          0           1 off
 /test_hdlc/u_assertion_bind/ASSERT_RX_ZERO_REMOVAL_DETECT
-                     ./assertions_hdlc.sv(333)          0        148      18025          2      18175          0           1 off
+                     ./assertions_hdlc.sv(347)          0         93      10211          2      10306          0           1 off
 /test_hdlc/u_assertion_bind/ASSERT_RX_ZERO_REMOVAL_NO_NEW_BYTE
-                     ./assertions_hdlc.sv(339)          0        148      18025          2      18175          0           1 off
+                     ./assertions_hdlc.sv(353)          0         93      10211          2      10306          0           1 off
 /test_hdlc/u_assertion_bind/ASSERT_TX_IDLE_PATTERN
-                     ./assertions_hdlc.sv(345)          0       5748      12425          2      18175          0           1 off
+                     ./assertions_hdlc.sv(359)          0       2614       7690          2      10306          0           1 off
 /test_hdlc/u_assertion_bind/ASSERT_RX_IDLE_PATTERN
-                     ./assertions_hdlc.sv(351)          0      10900       7273          2      18175          0           1 off
+                     ./assertions_hdlc.sv(365)          0       5524       4780          2      10306          0           1 off
 /test_hdlc/u_assertion_bind/ASSERT_TX_ABORT_PATTERN
-                     ./assertions_hdlc.sv(357)          0          6      18167          2      18175          0           1 off
+                     ./assertions_hdlc.sv(371)          0          1      10303          2      10306          0           1 off
 /test_hdlc/u_assertion_bind/ASSERT_TX_ABORTED_TRANS
-                     ./assertions_hdlc.sv(363)          0          6      18167          2      18175          0           1 off
+                     ./assertions_hdlc.sv(377)          0          1      10303          2      10306          0           1 off
 /test_hdlc/u_assertion_bind/ASSERT_RX_ABORT_SIGNAL
-                     ./assertions_hdlc.sv(369)          0          1      18172          2      18175          0           1 off
+                     ./assertions_hdlc.sv(383)          0          1      10303          2      10306          0           1 off
 /test_hdlc/u_assertion_bind/ASSERT_RX_EOF_GENERATED
-                     ./assertions_hdlc.sv(375)          0         14      18159          2      18175          0           1 off
+                     ./assertions_hdlc.sv(389)          0          9      10295          2      10306          0           1 off
 /test_hdlc/u_assertion_bind/ASSERT_RX_OVERFLOW
-                     ./assertions_hdlc.sv(381)          0          2      18171          2      18175          0           1 off
+                     ./assertions_hdlc.sv(395)          0          2      10302          2      10306          0           1 off
 /test_hdlc/u_assertion_bind/ASSERT_RX_READY_LIFECYCLE
-                     ./assertions_hdlc.sv(387)          0        332      17841          2      18175          0         126 off
+                     ./assertions_hdlc.sv(401)          0        304      10000          2      10306          0         126 off
 /test_hdlc/u_assertion_bind/ASSERT_RX_FRAME_ERROR
-                     ./assertions_hdlc.sv(393)          0          4      18169          2      18175          0           1 off
+                     ./assertions_hdlc.sv(407)          0          3      10301          2      10306          0           1 off
 /test_hdlc/u_assertion_bind/ASSERT_TX_DONE
-                     ./assertions_hdlc.sv(399)          0          7      18166          2      18175          0           1 off
+                     ./assertions_hdlc.sv(413)          0          4      10300          2      10306          0           1 off
 /test_hdlc/u_assertion_bind/ASSERT_TX_FULL
-                     ./assertions_hdlc.sv(405)          0          1      18172          2      18175          0           1 off
+                     ./assertions_hdlc.sv(419)          0          1      10303          2      10306          0           1 off
 
 
 ASSERTION RESULTS:
@@ -95,70 +118,93 @@ ASSERTION RESULTS:
 Name                 File(Line)                   Failure      Pass     Vacuous    Disable    Attempt     Active Peak Active ATV
                                                   Count        Count    Count      Count      Count       Count  Count          
 --------------------------------------------------------------------------------------------------------------------------------
-/test_hdlc/u_testPr/CheckBitEq/immed__48
-                     ./testPr_hdlc.sv(48)               1        121          0          0        122          0           0 off
-/test_hdlc/u_testPr/CheckByteEq/immed__55
-                     ./testPr_hdlc.sv(55)               0         16          0          0         16          0           0 off
-/test_hdlc/u_testPr/CheckIntLe/immed__62
-                     ./testPr_hdlc.sv(62)               0          8          0          0          8          0           0 off
-/test_hdlc/u_testPr/VerifyNormalReceive/#anonblk#119480755#108#4#/#ublk#119480755#108/immed__110
-                     ./testPr_hdlc.sv(110)              0        206          0          0        206          0           0 off
-/test_hdlc/u_testPr/VerifyOverflowReceive/#anonblk#119480755#136#4#/#ublk#119480755#136/immed__138
-                     ./testPr_hdlc.sv(138)              0        126          0          0        126          0           0 off
-/test_hdlc/u_testPr/VerifyRxStatusControl/immed__179
-                     ./testPr_hdlc.sv(179)              0         15          0          0         15          0           0 off
-/test_hdlc/u_testPr/VerifyTxOutput/immed__267
-                     ./testPr_hdlc.sv(267)              0          7          0          0          7          0           0 off
-/test_hdlc/u_testPr/VerifyTxOutput/immed__260
-                     ./testPr_hdlc.sv(260)              0          7          0          0          7          0           0 off
-/test_hdlc/u_testPr/VerifyTxOutput/#ublk#119480755#244/immed__248
-                     ./testPr_hdlc.sv(248)              0        319          0          0        319          0           0 off
-/test_hdlc/u_testPr/Transmit/#ublk#119480755#493/immed__528
-                     ./testPr_hdlc.sv(528)              0          3          0          0          3          0           0 off
-/test_hdlc/u_testPr/Transmit/#ublk#119480755#493/immed__514
-                     ./testPr_hdlc.sv(514)              0          3          0          0          3          0           0 off
-/test_hdlc/u_testPr/VerifyRxCRCAtStopFCS/immed__604
-                     ./testPr_hdlc.sv(604)              0         14          0          0         14          0           0 off
-/test_hdlc/u_testPr/VerifyRxCRCAtStopFCS/#ublk#119480755#609/immed__611
-                     ./testPr_hdlc.sv(611)              0         14          0          0         14          0           0 off
-/test_hdlc/u_testPr/VerifyRxEoFGenerated/immed__630
-                     ./testPr_hdlc.sv(630)              0         14          0          0         14          0           0 off
+/test_hdlc/u_testPr/CheckBitEq/immed__8
+                     testPr_immediate_checks.svh(8)
+                                                        0         74          0          0         74          0           0 off
+/test_hdlc/u_testPr/CheckByteEq/immed__15
+                     testPr_immediate_checks.svh(15)
+                                                        0         11          0          0         11          0           0 off
+/test_hdlc/u_testPr/CheckIntLe/immed__22
+                     testPr_immediate_checks.svh(22)
+                                                        0          5          0          0          5          0           0 off
+/test_hdlc/u_testPr/VerifyNormalReceive/#anonblk#119480755#58#4#/#ublk#119480755#58/immed__60
+                     testPr_immediate_checks.svh(60)
+                                                        0        178          0          0        178          0           0 off
+/test_hdlc/u_testPr/VerifyOverflowReceive/#anonblk#119480755#94#4#/#ublk#119480755#94/immed__96
+                     testPr_immediate_checks.svh(96)
+                                                        0        126          0          0        126          0           0 off
+/test_hdlc/u_testPr/VerifyRxStatusControl/immed__162
+                     testPr_immediate_checks.svh(162)
+                                                        0          9          0          0          9          0           0 off
+/test_hdlc/u_testPr/VerifyTxOutput/immed__254
+                     testPr_immediate_checks.svh(254)
+                                                        0          4          0          0          4          0           0 off
+/test_hdlc/u_testPr/VerifyTxOutput/immed__248
+                     testPr_immediate_checks.svh(248)
+                                                        0          4          0          0          4          0           0 off
+/test_hdlc/u_testPr/VerifyTxOutput/immed__231
+                     testPr_immediate_checks.svh(231)
+                                                        0          4          0          0          4          0           0 off
+/test_hdlc/u_testPr/VerifyTxOutput/#ublk#119480755#237/immed__239
+                     testPr_immediate_checks.svh(239)
+                                                        0        178          0          0        178          0           0 off
+/test_hdlc/u_testPr/VerifyRxCRCAtStopFCS/immed__277
+                     testPr_immediate_checks.svh(277)
+                                                        0          6          0          0          6          0           0 off
+/test_hdlc/u_testPr/VerifyRxCRCAtStopFCS/#ublk#119480755#282/immed__283
+                     testPr_immediate_checks.svh(283)
+                                                        0          6          0          0          6          0           0 off
+/test_hdlc/u_testPr/VerifyRxEoFGenerated/immed__302
+                     testPr_immediate_checks.svh(302)
+                                                        0          9          0          0          9          0           0 off
+/test_hdlc/u_testPr/Transmit/immed__139
+                     testPr_stimulus_tasks.svh(139)
+                                                        0          5          0          0          5          0           0 off
+/test_hdlc/u_testPr/Transmit/#ublk#119480755#158/immed__204
+                     testPr_stimulus_tasks.svh(204)
+                                                        0          1          0          0          1          0           0 off
+/test_hdlc/u_testPr/Transmit/#ublk#119480755#158/immed__190
+                     testPr_stimulus_tasks.svh(190)
+                                                        0          1          0          0          1          0           0 off
+/test_hdlc/u_testPr/Receive/immed__271
+                     testPr_stimulus_tasks.svh(271)
+                                                        0         10          0          0         10          0           0 off
 /test_hdlc/u_assertion_bind/ASSERT_RX_FLAG_DETECT
-                     ./assertions_hdlc.sv(309)          0         29      18146          0      18175          0           3 off
+                     ./assertions_hdlc.sv(323)          0         19      10287          0      10306          0           3 off
 /test_hdlc/u_assertion_bind/ASSERT_TX_START_FLAG
-                     ./assertions_hdlc.sv(315)          0         13      18160          2      18175          0           1 off
+                     ./assertions_hdlc.sv(329)          0          6      10298          2      10306          0           1 off
 /test_hdlc/u_assertion_bind/ASSERT_TX_END_FLAG
-                     ./assertions_hdlc.sv(321)          0          7      18166          2      18175          0           1 off
+                     ./assertions_hdlc.sv(335)          0          4      10300          2      10306          0           1 off
 /test_hdlc/u_assertion_bind/ASSERT_TX_ZERO_INSERTION
-                     ./assertions_hdlc.sv(327)          0       2959      15214          2      18175          0           1 off
+                     ./assertions_hdlc.sv(341)          0       1734       8570          2      10306          0           1 off
 /test_hdlc/u_assertion_bind/ASSERT_RX_ZERO_REMOVAL_DETECT
-                     ./assertions_hdlc.sv(333)          0        148      18025          2      18175          0           1 off
+                     ./assertions_hdlc.sv(347)          0         93      10211          2      10306          0           1 off
 /test_hdlc/u_assertion_bind/ASSERT_RX_ZERO_REMOVAL_NO_NEW_BYTE
-                     ./assertions_hdlc.sv(339)          0        148      18025          2      18175          0           1 off
+                     ./assertions_hdlc.sv(353)          0         93      10211          2      10306          0           1 off
 /test_hdlc/u_assertion_bind/ASSERT_TX_IDLE_PATTERN
-                     ./assertions_hdlc.sv(345)          0       5748      12425          2      18175          0           1 off
+                     ./assertions_hdlc.sv(359)          0       2614       7690          2      10306          0           1 off
 /test_hdlc/u_assertion_bind/ASSERT_RX_IDLE_PATTERN
-                     ./assertions_hdlc.sv(351)          0      10900       7273          2      18175          0           1 off
+                     ./assertions_hdlc.sv(365)          0       5524       4780          2      10306          0           1 off
 /test_hdlc/u_assertion_bind/ASSERT_TX_ABORT_PATTERN
-                     ./assertions_hdlc.sv(357)          0          6      18167          2      18175          0           1 off
+                     ./assertions_hdlc.sv(371)          0          1      10303          2      10306          0           1 off
 /test_hdlc/u_assertion_bind/ASSERT_TX_ABORTED_TRANS
-                     ./assertions_hdlc.sv(363)          0          6      18167          2      18175          0           1 off
+                     ./assertions_hdlc.sv(377)          0          1      10303          2      10306          0           1 off
 /test_hdlc/u_assertion_bind/ASSERT_RX_ABORT_SIGNAL
-                     ./assertions_hdlc.sv(369)          0          1      18172          2      18175          0           1 off
+                     ./assertions_hdlc.sv(383)          0          1      10303          2      10306          0           1 off
 /test_hdlc/u_assertion_bind/ASSERT_RX_EOF_GENERATED
-                     ./assertions_hdlc.sv(375)          0         14      18159          2      18175          0           1 off
+                     ./assertions_hdlc.sv(389)          0          9      10295          2      10306          0           1 off
 /test_hdlc/u_assertion_bind/ASSERT_RX_OVERFLOW
-                     ./assertions_hdlc.sv(381)          0          2      18171          2      18175          0           1 off
+                     ./assertions_hdlc.sv(395)          0          2      10302          2      10306          0           1 off
 /test_hdlc/u_assertion_bind/ASSERT_RX_READY_LIFECYCLE
-                     ./assertions_hdlc.sv(387)          0        332      17841          2      18175          0         126 off
+                     ./assertions_hdlc.sv(401)          0        304      10000          2      10306          0         126 off
 /test_hdlc/u_assertion_bind/ASSERT_RX_FRAME_ERROR
-                     ./assertions_hdlc.sv(393)          0          4      18169          2      18175          0           1 off
+                     ./assertions_hdlc.sv(407)          0          3      10301          2      10306          0           1 off
 /test_hdlc/u_assertion_bind/ASSERT_TX_DONE
-                     ./assertions_hdlc.sv(399)          0          7      18166          2      18175          0           1 off
+                     ./assertions_hdlc.sv(413)          0          4      10300          2      10306          0           1 off
 /test_hdlc/u_assertion_bind/ASSERT_TX_FULL
-                     ./assertions_hdlc.sv(405)          0          1      18172          2      18175          0           1 off
+                     ./assertions_hdlc.sv(419)          0          1      10303          2      10306          0           1 off
 
-Total Coverage By Instance (filtered view): 96.77%
+Total Coverage By Instance (filtered view): 100.00%
 
-End time: 15:42:33 on Apr 16,2026, Elapsed time: 0:00:00
+End time: 16:01:25 on Apr 17,2026, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0
