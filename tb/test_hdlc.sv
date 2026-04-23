@@ -1,14 +1,3 @@
-//////////////////////////////////////////////////
-// Title:   test_hdlc
-// Author:  Karianne Krokan Kragseth
-// Date:    20.10.2017
-//////////////////////////////////////////////////
-
-/* test_hdlc is the testbench module of this design, it sets up the testing
-   enviroment by connecting the DUT to an interface (in_hdlc.sv) in with all the
-   signals used by the test program. 
-   All simulation code and immediate assertions are found in testPr_hdlc.sv.
-*/
 
 module test_hdlc ();
 

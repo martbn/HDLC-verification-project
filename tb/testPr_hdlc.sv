@@ -1,8 +1,7 @@
-//////////////////////////////////////////////////
-// Title:   testPr_hdlc
-// Author:
-// Date:
-//////////////////////////////////////////////////
+
+/***********************************************************************
+ *                          Main test program                          *
+ ***********************************************************************/
 
 program testPr_hdlc(
   in_hdlc uin_hdlc
@@ -19,16 +18,14 @@ program testPr_hdlc(
   localparam logic [2:0] RXBUFF = 3'b011; // RX Data Buffer
   localparam logic [2:0] RXLEN  = 3'b100; // RX Frame Length
 
-  // Run switches
-  localparam bit RUN_EXTENDED_STIMULUS = 1'b0;
-  localparam bit RUN_COVERAGE_EDGE_STIMULUS = 1'b0;
-  localparam bit RUN_HIGH_VOLUME_STIMULUS = 1'b0;
-  localparam int HIGH_VOLUME_REPEATS = 2;
+  // Simple stimulus control
+  localparam int RANDOM_STIM_REPEATS = 3;
 
   // Wait limits
   localparam int WAIT_MEDIUM_CYCLES = 1200;
   localparam int WAIT_LONG_CYCLES = 2500;
 
+  // Include stimulus and check tasks
 `include "testPr_immediate_checks.svh"
 `include "testPr_stimulus_tasks.svh"
 
@@ -39,16 +36,17 @@ program testPr_hdlc(
 
     Init();
 
-    RunDirectedConcurrentStimulus();
+    // 1) Basic directed TX/RX stimulus
+    RunBasicStimulus();
+    ResetDutPhase();
 
-    if (RUN_EXTENDED_STIMULUS)
-      RunExtendedStimulus();
+    // 2) Targeted edge/corner cases
+    RunTargetedStimulus();
+    ResetDutPhase();
 
-    if (RUN_COVERAGE_EDGE_STIMULUS)
-      RunCoverageEdgeStimulus();
-
-    if (RUN_HIGH_VOLUME_STIMULUS)
-      RunHighVolumeStimulus(HIGH_VOLUME_REPEATS);
+    // 3) Small random block
+    RunRandomStimulus(RANDOM_STIM_REPEATS);
+    ResetDutPhase();
 
     $display("*************************************************************");
     $display("%t - Finishing Test Program", $time);

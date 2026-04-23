@@ -1,5 +1,5 @@
 QuestaSim vcover 2025.2 Coverage Utility 2025.05 May 31 2025
-Start time: 16:01:27 on Apr 17,2026
+Start time: 14:58:10 on Apr 23,2026
 vcover report -details -code t coverage.ucdb 
 Coverage Report by instance with details
 
@@ -10,7 +10,7 @@ Coverage Report by instance with details
 Toggle Coverage:
     Enabled Coverage              Bins      Hits    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Toggles                        218       144        74    66.05%
+    Toggles                        218       148        70    67.88%
 
 ================================Toggle Details================================
 
@@ -19,18 +19,15 @@ Toggle Coverage for instance /test_hdlc/uin_hdlc --
                                               Node      1H->0L      0L->1H                          "Coverage"
                                               ---------------------------------------------------------------
                             ErrCntAssertions[0-31]           0           0                                0.00 
-                                               Rst           0           1                               50.00 
                                               RxEN           0           0                                0.00 
-                                   Rx_FrameSize[0]           0           0                                0.00 
-                                   Rx_FrameSize[5]           0           1                               50.00 
                                    Rx_FrameSize[7]           0           0                                0.00 
                                               TxEN           0           0                                0.00 
 
 Total Node Count     =        109 
-Toggled Node Count   =         71 
-Untoggled Node Count =         38 
+Toggled Node Count   =         74 
+Untoggled Node Count =         35 
 
-Toggle Coverage      =      66.05% (144 of 218 bins)
+Toggle Coverage      =      67.88% (148 of 218 bins)
 
 =================================================================================
 === Instance: /test_hdlc/u_dut/u_AddressIF
@@ -39,7 +36,7 @@ Toggle Coverage      =      66.05% (144 of 218 bins)
 Toggle Coverage:
     Enabled Coverage              Bins      Hits    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Toggles                        200       179        21    89.50%
+    Toggles                        200       186        14    93.00%
 
 ================================Toggle Details================================
 
@@ -47,21 +44,16 @@ Toggle Coverage for instance /test_hdlc/u_dut/u_AddressIF --
 
                                               Node      1H->0L      0L->1H                          "Coverage"
                                               ---------------------------------------------------------------
-                                               Rst           0           1                               50.00 
-                                   Rx_FrameSize[0]           0           0                                0.00 
-                                   Rx_FrameSize[5]           0           1                               50.00 
                                    Rx_FrameSize[7]           0           0                                0.00 
-                                         Rx_Len[0]           0           0                                0.00 
-                                         Rx_Len[5]           0           1                               50.00 
                                          Rx_Len[7]           0           0                                0.00 
                                         Rx_SC[6-7]           0           0                                0.00 
                                         Tx_SC[5-7]           0           0                                0.00 
 
 Total Node Count     =        100 
-Toggled Node Count   =         88 
-Untoggled Node Count =         12 
+Toggled Node Count   =         93 
+Untoggled Node Count =          7 
 
-Toggle Coverage      =      89.50% (179 of 200 bins)
+Toggle Coverage      =      93.00% (186 of 200 bins)
 
 =================================================================================
 === Instance: /test_hdlc/u_dut/u_TxController
@@ -70,7 +62,7 @@ Toggle Coverage      =      89.50% (179 of 200 bins)
 Toggle Coverage:
     Enabled Coverage              Bins      Hits    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Toggles                         40        39         1    97.50%
+    Toggles                         40        40         0   100.00%
 
 ================================Toggle Details================================
 
@@ -78,13 +70,12 @@ Toggle Coverage for instance /test_hdlc/u_dut/u_TxController --
 
                                               Node      1H->0L      0L->1H                          "Coverage"
                                               ---------------------------------------------------------------
-                                               Rst           0           1                               50.00 
 
 Total Node Count     =         24 
-Toggled Node Count   =         23 
-Untoggled Node Count =          1 
+Toggled Node Count   =         24 
+Untoggled Node Count =          0 
 
-Toggle Coverage      =      97.50% (39 of 40 bins)
+Toggle Coverage      =     100.00% (40 of 40 bins)
 
 =================================================================================
 === Instance: /test_hdlc/u_dut/u_TxBuff
@@ -93,7 +84,7 @@ Toggle Coverage      =      97.50% (39 of 40 bins)
 Toggle Coverage:
     Enabled Coverage              Bins      Hits    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Toggles                         94        87         7    92.55%
+    Toggles                         94        90         4    95.74%
 
 ================================Toggle Details================================
 
@@ -102,16 +93,13 @@ Toggle Coverage for instance /test_hdlc/u_dut/u_TxBuff --
                                               Node      1H->0L      0L->1H                          "Coverage"
                                               ---------------------------------------------------------------
                                           Count[7]           0           0                                0.00 
-                                      FrameSize[0]           0           1                               50.00 
-                                      FrameSize[3]           0           1                               50.00 
                                       FrameSize[7]           0           0                                0.00 
-                                               Rst           0           1                               50.00 
 
 Total Node Count     =         50 
-Toggled Node Count   =         45 
-Untoggled Node Count =          5 
+Toggled Node Count   =         48 
+Untoggled Node Count =          2 
 
-Toggle Coverage      =      92.55% (87 of 94 bins)
+Toggle Coverage      =      95.74% (90 of 94 bins)
 
 =================================================================================
 === Instance: /test_hdlc/u_dut/u_TxFCS
@@ -120,7 +108,7 @@ Toggle Coverage      =      92.55% (87 of 94 bins)
 Toggle Coverage:
     Enabled Coverage              Bins      Hits    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Toggles                        121       116         5    95.86%
+    Toggles                        121       119         2    98.34%
 
 ================================Toggle Details================================
 
@@ -128,16 +116,13 @@ Toggle Coverage for instance /test_hdlc/u_dut/u_TxFCS --
 
                                               Node      1H->0L      0L->1H                          "Coverage"
                                               ---------------------------------------------------------------
-                                      FrameSize[0]           0           1                               50.00 
-                                      FrameSize[3]           0           1                               50.00 
                                       FrameSize[7]           0           0                                0.00 
-                                               Rst           0           1                               50.00 
 
 Total Node Count     =         63 
-Toggled Node Count   =         59 
-Untoggled Node Count =          4 
+Toggled Node Count   =         62 
+Untoggled Node Count =          1 
 
-Toggle Coverage      =      95.86% (116 of 121 bins)
+Toggle Coverage      =      98.34% (119 of 121 bins)
 
 =================================================================================
 === Instance: /test_hdlc/u_dut/u_TxChannel
@@ -146,7 +131,7 @@ Toggle Coverage      =      95.86% (116 of 121 bins)
 Toggle Coverage:
     Enabled Coverage              Bins      Hits    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Toggles                         92        89         3    96.73%
+    Toggles                         92        90         2    97.82%
 
 ================================Toggle Details================================
 
@@ -154,14 +139,13 @@ Toggle Coverage for instance /test_hdlc/u_dut/u_TxChannel --
 
                                               Node      1H->0L      0L->1H                          "Coverage"
                                               ---------------------------------------------------------------
-                                               Rst           0           1                               50.00 
                                               TxEN           0           0                                0.00 
 
 Total Node Count     =         46 
-Toggled Node Count   =         44 
-Untoggled Node Count =          2 
+Toggled Node Count   =         45 
+Untoggled Node Count =          1 
 
-Toggle Coverage      =      96.73% (89 of 92 bins)
+Toggle Coverage      =      97.82% (90 of 92 bins)
 
 =================================================================================
 === Instance: /test_hdlc/u_dut/u_RxController
@@ -170,7 +154,7 @@ Toggle Coverage      =      96.73% (89 of 92 bins)
 Toggle Coverage:
     Enabled Coverage              Bins      Hits    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Toggles                         59        58         1    98.30%
+    Toggles                         59        59         0   100.00%
 
 ================================Toggle Details================================
 
@@ -178,13 +162,12 @@ Toggle Coverage for instance /test_hdlc/u_dut/u_RxController --
 
                                               Node      1H->0L      0L->1H                          "Coverage"
                                               ---------------------------------------------------------------
-                                               Rst           0           1                               50.00 
 
 Total Node Count     =         31 
-Toggled Node Count   =         30 
-Untoggled Node Count =          1 
+Toggled Node Count   =         31 
+Untoggled Node Count =          0 
 
-Toggle Coverage      =      98.30% (58 of 59 bins)
+Toggle Coverage      =     100.00% (59 of 59 bins)
 
 =================================================================================
 === Instance: /test_hdlc/u_dut/u_RxBuff
@@ -193,7 +176,7 @@ Toggle Coverage      =      98.30% (58 of 59 bins)
 Toggle Coverage:
     Enabled Coverage              Bins      Hits    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Toggles                         98        92         6    93.87%
+    Toggles                         98        96         2    97.95%
 
 ================================Toggle Details================================
 
@@ -201,16 +184,13 @@ Toggle Coverage for instance /test_hdlc/u_dut/u_RxBuff --
 
                                               Node      1H->0L      0L->1H                          "Coverage"
                                               ---------------------------------------------------------------
-                                      FrameSize[0]           0           0                                0.00 
-                                      FrameSize[5]           0           1                               50.00 
                                       FrameSize[7]           0           0                                0.00 
-                                               Rst           0           1                               50.00 
 
 Total Node Count     =         52 
-Toggled Node Count   =         48 
-Untoggled Node Count =          4 
+Toggled Node Count   =         51 
+Untoggled Node Count =          1 
 
-Toggle Coverage      =      93.87% (92 of 98 bins)
+Toggle Coverage      =      97.95% (96 of 98 bins)
 
 =================================================================================
 === Instance: /test_hdlc/u_dut/u_RxFCS
@@ -219,7 +199,7 @@ Toggle Coverage      =      93.87% (92 of 98 bins)
 Toggle Coverage:
     Enabled Coverage              Bins      Hits    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Toggles                         58        57         1    98.27%
+    Toggles                         58        58         0   100.00%
 
 ================================Toggle Details================================
 
@@ -227,13 +207,12 @@ Toggle Coverage for instance /test_hdlc/u_dut/u_RxFCS --
 
                                               Node      1H->0L      0L->1H                          "Coverage"
                                               ---------------------------------------------------------------
-                                               Rst           0           1                               50.00 
 
 Total Node Count     =         30 
-Toggled Node Count   =         29 
-Untoggled Node Count =          1 
+Toggled Node Count   =         30 
+Untoggled Node Count =          0 
 
-Toggle Coverage      =      98.27% (57 of 58 bins)
+Toggle Coverage      =     100.00% (58 of 58 bins)
 
 =================================================================================
 === Instance: /test_hdlc/u_dut/u_RxChannel
@@ -242,7 +221,7 @@ Toggle Coverage      =      98.27% (57 of 58 bins)
 Toggle Coverage:
     Enabled Coverage              Bins      Hits    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Toggles                         88        85         3    96.59%
+    Toggles                         88        86         2    97.72%
 
 ================================Toggle Details================================
 
@@ -250,14 +229,13 @@ Toggle Coverage for instance /test_hdlc/u_dut/u_RxChannel --
 
                                               Node      1H->0L      0L->1H                          "Coverage"
                                               ---------------------------------------------------------------
-                                               Rst           0           1                               50.00 
                                               RxEN           0           0                                0.00 
 
 Total Node Count     =         44 
-Toggled Node Count   =         42 
-Untoggled Node Count =          2 
+Toggled Node Count   =         43 
+Untoggled Node Count =          1 
 
-Toggle Coverage      =      96.59% (85 of 88 bins)
+Toggle Coverage      =      97.72% (86 of 88 bins)
 
 =================================================================================
 === Instance: /test_hdlc/u_dut
@@ -266,7 +244,7 @@ Toggle Coverage      =      96.59% (85 of 88 bins)
 Toggle Coverage:
     Enabled Coverage              Bins      Hits    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Toggles                        230       216        14    93.91%
+    Toggles                        230       222         8    96.52%
 
 ================================Toggle Details================================
 
@@ -274,21 +252,16 @@ Toggle Coverage for instance /test_hdlc/u_dut --
 
                                               Node      1H->0L      0L->1H                          "Coverage"
                                               ---------------------------------------------------------------
-                                               Rst           0           1                               50.00 
                                               RxEN           0           0                                0.00 
-                                   Rx_FrameSize[0]           0           0                                0.00 
-                                   Rx_FrameSize[5]           0           1                               50.00 
                                    Rx_FrameSize[7]           0           0                                0.00 
                                               TxEN           0           0                                0.00 
-                                   Tx_FrameSize[0]           0           1                               50.00 
-                                   Tx_FrameSize[3]           0           1                               50.00 
                                    Tx_FrameSize[7]           0           0                                0.00 
 
 Total Node Count     =        115 
-Toggled Node Count   =        106 
-Untoggled Node Count =          9 
+Toggled Node Count   =        111 
+Untoggled Node Count =          4 
 
-Toggle Coverage      =      93.91% (216 of 230 bins)
+Toggle Coverage      =      96.52% (222 of 230 bins)
 
 =================================================================================
 === Instance: /test_hdlc/u_testPr
@@ -322,7 +295,7 @@ Toggle Coverage      =       2.94% (2 of 68 bins)
 Toggle Coverage:
     Enabled Coverage              Bins      Hits    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Toggles                        218       126        92    57.79%
+    Toggles                        186       114        72    61.29%
 
 ================================Toggle Details================================
 
@@ -331,38 +304,19 @@ Toggle Coverage for instance /test_hdlc/u_assertion_bind --
                                               Node      1H->0L      0L->1H                          "Coverage"
                                               ---------------------------------------------------------------
                             ErrCntAssertions[0-31]           0           0                                0.00 
-                                               Rst           0           1                               50.00 
-                                   Rx_FrameSize[0]           0           0                                0.00 
-                                   Rx_FrameSize[5]           0           1                               50.00 
                                    Rx_FrameSize[7]           0           0                                0.00 
-                          ant_seen_rx_abort_detect           0           1                               50.00 
-                         ant_seen_rx_eof_generated           0           1                               50.00 
-                                  ant_seen_rx_flag           0           1                               50.00 
-                           ant_seen_rx_frame_error           0           1                               50.00 
-                                  ant_seen_rx_idle           0           1                               50.00 
-                              ant_seen_rx_overflow           0           1                               50.00 
-                       ant_seen_rx_ready_lifecycle           0           1                               50.00 
-                           ant_seen_rx_zero_detect           0           1                               50.00 
-                       ant_seen_rx_zero_no_newbyte           0           1                               50.00 
-                             ant_seen_tx_abort_req           0           1                               50.00 
-                                  ant_seen_tx_done           0           1                               50.00 
-                              ant_seen_tx_end_flag           0           1                               50.00 
-                                  ant_seen_tx_full           0           1                               50.00 
-                                  ant_seen_tx_idle           0           1                               50.00 
-                            ant_seen_tx_start_flag           0           1                               50.00 
-                        ant_seen_tx_zero_insertion           0           1                               50.00 
                       rx_read_count_while_ready[7]           0           0                                0.00 
                         rx_write_count_in_frame[8]           0           0                                0.00 
                                  tx_write_count[7]           0           0                                0.00 
 
-Total Node Count     =        109 
-Toggled Node Count   =         54 
-Untoggled Node Count =         55 
+Total Node Count     =         93 
+Toggled Node Count   =         57 
+Untoggled Node Count =         36 
 
-Toggle Coverage      =      57.79% (126 of 218 bins)
+Toggle Coverage      =      61.29% (114 of 186 bins)
 
 
-Total Coverage By Instance (filtered view): 81.46%
+Total Coverage By Instance (filtered view): 83.96%
 
-End time: 16:01:27 on Apr 17,2026, Elapsed time: 0:00:00
+End time: 14:58:10 on Apr 23,2026, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0

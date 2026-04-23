@@ -1,5 +1,5 @@
 QuestaSim vcover 2025.2 Coverage Utility 2025.05 May 31 2025
-Start time: 16:01:26 on Apr 17,2026
+Start time: 14:58:09 on Apr 23,2026
 vcover report -details -code b coverage.ucdb 
 Coverage Report by instance with details
 
@@ -10,7 +10,7 @@ Coverage Report by instance with details
 Branch Coverage:
     Enabled Coverage              Bins      Hits    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Branches                        15        13         2    86.66%
+    Branches                        15        12         3    80.00%
 
 ================================Branch Details================================
 
@@ -20,39 +20,39 @@ Branch Coverage for instance /test_hdlc/u_dut/u_AddressIF
     ----         ----                      -----     ------ 
   File ../rtl/AddressIF.sv
 ------------------------------------IF Branch------------------------------------
-    51                                       679     Count coming in to IF
-    51              1                          2     
-    56              1                        677     
+    51                                       849     Count coming in to IF
+    51              1                          8     
+    56              1                        841     
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    57                                       677     Count coming in to IF
-    57              1                        296     
-    73              1                        381     
+    57                                       841     Count coming in to IF
+    57              1                        326     
+    73              1                        515     
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------CASE Branch------------------------------------
-    58                                       296     Count coming in to CASE
-    59              1                         10     
-    63              1                        275     
-    67              1                         11     
+    58                                       326     Count coming in to CASE
+    59              1                         12     
+    63              1                        291     
+    67              1                         23     
                                          ***0***     All False Count
 Branch totals: 3 hits of 4 branches = 75.00%
 
 ------------------------------------IF Branch------------------------------------
-    97                                      1042     Count coming in to IF
-    97              1                        335     
-                                             707     All False Count
+    97                                      2912     Count coming in to IF
+    97              1                        943     
+                                            1969     All False Count
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------CASE Branch------------------------------------
-    98                                       335     Count coming in to CASE
-    99              1                          5     
-    100             1                         15     
-    101             1                        310     
-    105             1                          5     
+    98                                       943     Count coming in to CASE
+    99              1                    ***0***     
+    100             1                         38     
+    101             1                        890     
+    105             1                         15     
                                          ***0***     All False Count
-Branch totals: 4 hits of 5 branches = 80.00%
+Branch totals: 3 hits of 5 branches = 60.00%
 
 
 
@@ -63,7 +63,7 @@ Branch totals: 4 hits of 5 branches = 80.00%
 Branch Coverage:
     Enabled Coverage              Bins      Hits    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Branches                        35        30         5    85.71%
+    Branches                        35        28         7    80.00%
 
 ================================Branch Details================================
 
@@ -73,91 +73,91 @@ Branch Coverage for instance /test_hdlc/u_dut/u_TxController
     ----         ----                      -----     ------ 
   File ../rtl/TxController.sv
 ------------------------------------IF Branch------------------------------------
-    36                                      1462     Count coming in to IF
-    36              1                          2     
-    45              1                       1460     
+    36                                      1670     Count coming in to IF
+    36              1                          8     
+    45              1                       1662     
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------CASE Branch------------------------------------
-    46                                      1460     Count coming in to CASE
-    47              1                        561     
-    63              1                         19     
-    74              1                          6     
-    81              1                          6     
-    89              1                        601     
-    111             1                        198     
-    120             1                         60     
-    139             1                          9     
+    46                                      1662     Count coming in to CASE
+    47              1                        620     
+    63              1                         30     
+    74              1                         10     
+    81              1                         10     
+    89              1                        649     
+    111             1                        215     
+    120             1                        120     
+    139             1                          8     
                                          ***0***     All False Count
 Branch totals: 8 hits of 9 branches = 88.88%
 
 ------------------------------------IF Branch------------------------------------
-    54                                       561     Count coming in to IF
-    54              1                          7     
-    58              1                        554     
+    54                                       620     Count coming in to IF
+    54              1                         10     
+    58              1                        610     
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    65                                        19     Count coming in to IF
-    65              1                          1     
-    67              1                          6     
-    71              1                         12     
-Branch totals: 3 hits of 3 branches = 100.00%
+    65                                        30     Count coming in to IF
+    65              1                    ***0***     
+    67              1                         10     
+    71              1                         20     
+Branch totals: 2 hits of 3 branches = 66.66%
 
 ------------------------------------IF Branch------------------------------------
-    76                                         6     Count coming in to IF
+    76                                        10     Count coming in to IF
     76              1                    ***0***     
-    78              1                          6     
+    78              1                         10     
 Branch totals: 1 hit of 2 branches = 50.00%
 
 ------------------------------------IF Branch------------------------------------
-    82                                         6     Count coming in to IF
+    82                                        10     Count coming in to IF
     82              1                    ***0***     
-    84              1                          6     
+    84              1                         10     
 Branch totals: 1 hit of 2 branches = 50.00%
 
 ------------------------------------IF Branch------------------------------------
-    92                                       601     Count coming in to IF
-    92              1                          1     
-    96              1                        196     
-    106             1                        404     
+    92                                       649     Count coming in to IF
+    92              1                          2     
+    96              1                        213     
+    106             1                        434     
 Branch totals: 3 hits of 3 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    97                                       196     Count coming in to IF
-    97              1                        192     
-    101             1                          4     
+    97                                       213     Count coming in to IF
+    97              1                        205     
+    101             1                          8     
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    115                                      198     Count coming in to IF
+    115                                      215     Count coming in to IF
     115             1                    ***0***     
-    117             1                        198     
+    117             1                        215     
 Branch totals: 1 hit of 2 branches = 50.00%
 
 ------------------------------------IF Branch------------------------------------
-    121                                       60     Count coming in to IF
+    121                                      120     Count coming in to IF
     121             1                    ***0***     
-    123             1                         60     
+    123             1                        120     
 Branch totals: 1 hit of 2 branches = 50.00%
 
 ------------------------------------IF Branch------------------------------------
-    124                                       60     Count coming in to IF
-    124             1                         20     
-    128             1                         40     
+    124                                      120     Count coming in to IF
+    124             1                         40     
+    128             1                         80     
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    131                                       60     Count coming in to IF
-    131             1                          4     
-    135             1                         56     
+    131                                      120     Count coming in to IF
+    131             1                          8     
+    135             1                        112     
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    144                                        9     Count coming in to IF
-    144             1                          2     
-    148             1                          7     
-Branch totals: 2 hits of 2 branches = 100.00%
+    144                                        8     Count coming in to IF
+    144             1                    ***0***     
+    148             1                          8     
+Branch totals: 1 hit of 2 branches = 50.00%
 
 
 
@@ -178,79 +178,79 @@ Branch Coverage for instance /test_hdlc/u_dut/u_TxBuff
     ----         ----                      -----     ------ 
   File ../rtl/TxBuff.sv
 ------------------------------------IF Branch------------------------------------
-    42                                       775     Count coming in to IF
-    42              1                          2     
-    44              1                        773     
+    42                                       849     Count coming in to IF
+    42              1                          8     
+    44              1                        841     
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    45                                       773     Count coming in to IF
-    45              1                        271     
-    47              1                         12     
-                                             490     All False Count
+    45                                       841     Count coming in to IF
+    45              1                        291     
+    47              1                         24     
+                                             526     All False Count
 Branch totals: 3 hits of 3 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    53                                       974     Count coming in to IF
-    53              1                          2     
-    55              1                        972     
+    53                                      1076     Count coming in to IF
+    53              1                          8     
+    55              1                       1068     
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    56                                       972     Count coming in to IF
-    56              1                         19     
-    58              1                        475     
-                                             478     All False Count
+    56                                      1068     Count coming in to IF
+    56              1                         34     
+    58              1                        516     
+                                             518     All False Count
 Branch totals: 3 hits of 3 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    64                                       497     Count coming in to IF
-    64              1                          2     
-    66              1                        495     
+    64                                       558     Count coming in to IF
+    64              1                          8     
+    66              1                        550     
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    67                                       495     Count coming in to IF
-    67              1                          7     
-                                             488     All False Count
+    67                                       550     Count coming in to IF
+    67              1                         10     
+                                             540     All False Count
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    74                                        43     Count coming in to IF
-    74              1                          2     
-    76              1                         41     
+    74                                        72     Count coming in to IF
+    74              1                          8     
+    76              1                         64     
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------CASE Branch------------------------------------
-    82                                       984     Count coming in to CASE
-    83              1                         14     
-    99              1                        542     
-    119             1                        427     
+    82                                      1069     Count coming in to CASE
+    83              1                         24     
+    99              1                        582     
+    119             1                        462     
                                                1     All False Count
 Branch totals: 4 hits of 4 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    88                                        14     Count coming in to IF
-    88              1                          7     
-    93              1                          7     
+    88                                        24     Count coming in to IF
+    88              1                         10     
+    93              1                         14     
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    100                                      542     Count coming in to IF
+    100                                      582     Count coming in to IF
     100             1                          2     
-    102             1                        540     
+    102             1                        580     
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    108                                      542     Count coming in to IF
-    108             1                          7     
-    113             1                        535     
+    108                                      582     Count coming in to IF
+    108             1                         10     
+    113             1                        572     
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    124                                      427     Count coming in to IF
-    124             1                          6     
-    129             1                        421     
+    124                                      462     Count coming in to IF
+    124             1                         10     
+    129             1                        452     
 Branch totals: 2 hits of 2 branches = 100.00%
 
 
@@ -272,64 +272,64 @@ Branch Coverage for instance /test_hdlc/u_dut/u_TxFCS
     ----         ----                      -----     ------ 
   File ../rtl/TxFCS.sv
 ------------------------------------IF Branch------------------------------------
-    34                                      2868     Count coming in to IF
-    34              1                          2     
-    41              1                       2866     
+    34                                      3336     Count coming in to IF
+    34              1                          8     
+    41              1                       3328     
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------CASE Branch------------------------------------
-    42                                      2866     Count coming in to CASE
-    43              1                        254     
-    55              1                       2168     
-    83              1                        400     
-    98              1                         12     
-    128             1                         32     
+    42                                      3328     Count coming in to CASE
+    43              1                        338     
+    55              1                       2488     
+    83              1                        414     
+    98              1                         24     
+    128             1                         64     
                                          ***0***     All False Count
 Branch totals: 5 hits of 6 branches = 83.33%
 
 ------------------------------------IF Branch------------------------------------
-    50                                       254     Count coming in to IF
-    50              1                          6     
-    52              1                        248     
+    50                                       338     Count coming in to IF
+    50              1                         10     
+    52              1                        328     
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    65                                      2168     Count coming in to IF
-    65              1                        271     
-    77              1                       1897     
+    65                                      2488     Count coming in to IF
+    65              1                        311     
+    77              1                       2177     
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    68                                       271     Count coming in to IF
-    68              1                        265     
-    72              1                          6     
+    68                                       311     Count coming in to IF
+    68              1                        301     
+    72              1                         10     
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    86                                       400     Count coming in to IF
-    86              1                        387     
-    88              1                         13     
+    86                                       414     Count coming in to IF
+    86              1                        388     
+    88              1                         26     
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    91                                       400     Count coming in to IF
-    91              1                          1     
-    93              1                          4     
-    95              1                        395     
+    91                                       414     Count coming in to IF
+    91              1                          2     
+    93              1                          8     
+    95              1                        404     
 Branch totals: 3 hits of 3 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    101                                       12     Count coming in to IF
+    101                                       24     Count coming in to IF
     101             1                    ***0***     
-    105             1                          4     
-    116             1                          8     
+    105             1                          8     
+    116             1                         16     
 Branch totals: 2 hits of 3 branches = 66.66%
 
 ------------------------------------IF Branch------------------------------------
-    131                                       32     Count coming in to IF
-    131             1                          4     
-    135             1                         12     
-    139             1                         16     
+    131                                       64     Count coming in to IF
+    131             1                          8     
+    135             1                         24     
+    139             1                         32     
 Branch totals: 3 hits of 3 branches = 100.00%
 
 
@@ -351,65 +351,65 @@ Branch Coverage for instance /test_hdlc/u_dut/u_TxChannel
     ----         ----                      -----     ------ 
   File ../rtl/TxChannel.sv
 ------------------------------------IF Branch------------------------------------
-    31                                      1847     Count coming in to IF
-    31              1                          2     
-    37              1                       1845     
+    31                                      2227     Count coming in to IF
+    31              1                          8     
+    37              1                       2219     
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    38                                      1845     Count coming in to IF
-    38              1                       1845     
+    38                                      2219     Count coming in to IF
+    38              1                       2219     
                                          ***0***     All False Count
 Branch totals: 1 hit of 2 branches = 50.00%
 
 ------------------------------------IF Branch------------------------------------
-    40                                      1845     Count coming in to IF
-    40              1                       1794     
-    61              1                         51     
+    40                                      2219     Count coming in to IF
+    40              1                       2126     
+    61              1                         93     
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    41                                      1794     Count coming in to IF
-    41              1                         52     
-    46              1                       1742     
+    41                                      2126     Count coming in to IF
+    41              1                         86     
+    46              1                       2040     
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    47                                      1742     Count coming in to IF
-    47              1                        216     
-    53              1                       1526     
+    47                                      2040     Count coming in to IF
+    47              1                        253     
+    53              1                       1787     
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    62                                        51     Count coming in to IF
-    62              1                          6     
-    64              1                         45     
+    62                                        93     Count coming in to IF
+    62              1                         10     
+    64              1                         83     
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    76                                      1849     Count coming in to IF
-    76              1                          2     
-    81              1                       1847     
+    76                                      2235     Count coming in to IF
+    76              1                          8     
+    81              1                       2227     
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------CASE Branch------------------------------------
-    82                                      1847     Count coming in to CASE
-    83              1                         54     
-    95              1                       1793     
+    82                                      2227     Count coming in to CASE
+    83              1                        101     
+    95              1                       2126     
                                          ***0***     All False Count
 Branch totals: 2 hits of 3 branches = 66.66%
 
 ------------------------------------IF Branch------------------------------------
-    86                                        54     Count coming in to IF
-    86              1                          6     
-    90              1                         48     
+    86                                       101     Count coming in to IF
+    86              1                         10     
+    90              1                         91     
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    97                                      1793     Count coming in to IF
-    97              1                          1     
-    102             1                          4     
-    107             1                       1788     
+    97                                      2126     Count coming in to IF
+    97              1                          2     
+    102             1                          8     
+    107             1                       2116     
 Branch totals: 3 hits of 3 branches = 100.00%
 
 
@@ -421,7 +421,7 @@ Branch totals: 3 hits of 3 branches = 100.00%
 Branch Coverage:
     Enabled Coverage              Bins      Hits    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Branches                        35        34         1    97.14%
+    Branches                        35        33         2    94.28%
 
 ================================Branch Details================================
 
@@ -431,94 +431,94 @@ Branch Coverage for instance /test_hdlc/u_dut/u_RxController
     ----         ----                      -----     ------ 
   File ../rtl/RxController.sv
 ------------------------------------IF Branch------------------------------------
-    44                                       205     Count coming in to IF
-    44              1                          2     
-    50              1                        203     
+    44                                       458     Count coming in to IF
+    44              1                          8     
+    50              1                        450     
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    51                                       203     Count coming in to IF
-    51              1                         11     
-    59              1                         19     
-    70              1                         10     
-    74              1                         60     
-    77              1                        103     
+    51                                       450     Count coming in to IF
+    51              1                         25     
+    59              1                         42     
+    70              1                         22     
+    74              1                        132     
+    77              1                        229     
 Branch totals: 5 hits of 5 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    54                                        11     Count coming in to IF
-    54              1                          1     
-    56              1                         10     
+    54                                        25     Count coming in to IF
+    54              1                          2     
+    56              1                         23     
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    60                                        19     Count coming in to IF
-    60              1                         10     
-    65              1                          9     
+    60                                        42     Count coming in to IF
+    60              1                         22     
+    65              1                         20     
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    87                                      1743     Count coming in to IF
-    87              1                          2     
-    92              1                       1741     
+    87                                      3877     Count coming in to IF
+    87              1                          8     
+    92              1                       3869     
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------CASE Branch------------------------------------
-    93                                      1741     Count coming in to CASE
-    94              1                         52     
-    103             1                       1674     
-    126             1                         15     
+    93                                      3869     Count coming in to CASE
+    94              1                        118     
+    103             1                       3727     
+    126             1                         24     
                                          ***0***     All False Count
 Branch totals: 3 hits of 4 branches = 75.00%
 
 ------------------------------------IF Branch------------------------------------
-    98                                        52     Count coming in to IF
-    98              1                         10     
-    100             1                         42     
+    98                                       118     Count coming in to IF
+    98              1                         22     
+    100             1                         96     
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    106                                     1674     Count coming in to IF
-    106             1                       1666     
-    120             1                          8     
+    106                                     3727     Count coming in to IF
+    106             1                       3709     
+    120             1                         18     
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    107                                     1666     Count coming in to IF
-    107             1                          2     
-    109             1                       1664     
+    107                                     3709     Count coming in to IF
+    107             1                          4     
+    109             1                       3705     
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    111                                     1666     Count coming in to IF
-    111             1                        552     
-    113             1                          1     
-    117             1                       1113     
+    111                                     3709     Count coming in to IF
+    111             1                       1229     
+    113             1                          2     
+    117             1                       2478     
 Branch totals: 3 hits of 3 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    127                                       15     Count coming in to IF
-    127             1                         13     
-    132             1                          2     
+    127                                       24     Count coming in to IF
+    127             1                         20     
+    132             1                          4     
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    129                                       13     Count coming in to IF
-    129             1                          1     
-                                              12     All False Count
-Branch totals: 2 hits of 2 branches = 100.00%
-
-------------------------------------IF Branch------------------------------------
-    142                                       46     Count coming in to IF
-    142             1                          2     
-    144             1                         44     
-Branch totals: 2 hits of 2 branches = 100.00%
-
-------------------------------------IF Branch------------------------------------
-    145                                       44     Count coming in to IF
-    145             1                          5     
-    147             1                         19     
+    129                                       20     Count coming in to IF
+    129             1                    ***0***     
                                               20     All False Count
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    142                                      102     Count coming in to IF
+    142             1                          8     
+    144             1                         94     
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    145                                       94     Count coming in to IF
+    145             1                          6     
+    147             1                         42     
+                                              46     All False Count
 Branch totals: 3 hits of 3 branches = 100.00%
 
 
@@ -530,7 +530,7 @@ Branch totals: 3 hits of 3 branches = 100.00%
 Branch Coverage:
     Enabled Coverage              Bins      Hits    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Branches                        33        32         1    96.96%
+    Branches                        33        33         0   100.00%
 
 ================================Branch Details================================
 
@@ -540,93 +540,93 @@ Branch Coverage for instance /test_hdlc/u_dut/u_RxBuff
     ----         ----                      -----     ------ 
   File ../rtl/RxBuff.sv
 ------------------------------------IF Branch------------------------------------
-    41                                      1722     Count coming in to IF
-    41              1                          2     
-    43              1                       1720     
+    41                                      4278     Count coming in to IF
+    41              1                          8     
+    43              1                       4270     
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    44                                      1720     Count coming in to IF
-    44              1                        550     
-    48              1                        577     
-    51              1                        593     
+    44                                      4270     Count coming in to IF
+    44              1                       1225     
+    48              1                       1285     
+    51              1                       1760     
 Branch totals: 3 hits of 3 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    58                                      1736     Count coming in to IF
-    58              1                          2     
-    60              1                       1734     
+    58                                      4283     Count coming in to IF
+    58              1                          8     
+    60              1                       4275     
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    61                                      1734     Count coming in to IF
-    61              1                         26     
-    63              1                        854     
-                                             854     All False Count
+    61                                      4275     Count coming in to IF
+    61              1                         62     
+    63              1                       2106     
+                                            2107     All False Count
 Branch totals: 3 hits of 3 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    69                                       879     Count coming in to IF
-    69              1                          2     
-    71              1                        877     
+    69                                      2172     Count coming in to IF
+    69              1                          8     
+    71              1                       2164     
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    72                                       877     Count coming in to IF
-    72              1                          7     
-                                             870     All False Count
+    72                                      2164     Count coming in to IF
+    72              1                         18     
+                                            2146     All False Count
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    78                                        56     Count coming in to IF
-    78              1                          2     
-    80              1                         54     
+    78                                       132     Count coming in to IF
+    78              1                          8     
+    80              1                        124     
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------CASE Branch------------------------------------
-    86                                      2096     Count coming in to CASE
-    87              1                         59     
-    102             1                       1115     
-    132             1                        920     
+    86                                      5263     Count coming in to CASE
+    87              1                        114     
+    102             1                       2484     
+    132             1                       2663     
                                                2     All False Count
 Branch totals: 4 hits of 4 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    91                                        59     Count coming in to IF
-    91              1                         10     
-    96              1                         49     
+    91                                       114     Count coming in to IF
+    91              1                         21     
+    96              1                         93     
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    103                                     1115     Count coming in to IF
-    103             1                         14     
-    109             1                       1101     
+    103                                     2484     Count coming in to IF
+    103             1                         26     
+    109             1                       2458     
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    104                                       14     Count coming in to IF
-    104             1                          2     
-                                              12     All False Count
+    104                                       26     Count coming in to IF
+    104             1                          4     
+                                              22     All False Count
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    114                                     1115     Count coming in to IF
-    114             1                          3     
-    119             1                          7     
-    125             1                       1105     
+    114                                     2484     Count coming in to IF
+    114             1                          4     
+    119             1                         18     
+    125             1                       2462     
 Branch totals: 3 hits of 3 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    136                                      920     Count coming in to IF
-    136             1                         12     
-    142             1                        908     
+    136                                     2663     Count coming in to IF
+    136             1                         31     
+    142             1                       2632     
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    144                                      908     Count coming in to IF
-    144             1                    ***0***     
-    150             1                        908     
-Branch totals: 1 hit of 2 branches = 50.00%
+    144                                     2632     Count coming in to IF
+    144             1                          1     
+    150             1                       2631     
+Branch totals: 2 hits of 2 branches = 100.00%
 
 
 
@@ -647,34 +647,34 @@ Branch Coverage for instance /test_hdlc/u_dut/u_RxFCS
     ----         ----                      -----     ------ 
   File ../rtl/RxFCS.sv
 ------------------------------------IF Branch------------------------------------
-    27                                      4639     Count coming in to IF
-    27              1                          2     
-    32              1                       4637     
+    27                                     10309     Count coming in to IF
+    27              1                          8     
+    32              1                      10301     
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------CASE Branch------------------------------------
-    33                                      4637     Count coming in to CASE
-    34              1                         77     
-    48              1                       4560     
+    33                                     10301     Count coming in to CASE
+    34              1                        180     
+    48              1                      10121     
                                          ***0***     All False Count
 Branch totals: 2 hits of 3 branches = 66.66%
 
 ------------------------------------IF Branch------------------------------------
-    35                                        77     Count coming in to IF
-    35              1                          9     
-    41              1                         68     
+    35                                       180     Count coming in to IF
+    35              1                         20     
+    41              1                        160     
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    49                                      4560     Count coming in to IF
-    49              1                          9     
-    53              1                       4551     
+    49                                     10121     Count coming in to IF
+    49              1                         20     
+    53              1                      10101     
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    58                                      4551     Count coming in to IF
-    58              1                         98     
-    61              1                       4453     
+    58                                     10101     Count coming in to IF
+    58              1                        201     
+    61              1                       9900     
 Branch totals: 2 hits of 2 branches = 100.00%
 
 
@@ -696,45 +696,45 @@ Branch Coverage for instance /test_hdlc/u_dut/u_RxChannel
     ----         ----                      -----     ------ 
   File ../rtl/RxChannel.sv
 ------------------------------------IF Branch------------------------------------
-    33                                      4659     Count coming in to IF
-    33              1                          2     
-    39              1                       4657     
+    33                                     10346     Count coming in to IF
+    33              1                          8     
+    39              1                      10338     
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    40                                      4657     Count coming in to IF
-    40              1                       4587     
-    68              1                         70     
+    40                                     10338     Count coming in to IF
+    40              1                      10181     
+    68              1                        157     
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    41                                      4587     Count coming in to IF
-    41              1                       4577     
-    45              1                         10     
+    41                                     10181     Count coming in to IF
+    41              1                      10159     
+    45              1                         22     
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    52                                      4587     Count coming in to IF
-    52              1                         93     
-    55              1                       4494     
+    52                                     10181     Count coming in to IF
+    52              1                        191     
+    55              1                       9990     
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    56                                      4494     Count coming in to IF
-    56              1                        556     
-    60              1                       3938     
+    56                                      9990     Count coming in to IF
+    56              1                       1237     
+    60              1                       8753     
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    65                                      4587     Count coming in to IF
-    65              1                        556     
-                                            4031     All False Count
+    65                                     10181     Count coming in to IF
+    65              1                       1237     
+                                            8944     All False Count
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    77                                      4805     Count coming in to IF
-    77              1                          2     
-    82              1                       4803     
+    77                                     10686     Count coming in to IF
+    77              1                          8     
+    82              1                      10678     
 Branch totals: 2 hits of 2 branches = 100.00%
 
 
@@ -746,7 +746,7 @@ Branch totals: 2 hits of 2 branches = 100.00%
 Branch Coverage:
     Enabled Coverage              Bins      Hits    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Branches                       141        85        56    60.28%
+    Branches                       102        85        17    83.33%
 
 ================================Branch Details================================
 
@@ -756,381 +756,290 @@ Branch Coverage for instance /test_hdlc/u_testPr
     ----         ----                      -----     ------ 
   File ./testPr_hdlc.sv
 ------------------------------------IF Branch------------------------------------
-    60                                         1     Count coming in to IF
-    60              1                    ***0***     
+    58                                         1     Count coming in to IF
+    58              1                    ***0***     
                                                1     All False Count
 Branch totals: 1 hit of 2 branches = 50.00%
 
 ------------------------------------IF Branch------------------------------------
-    65                                         1     Count coming in to IF
-    65              1                    ***0***     
+    63                                         1     Count coming in to IF
+    63              1                    ***0***     
                                                1     All False Count
 Branch totals: 1 hit of 2 branches = 50.00%
 
 
   File testPr_immediate_checks.svh
 ------------------------------------IF Branch------------------------------------
-    37                                         4     Count coming in to IF
-    37              1                          4     
+    36                                        10     Count coming in to IF
+    36              1                         10     
                                          ***0***     All False Count
 Branch totals: 1 hit of 2 branches = 50.00%
 
 ------------------------------------IF Branch------------------------------------
-    42                                         4     Count coming in to IF
-    42              1                    ***0***     
+    41                                        10     Count coming in to IF
+    41              1                    ***0***     
+                                              10     All False Count
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    74                                         4     Count coming in to IF
+    74              1                          4     
+                                         ***0***     All False Count
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    79                                         4     Count coming in to IF
+    79              1                    ***0***     
                                                4     All False Count
 Branch totals: 1 hit of 2 branches = 50.00%
 
 ------------------------------------IF Branch------------------------------------
-    76                                         1     Count coming in to IF
-    76              1                          1     
+    108                                        7     Count coming in to IF
+    108             1                          7     
                                          ***0***     All False Count
 Branch totals: 1 hit of 2 branches = 50.00%
 
 ------------------------------------IF Branch------------------------------------
-    81                                         1     Count coming in to IF
-    81              1                    ***0***     
-                                               1     All False Count
+    113                                        7     Count coming in to IF
+    113             1                    ***0***     
+                                               7     All False Count
 Branch totals: 1 hit of 2 branches = 50.00%
 
 ------------------------------------IF Branch------------------------------------
-    111                                        5     Count coming in to IF
-    111             1                          5     
-                                         ***0***     All False Count
-Branch totals: 1 hit of 2 branches = 50.00%
-
-------------------------------------IF Branch------------------------------------
-    116                                        5     Count coming in to IF
-    116             1                    ***0***     
-                                               5     All False Count
-Branch totals: 1 hit of 2 branches = 50.00%
-
-------------------------------------IF Branch------------------------------------
-    179                                     1538     Count coming in to IF
+    179                                     2030     Count coming in to IF
     179             1                    ***0***     
-                                            1538     All False Count
+                                            2030     All False Count
 Branch totals: 1 hit of 2 branches = 50.00%
 
 ------------------------------------IF Branch------------------------------------
-    187                                     1538     Count coming in to IF
-    187             1                         50     
-                                            1488     All False Count
+    187                                     2030     Count coming in to IF
+    187             1                         86     
+                                            1944     All False Count
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    193                                     1488     Count coming in to IF
-    193             1                        798     
-    195             1                        690     
+    193                                     1944     Count coming in to IF
+    193             1                       1142     
+    195             1                        802     
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    225                                     1552     Count coming in to IF
-    225             1                          4     
-                                            1548     All False Count
+    225                                     2072     Count coming in to IF
+    225             1                          8     
+                                            2064     All False Count
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    270                                      144     Count coming in to IF
-    270             1                          6     
-                                             138     All False Count
+    270                                      336     Count coming in to IF
+    270             1                         14     
+                                             322     All False Count
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    282                                        6     Count coming in to IF
-    282             1                          6     
+    282                                       14     Count coming in to IF
+    282             1                         14     
                                          ***0***     All False Count
 Branch totals: 1 hit of 2 branches = 50.00%
 
 ------------------------------------IF Branch------------------------------------
-    298                                      216     Count coming in to IF
-    298             1                          9     
-                                             207     All False Count
+    298                                      480     Count coming in to IF
+    298             1                         20     
+                                             460     All False Count
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    312                                        5     Count coming in to IF
-    312             1                          1     
-    314             1                          4     
+    312                                       15     Count coming in to IF
+    312             1                          4     
+    314             1                         11     
 Branch totals: 2 hits of 2 branches = 100.00%
 
 
   File testPr_stimulus_tasks.svh
 ------------------------------------IF Branch------------------------------------
-    66                                        20     Count coming in to IF
-    66              1                         19     
-    68              1                          1     
+    82                                        44     Count coming in to IF
+    82              1                         42     
+    84              1                          2     
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    77                                      4448     Count coming in to IF
-    77              1                         93     
-                                            4355     All False Count
+    93                                      9896     Count coming in to IF
+    93              1                        191     
+                                            9705     All False Count
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    102                                     5664     Count coming in to IF
-    102             1                       2835     
-                                            2829     All False Count
+    120                                    11264     Count coming in to IF
+    120             1                       5616     
+                                            5648     All False Count
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    128                                        5     Count coming in to IF
-    128             1                          1     
-    130             1                          1     
-    132             1                          3     
+    146                                       10     Count coming in to IF
+    146             1                          2     
+    148             1                          2     
+    150             1                          6     
 Branch totals: 3 hits of 3 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    146                                      218     Count coming in to IF
-    146             1                         16     
-    148             1                        202     
+    164                                      291     Count coming in to IF
+    164             1                         40     
+    166             1                        251     
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    155                                        5     Count coming in to IF
-    155             1                          4     
-                                               1     All False Count
+    173                                       10     Count coming in to IF
+    173             1                          8     
+                                               2     All False Count
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    158                                        5     Count coming in to IF
-    158             1                          1     
-                                               4     All False Count
-Branch totals: 2 hits of 2 branches = 100.00%
-
-------------------------------------IF Branch------------------------------------
-    162                                      343     Count coming in to IF
-    162             1                          1     
-                                             342     All False Count
-Branch totals: 2 hits of 2 branches = 100.00%
-
-------------------------------------IF Branch------------------------------------
-    167                                        1     Count coming in to IF
-    167             1                    ***0***     
-                                               1     All False Count
-Branch totals: 1 hit of 2 branches = 50.00%
-
-------------------------------------IF Branch------------------------------------
-    181                                        4     Count coming in to IF
-    181             1                          1     
-                                               3     All False Count
-Branch totals: 2 hits of 2 branches = 100.00%
-
-------------------------------------IF Branch------------------------------------
-    198                                        1     Count coming in to IF
-    198             1                          1     
-                                         ***0***     All False Count
-Branch totals: 1 hit of 2 branches = 50.00%
-
-------------------------------------IF Branch------------------------------------
-    213                                        5     Count coming in to IF
-    213             1                          5     
-                                         ***0***     All False Count
-Branch totals: 1 hit of 2 branches = 50.00%
-
-------------------------------------IF Branch------------------------------------
-    218                                        5     Count coming in to IF
-    218             1                    ***0***     
-                                               5     All False Count
-Branch totals: 1 hit of 2 branches = 50.00%
-
-------------------------------------IF Branch------------------------------------
-    250                                       10     Count coming in to IF
-    250             1                          1     
-    252             1                          1     
-    254             1                          2     
-    256             1                          1     
-    258             1                          1     
-    260             1                    ***0***     
-    262             1                          1     
-    264             1                          3     
-Branch totals: 7 hits of 8 branches = 87.50%
-
-------------------------------------IF Branch------------------------------------
-    278                                      530     Count coming in to IF
-    278             1                         24     
-    280             1                        506     
-Branch totals: 2 hits of 2 branches = 100.00%
-
-------------------------------------IF Branch------------------------------------
-    290                                       10     Count coming in to IF
-    290             1                          1     
-                                               9     All False Count
-Branch totals: 2 hits of 2 branches = 100.00%
-
-------------------------------------IF Branch------------------------------------
-    293                                       10     Count coming in to IF
-    293             1                          7     
-    295             1                          3     
-Branch totals: 2 hits of 2 branches = 100.00%
-
-------------------------------------IF Branch------------------------------------
-    301                                       10     Count coming in to IF
-    301             1                          2     
+    176                                       10     Count coming in to IF
+    176             1                          2     
                                                8     All False Count
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    308                                       10     Count coming in to IF
-    308             1                          2     
-                                               8     All False Count
+    180                                      558     Count coming in to IF
+    180             1                          2     
+                                             556     All False Count
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    315                                       10     Count coming in to IF
-    315             1                          1     
-    317             1                          9     
+    186                                        2     Count coming in to IF
+    186             1                    ***0***     
+                                               2     All False Count
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    200                                        8     Count coming in to IF
+    200             1                          2     
+                                               6     All False Count
 Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    323                                       10     Count coming in to IF
-    323             1                          9     
-                                               1     All False Count
-Branch totals: 2 hits of 2 branches = 100.00%
-
-------------------------------------IF Branch------------------------------------
-    324                                        9     Count coming in to IF
-    324             1                          6     
-    329             1                          3     
-Branch totals: 2 hits of 2 branches = 100.00%
-
-------------------------------------IF Branch------------------------------------
-    337                                       10     Count coming in to IF
-    337             1                          1     
-                                               9     All False Count
-Branch totals: 2 hits of 2 branches = 100.00%
-
-------------------------------------IF Branch------------------------------------
-    341                                        1     Count coming in to IF
-    341             1                          1     
+    217                                        2     Count coming in to IF
+    217             1                          2     
                                          ***0***     All False Count
 Branch totals: 1 hit of 2 branches = 50.00%
 
 ------------------------------------IF Branch------------------------------------
-    346                                        1     Count coming in to IF
-    346             1                    ***0***     
-                                               1     All False Count
-Branch totals: 1 hit of 2 branches = 50.00%
-
-------------------------------------IF Branch------------------------------------
-    355                                       10     Count coming in to IF
-    355             1                          9     
-                                               1     All False Count
-Branch totals: 2 hits of 2 branches = 100.00%
-
-------------------------------------IF Branch------------------------------------
-    358                                       10     Count coming in to IF
-    358             1                          5     
-                                               5     All False Count
-Branch totals: 2 hits of 2 branches = 100.00%
-
-------------------------------------IF Branch------------------------------------
-    359                                        5     Count coming in to IF
-    359             1                          1     
-    361             1                          4     
-Branch totals: 2 hits of 2 branches = 100.00%
-
-------------------------------------IF Branch------------------------------------
-    365                                       10     Count coming in to IF
-    365             1                          1     
-    368             1                          4     
-    370             1                          1     
-    372             1                          4     
-                                         ***0***     All False Count
-Branch totals: 4 hits of 5 branches = 80.00%
-
-------------------------------------IF Branch------------------------------------
-    427                                      263     Count coming in to IF
-    427             1                          1     
-                                             262     All False Count
-Branch totals: 2 hits of 2 branches = 100.00%
-
-------------------------------------IF Branch------------------------------------
-    432                                        1     Count coming in to IF
-    432             1                          1     
+    232                                       10     Count coming in to IF
+    232             1                         10     
                                          ***0***     All False Count
 Branch totals: 1 hit of 2 branches = 50.00%
 
 ------------------------------------IF Branch------------------------------------
-    456                                  ***0***     Count coming in to IF
-    456             1                    ***0***     
+    238                                       10     Count coming in to IF
+    238             1                    ***0***     
+                                              10     All False Count
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    269                                       22     Count coming in to IF
+    269             1                          2     
+    271             1                          2     
+    273             1                          2     
+    275             1                          4     
+    277             1                          1     
+    279             1                          1     
+    281             1                          1     
+    283             1                          9     
+Branch totals: 8 hits of 8 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    297                                     1181     Count coming in to IF
+    297             1                         24     
+    299             1                       1157     
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    310                                       22     Count coming in to IF
+    310             1                          2     
+                                              20     All False Count
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    313                                       22     Count coming in to IF
+    313             1                         16     
+    315             1                          6     
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    321                                       22     Count coming in to IF
+    321             1                          4     
+                                              18     All False Count
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    328                                       22     Count coming in to IF
+    328             1                          2     
+                                              20     All False Count
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    335                                       22     Count coming in to IF
+    335             1                          2     
+    337             1                         20     
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    343                                       22     Count coming in to IF
+    343             1                         20     
+                                               2     All False Count
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    344                                       20     Count coming in to IF
+    344             1                         14     
+    349             1                          6     
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    357                                       22     Count coming in to IF
+    357             1                          1     
+                                              21     All False Count
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    361                                        1     Count coming in to IF
+    361             1                          1     
                                          ***0***     All False Count
-Branch totals: 0 hits of 2 branches = 0.00%
+Branch totals: 1 hit of 2 branches = 50.00%
 
 ------------------------------------IF Branch------------------------------------
-    461                                  ***0***     Count coming in to IF
-    461             1                    ***0***     
-                                         ***0***     All False Count
-Branch totals: 0 hits of 2 branches = 0.00%
+    367                                        1     Count coming in to IF
+    367             1                    ***0***     
+                                               1     All False Count
+Branch totals: 1 hit of 2 branches = 50.00%
 
 ------------------------------------IF Branch------------------------------------
-    506                                  ***0***     Count coming in to IF
-    506             1                    ***0***     
-    506             2                    ***0***     
-Branch totals: 0 hits of 2 branches = 0.00%
+    378                                       22     Count coming in to IF
+    378             1                         15     
+                                               7     All False Count
+Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    514                                  ***0***     Count coming in to IF
-    514             1                    ***0***     
-                                         ***0***     All False Count
-Branch totals: 0 hits of 2 branches = 0.00%
+    379                                       15     Count coming in to IF
+    379             1                          4     
+    381             1                         11     
+Branch totals: 2 hits of 2 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    519                                  ***0***     Count coming in to IF
-    519             1                    ***0***     
-    525             1                    ***0***     
-Branch totals: 0 hits of 2 branches = 0.00%
-
-------------------------------------IF Branch------------------------------------
-    539                                  ***0***     Count coming in to IF
-    539             1                    ***0***     
-                                         ***0***     All False Count
-Branch totals: 0 hits of 2 branches = 0.00%
-
-------------------------------------IF Branch------------------------------------
-    544                                  ***0***     Count coming in to IF
-    544             1                    ***0***     
-                                         ***0***     All False Count
-Branch totals: 0 hits of 2 branches = 0.00%
+    385                                       22     Count coming in to IF
+    385             1                          2     
+    388             1                          5     
+    390             1                          4     
+    392             1                         10     
+                                               1     All False Count
+Branch totals: 5 hits of 5 branches = 100.00%
 
 ------------------------------------CASE Branch------------------------------------
-    565                                  ***0***     Count coming in to CASE
-    566             1                    ***0***     
-    566             2                    ***0***     
-    566             3                    ***0***     
-    566             4                    ***0***     
-    566             5                    ***0***     
-    570             1                    ***0***     
-    574             1                    ***0***     
-    578             1                    ***0***     
-    581             1                    ***0***     
-Branch totals: 0 hits of 9 branches = 0.00%
-
-------------------------------------IF Branch------------------------------------
-    590                                  ***0***     Count coming in to IF
-    590             1                    ***0***     
-                                         ***0***     All False Count
-Branch totals: 0 hits of 2 branches = 0.00%
-
-------------------------------------CASE Branch------------------------------------
-    598                                  ***0***     Count coming in to CASE
-    599             1                    ***0***     
-    599             2                    ***0***     
-    599             3                    ***0***     
-    599             4                    ***0***     
-    599             5                    ***0***     
-    603             1                    ***0***     
-    607             1                    ***0***     
-    611             1                    ***0***     
-    615             1                    ***0***     
-    619             1                    ***0***     
-Branch totals: 0 hits of 10 branches = 0.00%
-
-------------------------------------IF Branch------------------------------------
-    627                                  ***0***     Count coming in to IF
-    627             1                    ***0***     
-                                         ***0***     All False Count
-Branch totals: 0 hits of 2 branches = 0.00%
+    462                                        3     Count coming in to CASE
+    463             1                    ***0***     
+    464             1                          1     
+    465             1                          1     
+    466             1                          1     
+Branch totals: 3 hits of 4 branches = 75.00%
 
 
 
@@ -1141,7 +1050,7 @@ Branch totals: 0 hits of 2 branches = 0.00%
 Branch Coverage:
     Enabled Coverage              Bins      Hits    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Branches                        48        32        16    66.66%
+    Branches                        16        16         0   100.00%
 
 ================================Branch Details================================
 
@@ -1151,137 +1060,41 @@ Branch Coverage for instance /test_hdlc/u_assertion_bind
     ----         ----                      -----     ------ 
   File ./assertions_hdlc.sv
 ------------------------------------IF Branch------------------------------------
-    467                                     1137     Count coming in to IF
-    467             1                          2     
-    469             1                         21     
-    471             1                        552     
-                                             562     All False Count
+    418                                     2536     Count coming in to IF
+    418             1                          8     
+    420             1                         48     
+    422             1                       1229     
+                                            1251     All False Count
 Branch totals: 4 hits of 4 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    477                                      637     Count coming in to IF
-    477             1                          2     
-    479             1                         25     
-    481             1                        304     
-                                             306     All False Count
+    428                                     1828     Count coming in to IF
+    428             1                          8     
+    430             1                         54     
+    432             1                        881     
+                                             885     All False Count
 Branch totals: 4 hits of 4 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    487                                      565     Count coming in to IF
-    487             1                          2     
-    489             1                        275     
-    491             1                         13     
-                                             275     All False Count
+    438                                      614     Count coming in to IF
+    438             1                          8     
+    440             1                        291     
+    442             1                         24     
+                                             291     All False Count
 Branch totals: 4 hits of 4 branches = 100.00%
 
 ------------------------------------IF Branch------------------------------------
-    497                                       40     Count coming in to IF
-    497             1                          2     
-    499             1                         18     
-    501             1                         14     
-                                               6     All False Count
+    448                                       74     Count coming in to IF
+    448             1                          8     
+    450             1                         36     
+    452             1                         20     
+                                              10     All False Count
 Branch totals: 4 hits of 4 branches = 100.00%
 
-------------------------------------IF Branch------------------------------------
-    513                                        1     Count coming in to IF
-    513             1                    ***0***     
-                                               1     All False Count
-Branch totals: 1 hit of 2 branches = 50.00%
-
-------------------------------------IF Branch------------------------------------
-    514                                        1     Count coming in to IF
-    514             1                    ***0***     
-                                               1     All False Count
-Branch totals: 1 hit of 2 branches = 50.00%
-
-------------------------------------IF Branch------------------------------------
-    515                                        1     Count coming in to IF
-    515             1                    ***0***     
-                                               1     All False Count
-Branch totals: 1 hit of 2 branches = 50.00%
-
-------------------------------------IF Branch------------------------------------
-    516                                        1     Count coming in to IF
-    516             1                    ***0***     
-                                               1     All False Count
-Branch totals: 1 hit of 2 branches = 50.00%
-
-------------------------------------IF Branch------------------------------------
-    517                                        1     Count coming in to IF
-    517             1                    ***0***     
-                                               1     All False Count
-Branch totals: 1 hit of 2 branches = 50.00%
-
-------------------------------------IF Branch------------------------------------
-    518                                        1     Count coming in to IF
-    518             1                    ***0***     
-                                               1     All False Count
-Branch totals: 1 hit of 2 branches = 50.00%
-
-------------------------------------IF Branch------------------------------------
-    519                                        1     Count coming in to IF
-    519             1                    ***0***     
-                                               1     All False Count
-Branch totals: 1 hit of 2 branches = 50.00%
-
-------------------------------------IF Branch------------------------------------
-    520                                        1     Count coming in to IF
-    520             1                    ***0***     
-                                               1     All False Count
-Branch totals: 1 hit of 2 branches = 50.00%
-
-------------------------------------IF Branch------------------------------------
-    521                                        1     Count coming in to IF
-    521             1                    ***0***     
-                                               1     All False Count
-Branch totals: 1 hit of 2 branches = 50.00%
-
-------------------------------------IF Branch------------------------------------
-    522                                        1     Count coming in to IF
-    522             1                    ***0***     
-                                               1     All False Count
-Branch totals: 1 hit of 2 branches = 50.00%
-
-------------------------------------IF Branch------------------------------------
-    523                                        1     Count coming in to IF
-    523             1                    ***0***     
-                                               1     All False Count
-Branch totals: 1 hit of 2 branches = 50.00%
-
-------------------------------------IF Branch------------------------------------
-    524                                        1     Count coming in to IF
-    524             1                    ***0***     
-                                               1     All False Count
-Branch totals: 1 hit of 2 branches = 50.00%
-
-------------------------------------IF Branch------------------------------------
-    525                                        1     Count coming in to IF
-    525             1                    ***0***     
-                                               1     All False Count
-Branch totals: 1 hit of 2 branches = 50.00%
-
-------------------------------------IF Branch------------------------------------
-    526                                        1     Count coming in to IF
-    526             1                    ***0***     
-                                               1     All False Count
-Branch totals: 1 hit of 2 branches = 50.00%
-
-------------------------------------IF Branch------------------------------------
-    527                                        1     Count coming in to IF
-    527             1                    ***0***     
-                                               1     All False Count
-Branch totals: 1 hit of 2 branches = 50.00%
-
-------------------------------------IF Branch------------------------------------
-    528                                        1     Count coming in to IF
-    528             1                    ***0***     
-                                               1     All False Count
-Branch totals: 1 hit of 2 branches = 50.00%
 
 
 
+Total Coverage By Instance (filtered view): 89.88%
 
-Total Coverage By Instance (filtered view): 78.86%
-
-End time: 16:01:26 on Apr 17,2026, Elapsed time: 0:00:00
+End time: 14:58:10 on Apr 23,2026, Elapsed time: 0:00:01
 Errors: 0, Warnings: 0

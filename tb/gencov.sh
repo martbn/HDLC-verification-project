@@ -74,19 +74,3 @@ vcover report -details -code bcesft "$UCDB_FILE" > "$OUT_DIR/cov_code_all.txt"
 
 # Overall summary report
 vcover report -details "$UCDB_FILE" > "$OUT_DIR/cov_summary.txt"
-
-if grep -q "No matching coverage data found" "$OUT_DIR/cov_toggle.txt"; then
-  echo "Warning: Toggle coverage data is missing in $UCDB_FILE."
-  echo "Re-run without --reports-only so this script recompiles with +cover=bcesft."
-fi
-
-echo "Done. Generated files:"
-echo "  $OUT_DIR/cov_summary.txt"
-echo "  $OUT_DIR/cov_assert.txt"
-echo "  $OUT_DIR/cov_directive.txt"
-echo "  $OUT_DIR/cov_statement.txt"
-echo "  $OUT_DIR/cov_branch.txt"
-echo "  $OUT_DIR/cov_condition.txt"
-echo "  $OUT_DIR/cov_expression.txt"
-echo "  $OUT_DIR/cov_toggle.txt"
-echo "  $OUT_DIR/cov_code_all.txt"

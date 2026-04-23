@@ -1,5 +1,5 @@
 /****************************************************************************
- * Immediate checks
+ *                  Immediate assertions and checks                         *
  ****************************************************************************/
 
 // Common check helpers
@@ -25,7 +25,6 @@ task automatic CheckIntLe(string msg, int got, int lim);
   end
 endtask
 
-// [Task 1 | Spec 1] + [Task 3 | Spec 3]
 task VerifyNormalReceive(logic [127:0][7:0] data, int Size);
   logic [7:0] rxsc;
   logic [7:0] rxbuff;
@@ -64,7 +63,6 @@ task VerifyNormalReceive(logic [127:0][7:0] data, int Size);
   end
 endtask
 
-// [Task 1 | Spec 1] + [Task 3 | Spec 3] + [Task 13 | Spec 13]
 task VerifyOverflowReceive(logic [127:0][7:0] data, int Size);
   logic [7:0] rxsc;
   logic [7:0] rxbuff;
@@ -100,7 +98,6 @@ task VerifyOverflowReceive(logic [127:0][7:0] data, int Size);
   end
 endtask
 
-// [Task 2 | Spec 2]
 task VerifyReadAfterError();
   logic [7:0] rxbuff;
   bit not_ready_seen;
@@ -124,7 +121,7 @@ task VerifyReadAfterError();
   CheckByteEq("READ AFTER ERROR RXBUFF mismatch.", rxbuff, 8'h00);
 endtask
 
-// [Task 2 | Spec 2] + [Task 3 | Spec 3]
+
 task VerifyAbortReceive();
   logic [7:0] rxsc;
   logic [7:0] rxbuff;
@@ -137,7 +134,7 @@ task VerifyAbortReceive();
   CheckByteEq("ABORT RXBUFF mismatch.", rxbuff, 8'h00);
 endtask
 
-// [Task 3 | Spec 3]
+
 task VerifyRxStatusControl(int Abort, int FCSerr, int NonByteAligned, int Overflow, int Drop);
   logic [7:0] rxsc;
   logic [7:0] exp;
@@ -164,6 +161,9 @@ task VerifyRxStatusControl(int Abort, int FCSerr, int NonByteAligned, int Overfl
     TbErrorCnt++;
   end
 endtask
+
+
+
 
 // TX helpers/checks
 
@@ -198,7 +198,7 @@ task ReadTxByteNoStuff(output logic [7:0] TxByte, inout int OnesCnt);
   end
 endtask
 
-// [Task 4 | Spec 4] + [Task 11 | Spec 11]
+// Spec 4 and 11 task
 task VerifyTxOutput(logic [127:0][7:0] data, int Size);
   logic [127:0][7:0] CRCInputData;
   logic [7:0] ShiftReg;
@@ -257,7 +257,7 @@ task VerifyTxOutput(logic [127:0][7:0] data, int Size);
   end
 endtask
 
-// [Task 11 | Spec 11]
+// spec 11 task
 task VerifyRxCRCAtStopFCS(int ExpectFCSerr);
   logic StopFCSSeen;
   logic FCSerrAtStopFCS;
@@ -288,7 +288,7 @@ task VerifyRxCRCAtStopFCS(int ExpectFCSerr);
   end
 endtask
 
-// [Task 12 | Spec 12]
+// Spec 12
 task VerifyRxEoFGenerated();
   logic EoFSeen;
 
@@ -305,7 +305,7 @@ task VerifyRxEoFGenerated();
   end
 endtask
 
-// [Task 14 | Spec 14]
+// Spec 14
 task VerifyRxFrameSize(int exp_size, bit is_overflow_case);
   logic [7:0] rxlen;
 

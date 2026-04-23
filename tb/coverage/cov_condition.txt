@@ -1,5 +1,5 @@
 QuestaSim vcover 2025.2 Coverage Utility 2025.05 May 31 2025
-Start time: 16:01:26 on Apr 17,2026
+Start time: 14:58:10 on Apr 23,2026
 vcover report -details -code c coverage.ucdb 
 Coverage Report by instance with details
 
@@ -46,7 +46,7 @@ Condition totals: 2 of 2 input terms covered = 100.00%
 Condition Coverage:
     Enabled Coverage              Bins   Covered    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Conditions                       7         6         1    85.71%
+    Conditions                       7         5         2    71.42%
 
 ================================Condition Details================================
 
@@ -55,13 +55,13 @@ Condition Coverage for instance /test_hdlc/u_dut/u_TxBuff --
   File ../rtl/TxBuff.sv
 ----------------Focused Condition View-------------------
 Line       45 Item    1  ((WrBuff && ~Full) && ~DataAvail)
-Condition totals: 2 of 3 input terms covered = 66.66%
+Condition totals: 1 of 3 input terms covered = 33.33%
 
   Input Term   Covered  Reason for no coverage   Hint
  -----------  --------  -----------------------  --------------
       WrBuff         Y
         Full         N  '_1' not hit             Hit '_1'
-   DataAvail         Y
+   DataAvail         N  '_1' not hit             Hit '_1'
 
      Rows:       Hits  FEC Target            Non-masking condition(s)      
  ---------  ---------  --------------------  -------------------------     
@@ -70,7 +70,7 @@ Condition totals: 2 of 3 input terms covered = 66.66%
   Row   3:          1  Full_0                (~DataAvail && WrBuff)        
   Row   4:    ***0***  Full_1                WrBuff                        
   Row   5:          1  DataAvail_0           (WrBuff && ~Full)             
-  Row   6:          1  DataAvail_1           (WrBuff && ~Full)             
+  Row   6:    ***0***  DataAvail_1           (WrBuff && ~Full)             
 
 ----------------Focused Condition View-------------------
 Line       47 Item    1  (CurrentState == IDLE)
@@ -157,7 +157,7 @@ Condition totals: 1 of 2 input terms covered = 50.00%
 Condition Coverage:
     Enabled Coverage              Bins   Covered    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Conditions                       8         7         1    87.50%
+    Conditions                       8         5         3    62.50%
 
 ================================Condition Details================================
 
@@ -190,7 +190,19 @@ Condition totals: 1 of 2 input terms covered = 50.00%
 
 ----------------Focused Condition View-------------------
 Line       129 Item    1  (FlagDetect && ~NewByte)
-Condition totals: 2 of 2 input terms covered = 100.00%
+Condition totals: 0 of 2 input terms covered = 0.00%
+
+  Input Term   Covered  Reason for no coverage   Hint
+ -----------  --------  -----------------------  --------------
+  FlagDetect         N  '_1' not hit             Hit '_1'
+     NewByte         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:          1  FlagDetect_0          -                             
+  Row   2:    ***0***  FlagDetect_1          ~NewByte                      
+  Row   3:    ***0***  NewByte_0             FlagDetect                    
+  Row   4:          1  NewByte_1             FlagDetect                    
 
 ----------------Focused Condition View-------------------
 Line       145 Item    1  (NonByteAlignedError || FCSerror)
@@ -271,7 +283,7 @@ Condition totals: 1 of 1 input term covered = 100.00%
 Condition Coverage:
     Enabled Coverage              Bins   Covered    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Conditions                      11         5         6    45.45%
+    Conditions                       8         5         3    62.50%
 
 ================================Condition Details================================
 
@@ -333,52 +345,13 @@ Condition totals: 1 of 2 input terms covered = 50.00%
 
 
 ----------------Focused Condition View-------------------
-Line       368 Item    1  (FCSerr || Drop || NonByteAligned)
+Line       388 Item    1  (FCSerr || Drop || NonByteAligned)
 Condition totals: 1 of 1 input term covered = 100.00%
 
-----------------Focused Condition View-------------------
-Line       506 Item    1  (k == 0)
-Condition totals: 0 of 1 input term covered = 0.00%
-
-  Input Term   Covered  Reason for no coverage   Hint
- -----------  --------  -----------------------  --------------
-    (k == 0)         N  No hits                  Hit '_0' and '_1'
-
-     Rows:       Hits  FEC Target            Non-masking condition(s)      
- ---------  ---------  --------------------  -------------------------     
-  Row   1:    ***0***  (k == 0)_0            -                             
-  Row   2:    ***0***  (k == 0)_1            -                             
-
-----------------Focused Condition View-------------------
-Line       590 Item    1  (r == (Repeats - 1))
-Condition totals: 0 of 1 input term covered = 0.00%
-
-            Input Term   Covered  Reason for no coverage   Hint
-           -----------  --------  -----------------------  --------------
-  (r == (Repeats - 1))         N  No hits                  Hit '_0' and '_1'
-
-     Rows:       Hits  FEC Target              Non-masking condition(s)      
- ---------  ---------  --------------------    -------------------------     
-  Row   1:    ***0***  (r == (Repeats - 1))_0  -                             
-  Row   2:    ***0***  (r == (Repeats - 1))_1  -                             
-
-----------------Focused Condition View-------------------
-Line       627 Item    1  (r == (Repeats - 1))
-Condition totals: 0 of 1 input term covered = 0.00%
-
-            Input Term   Covered  Reason for no coverage   Hint
-           -----------  --------  -----------------------  --------------
-  (r == (Repeats - 1))         N  No hits                  Hit '_0' and '_1'
-
-     Rows:       Hits  FEC Target              Non-masking condition(s)      
- ---------  ---------  --------------------    -------------------------     
-  Row   1:    ***0***  (r == (Repeats - 1))_0  -                             
-  Row   2:    ***0***  (r == (Repeats - 1))_1  -                             
 
 
 
+Total Coverage By Instance (filtered view): 73.80%
 
-Total Coverage By Instance (filtered view): 75.55%
-
-End time: 16:01:26 on Apr 17,2026, Elapsed time: 0:00:00
+End time: 14:58:10 on Apr 23,2026, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0
